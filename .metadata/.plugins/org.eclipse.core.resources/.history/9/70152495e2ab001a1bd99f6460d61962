@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+table {
+	border-color: #gold;
+	padding: 10px 70px;
+	margin: auto; /* 테이블 가운데 정렬 */
+	even-background-color: #dedede;
+	odd-background-color: #gold;
+	first-background-color: #black;
+}
+
+a {
+	text-align: right;
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+} /*  방문전 링크*/
+a:visited {
+	color: black;
+	text-decoration: none;
+} /*방문후 링크  */
+a:hover {
+	color: blue;
+	text-decoration: underline;
+} /*마우스 오버  */
+a:active {
+	color: black;
+	text-decoration: none;
+} /*마우스클릭  */
+p {
+	background-color: skyblue;
+}
+
+body {
+	text-align:center;
+	background-image: url("/myapp/images/home.png");
+	background-color: #ffffff;
+	font-family: "나눔명조";
+	/* 	text-align: center; */
+	font-size: 25px; /* 폰트 크기 */
+	font-weight: bold;
+	/* } */ select {
+	width: 70px;
+	border: 2px solod #ccc;
+	background-color: #f8f8f8;
+	font-family: "나눔명조"; /* 폰트모양 */
+	font-size: 20px; /* 폰트 크기 */
+	font-weight: bold;
+}
+
+input[type=text], [type=password] {
+	width: 270px;
+	border: 2px solod #ccc;
+	color: blue;
+	font-family: "나눔명조"; /* 폰트모양 */
+	font-size: 30px; /* 폰트 크기 */
+}
+
+input[value=""] {
+	width: 70px;
+}
+
+[type=number] {
+	font-size: 20px;
+}
+
+input[type=button], [type=reset], [type=submit] {
+	width: 200px;
+	border: 2px solod #ccc;
+	padding: 10px 20px;
+	background-color: orange;
+	color: white;
+	font-family: "나눔명조"; /* 폰트모양 */
+	font-size: 15px; /* 폰트 크기 */
+	font-weight: bold;
+}
+
+
+#box {
+	text-align:center;
+	margin: 0px;
+	background-color: yellow;
+}
+
+#box2 {
+	text-align:center;
+	background-color: red;
+}
+
+#box3 {
+	margin: 0px;
+	text-align: right;
+}
+
+.redtext {
+	text-align:center;
+	color: red;
+	font-family: appleSDGothicNeoROO, D2Coding;
+	font-size: 30px;
+}

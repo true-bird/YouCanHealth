@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#box {
+	text-align:center;
+	margin: 0px;
+	background-color: yellow;
+}
+
+#box2 {
+	text-align:center;
+	background-color: red;
+}
+
+#box3 {
+	margin: 0px;
+	text-align: right;
+}
+
+.redtext {
+	text-align:center;
+	color: red;
+	font-family: appleSDGothicNeoROO, D2Coding;
+	font-size: 30px;
+}
+
+body {
+	text-align:center;
+	background-color: #335566;
+}

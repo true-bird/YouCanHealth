@@ -1,0 +1,5 @@
+package com.matnagu.myHell.community.service;
+
+public interface ICommunityService {
+
+}

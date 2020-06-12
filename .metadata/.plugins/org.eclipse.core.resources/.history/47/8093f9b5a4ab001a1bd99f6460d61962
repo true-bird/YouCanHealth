@@ -1,0 +1,54 @@
+package com.matnagu.myHell.geustbook.dto;
+
+public class GuestbookDto {
+
+	private int seq; //�떆���뒪
+	private String name; //�씠由�
+	private String addr; //二쇱냼
+	private char gender; //�꽦蹂�
+	private String regdate; //�깮�꽦 �궇吏�
+
+	public GuestbookDto() {
+
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+}

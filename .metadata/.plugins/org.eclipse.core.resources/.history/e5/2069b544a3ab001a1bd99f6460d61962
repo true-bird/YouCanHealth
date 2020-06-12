@@ -1,0 +1,13 @@
+package com.mycompany.myapp.geustbook.dao;
+
+import java.util.List;
+
+import com.mycompany.myapp.geustbook.dto.GuestbookDto;
+
+public interface IGuestbookDao {
+
+	//Guestbook 전체 조회
+	 public List<GuestbookDto> selectGuestbookAllList();
+	 public int insertGuestbook();
+	 
+}

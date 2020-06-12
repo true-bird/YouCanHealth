@@ -1,0 +1,19 @@
+package com.matnagu.myHell.community;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping(value = "/community")
+public class CommunityController {
+	// 글쓰기
+	@RequestMapping(value = "/createPost")
+	public String createPost() {
+		return "community/createPost";
+	}
+	// 글읽기
+	@RequestMapping(value = "/readPost")
+	public String readPost() {
+		return "community/readPost";
+	}
+}

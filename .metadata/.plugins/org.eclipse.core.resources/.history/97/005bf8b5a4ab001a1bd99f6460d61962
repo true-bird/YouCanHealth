@@ -1,0 +1,14 @@
+package com.matnagu.myHell.geustbook.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.matnagu.myHell.geustbook.dto.GuestbookDto;
+
+
+public interface IGuestbookService {
+
+	//GuestbookDto �쟾泥� 紐⑸줉 議고쉶
+	public List<GuestbookDto> selectGuestbookAllList();
+	public void insertGuestbook(HashMap<String, String> paramMap);
+}

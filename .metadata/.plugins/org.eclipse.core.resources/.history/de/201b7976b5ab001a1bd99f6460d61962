@@ -1,0 +1,9 @@
+package com.matnagu.myHell.routine.service;
+
+import com.matnagu.myHell.user.dto.UserDto;
+
+public interface IRoutineService {
+
+	// 유저 정보 조회
+	public UserDto createCustomRoutine();
+}

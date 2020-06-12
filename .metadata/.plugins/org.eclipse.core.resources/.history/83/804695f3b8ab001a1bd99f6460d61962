@@ -1,0 +1,5 @@
+package com.matnagu.myHell.sports.service;
+
+public interface ISportsService {
+
+}
