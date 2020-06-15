@@ -5,7 +5,21 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2020-06-12T06:35:17Z</updated>
+  <updated>2020-06-12T12:25:55Z</updated>
+  <entry>
+    <title>Upcoming Webinar: Bootiful Observability with Tanzu Wavefront by Josh Long and Sushant Dewan</title>
+    <link rel="alternate" href="https://spring.io/blog/2020/06/12/upcoming-webinar-bootiful-observability-with-tanzu-wavefront-by-josh-long-and-sushant-dewan" />
+    <category term="news" label="News and Events" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2020-06-12:4104</id>
+    <updated>2020-06-12T12:25:55Z</updated>
+    <content type="html">&lt;p&gt;Need better insight into your Spring Boot Applications? Join Spring Developer Advocate &lt;a href="http://twitter.com/starbuxman"&gt;Josh Long&lt;/a&gt; and Sushant Dewan in a live webinar conversation on June 24th at 10:00 AM PST.&lt;/p&gt;
+&lt;p&gt;Get Tanzu Observability tips on how to understand the impact of your code on your application with application maps, metrics, distributed traces, histograms, and span logs analytics!&lt;/p&gt;
+&lt;p&gt;Register now &lt;a href="https://tanzu.vmware.com/content/webinars/jun-24-tanzu-observability-tips-for-understanding-your-spring-boot-applications"&gt;for this free, virtual event&lt;/a&gt; you won&amp;rsquo;t want to miss. &lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot 2.3.1 available now</title>
     <link rel="alternate" href="https://spring.io/blog/2020/06/12/spring-boot-2-3-1-available-now" />
@@ -1326,230 +1340,6 @@ fun `My feature integration test`() {
 &lt;p&gt;Detailed changes can be found here: &lt;a href="https://github.com/spring-projects/sts4/wiki/Changelog#2020-05-28-462-release"&gt;https://github.com/spring-projects/sts4/wiki/Changelog#2020-05-28-462-release&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Spring Tools 4.7.0 is scheduled to be released in late June 2020.&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>What's new in Spring Data Elasticsearch 4.0</title>
-    <link rel="alternate" href="https://spring.io/blog/2020/05/27/what-s-new-in-spring-data-elasticsearch-4-0" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Mark Paluch</name>
-    </author>
-    <id>tag:spring.io,2020-05-26:4081</id>
-    <updated>2020-05-27T08:03:18Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;em&gt;This article continues our blog post series on &lt;a href="https://spring.io/blog/2020/05/18/what-s-new-in-spring-data-klara-dan-von-neumann"&gt;What&amp;#8217;s new in Spring Data Neumann&lt;/a&gt;. Today&amp;#8217;s installment explains New and Noteworthy in Spring Data Elasticsearch. This blog post was written by &lt;a href="https://twitter.com/sothawo"&gt;P.J. Meisch&lt;/a&gt; who maintains the Spring Data Elasticsearch module.&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This release addresses more than 140 issues, with more than 30 bugs fixed.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Data Elasticsearch now uses Elasticsearch 7, 7.6.2 in particular. Elasticsearch clusters running on 6.x versions are not supported anymore. The &lt;code&gt;ElasticsearchTemplate&lt;/code&gt; class is deprecated as it uses the &lt;code&gt;TransportClient&lt;/code&gt; to access Elasticsearch, which itself is deprecated since Elasticsearch version 7.+
-Users should switch to &lt;code&gt;ElasticsearchRestTemplate&lt;/code&gt; or &lt;code&gt;ReactiveElasticsearchTemplate&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In general, this release ships with several changes that may require several updates to your code and domain model. You can find the entire migration guide in the &lt;a href="https://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/#elasticsearch-migration-guide-3.2-4.0"&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="improved-object-mapping-and-entity-definitions"&gt;&lt;a class="anchor" href="#improved-object-mapping-and-entity-definitions"&gt;&lt;/a&gt;Improved object mapping and entity definitions&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;A change under the hood was that the mapping between an entity to the JSON document that elasticsearch needs was switched from using Jackson to the &lt;code&gt;MappingElasticsearchConverter&lt;/code&gt;. Now it is possible to define custom names for properties and even different date formats for time-related properties without the problems that used to show up in the previous
-versions. The MappingElasticsearchConverter not only converts entities but is also used when building queries and processing search results. By this the mapping and conversion is consistently applied to the whole storage and search process.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;code&gt;@Field&lt;/code&gt; annotation now supports nearly all of the types that can be used in Elasticsearch.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Document(indexName = "person", type = "dummy")
-public class Person implements Persistable&amp;lt;Long&amp;gt; {
-
-    @Nullable @Id
-    private Long id;
-
-    @Nullable @Field(value = "last-name", type = FieldType.Text, fielddata = true)
-    private String lastName;      &lt;b class="conum"&gt;(1)&lt;/b&gt;
-
-    @Nullable @Field(name = "birth-date", type = FieldType.Date, format = DateFormat.basic_date)
-    private LocalDate birthDate;  &lt;b class="conum"&gt;(2)&lt;/b&gt;
-
-    @CreatedDate
-    @Nullable @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
-    private Instant created;      &lt;b class="conum"&gt;(3)&lt;/b&gt;
-
-    // other properties, getter, setter
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;in Elasticsearch this field will be named &lt;em&gt;last-name&lt;/em&gt;, this mapping is handled transparently&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;a property for a date without time information&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;another property this time with full date and time information&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="new-return-types"&gt;&lt;a class="anchor" href="#new-return-types"&gt;&lt;/a&gt;New return types&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;As Elasticsearch not only returns the found entities in search results but a lot of additional information as well, new classes are introduced to provide this information, the most important being:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;SearchHit&amp;lt;T&amp;gt;&lt;/code&gt; contains the entity and information like the &lt;em&gt;score&lt;/em&gt;, &lt;em&gt;sortvalues&lt;/em&gt;, &lt;em&gt;highlight fields&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;SearchHits&amp;lt;T&amp;gt;&lt;/code&gt; contains the &lt;em&gt;maxScore&lt;/em&gt; of a search, returned &lt;em&gt;aggregations&lt;/em&gt;, the &lt;em&gt;totalCount&lt;/em&gt;, and the list of &lt;code&gt;SearchHit&amp;lt;T&amp;gt;&lt;/code&gt; elements.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;These are returned from the calls to the &lt;code&gt;(Reactive)ElasticsearchOperations&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To use them with repository methods they just need to be defined as the return type (repositories also support paged requests).
-As it is now possible to access highlight values in the &lt;code&gt;SearchHit&lt;/code&gt;,  repository methods can now be configured for highlights like shown in the first method:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Highlight(fields = {@HighlightField(name = "firstName")})
-List&amp;lt;SearchHit&amp;lt;Person&amp;gt;&amp;gt; findByFirstName(String firstName);
-
-Stream&amp;lt;SearchHit&amp;lt;Person&amp;gt;&amp;gt; findByBirthDateAfter(LocalDate date);
-
-SearchHits&amp;lt;Person&amp;gt; findByLastName(String lastName);
-
-SearchPage&amp;lt;Person&amp;gt; searchByLastName(String name, Pageable pageable);&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Of course it is still possible to retrieve just the entity by defining the return type as &lt;code&gt;List&amp;lt;Person&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="additional-configuration-options"&gt;&lt;a class="anchor" href="#additional-configuration-options"&gt;&lt;/a&gt;Additional configuration options&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Both the reactive and the non-reactive client can be configured with additional parameters&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;SSL support optionally with a custom &lt;code&gt;SSLContext&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Proxy support&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;custom header supplier to dynamically provide headers for each request sent to the cluster&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;pathPrefix&lt;/em&gt; for cases where the Elasticsearch cluster is behind some Loadbalancer or dispatcher&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="entity-callbacks-and-auditing"&gt;&lt;a class="anchor" href="#entity-callbacks-and-auditing"&gt;&lt;/a&gt;Entity callbacks and Auditing&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It now is possible to define Entity callbacks, the followig table shows the supported callbacks:&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class="tableblock frame-all grid-all stretch"&gt;
-&lt;colgroup&gt;
-&lt;col style="width: 25%;"&gt;
-&lt;col style="width: 25%;"&gt;
-&lt;col style="width: 50%;"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th class="tableblock halign-left valign-top"&gt;Callback&lt;/th&gt;
-&lt;th class="tableblock halign-left valign-top"&gt;Method&lt;/th&gt;
-&lt;th class="tableblock halign-left valign-top"&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;ReactiveBeforeConvertCallback&lt;br&gt;
-BeforeConvertCallback&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;onBeforeConvert(T,&lt;br&gt;
-IndexCoordinates)&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Invoked before a domain object is converted to &lt;code&gt;Document&lt;/code&gt;.&lt;br&gt;
-Can return the &lt;code&gt;entity&lt;/code&gt; or a modified entity which then will be converted.&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;ReactiveAfterConvertCallback&lt;br&gt;
-AfterConvertCallback&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;onAfterConvert(T,&lt;br&gt;
-Document, IndexCoordinates)&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Invoked after a domain object is converted from &lt;code&gt;Document&lt;/code&gt;&lt;br&gt;
-on reading result data from Elasticsearch.&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;ReactiveAuditingEntityCallback&lt;br&gt;
-AuditingEntityCallback&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;onBeforeConvert(Object,&lt;br&gt;
-IndexCoordinates)&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Marks an auditable entity &lt;em&gt;created&lt;/em&gt; or &lt;em&gt;modified&lt;/em&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;ReactiveAfterSaveCallback&lt;br&gt;
-AfterSaveCallback&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;T onAfterSave(T,&lt;br&gt;
-IndexCoordinates)&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Invoked after a domain object is saved.&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Built upon the &lt;code&gt;AuditingEntityCallback&lt;/code&gt; is the support for auditing. By implementing &lt;code&gt;Persistable&amp;lt;T&amp;gt;&lt;/code&gt; and adding annotated properties, these values will be automatically maintained for entities stored in Elasticsearch:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Document(indexName = "person")
-public class Person implements Persistable&amp;lt;Long&amp;gt; {
-
-    @Nullable @Id
-    private Long id;
-
-    @CreatedDate
-    @Nullable @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
-    private Instant created;
-
-    @Nullable @CreatedBy
-    private String createdBy;
-
-    @LastModifiedDate
-    @Nullable @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
-    private Instant lastModified;
-
-    @Nullable @LastModifiedBy
-    private String lastModifiedBy;
-
-    @Nullable
-    public Long getId() { return id; }
-
-    @Override
-    public boolean isNew() { return id == null || (createdBy == null &amp;amp;&amp;amp; created == null); }
-
-    // other properties, getter, setter...
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>

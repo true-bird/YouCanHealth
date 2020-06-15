@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.rightAlign {
+	text-align: right;
+}
+	
+.leftAlign {
+	text-align: left;
+}
+	
+.routineImg {
+   	height: 200px;
+   	width: 400px;
+}
+
+.verticalTop {
+	vertical-align: top;	
+}
+
+html. body {
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}

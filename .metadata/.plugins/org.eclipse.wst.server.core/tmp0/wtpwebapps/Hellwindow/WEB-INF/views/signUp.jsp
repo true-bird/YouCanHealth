@@ -7,13 +7,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script>
-		window.onload = function() {
-		
-
-			alert("!!");
-		}
-	</script>
 </head>
 <body>
 	<h1>회원가입 화면</h1>
