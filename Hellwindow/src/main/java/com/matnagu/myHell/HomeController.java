@@ -1,14 +1,26 @@
 package com.matnagu.myHell;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.routine.service.RoutineService;
+
 @Controller
 public class HomeController {
+	
+
+	@Autowired
+	private RoutineService routineService;
+	
 	// 홈
 	@RequestMapping(value = "/")
 	public String home() {
@@ -76,7 +88,9 @@ public class HomeController {
 	}
 	// 루틴
 	@RequestMapping(value = "/routines")
-	public String routines() {
+	public String routines(Model model) {
+		Map<String,List<RoutineDto>> routineList = routineService.selectRoutineList();
+		model.addAttribute("routineList",routineList);
 		return "routines/routineList";
 	}
 	// 내정보

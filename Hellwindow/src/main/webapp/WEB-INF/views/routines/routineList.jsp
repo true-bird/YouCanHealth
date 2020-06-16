@@ -7,16 +7,30 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
+	<script type="text/javascript" src="<%=contextPath%>/js/routine.js"></script>
 </head>
 <body>
+	<c:forEach var="routine" items="${routineList}" varStatus="status">
+		<span>${routine.key}</span>|
+		<br>
+	</c:forEach>
+	<hr>
+	<c:forEach var="routine" items="${routineList['등']}" varStatus="status">
+		<span>${routine.name}</span>|
+		<span>${routine.difficulty}</span>|
+		<span>${routine.category}</span>|
+		<span>${routine.star}</span>
+		<br>
+	</c:forEach>
 	<div id="dropbox" class="rightAlign">
-		<select name="">
-			<option value="인기 루틴">인기 루틴</option>
-			<option value="등 중심 루틴">등 중심 루틴</option>
-			<option value="가슴 중심 루틴">가슴 중심 루틴</option>
-			<option value="삼분할 루틴">삼분할 루틴</option>
+		<select name="category">
+			<option value="인기 ">인기 루틴</option>
+			<option value="등">등 중심 루틴</option>
+			<option value="가슴">가슴 중심 루틴</option>
+			<option value="삼분할">삼분할 루틴</option>
 		</select>
 	</div>
+	
 	<div id="title">
 		<p>
 			<span style="font-weight: bold">등 중심</span>

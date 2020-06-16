@@ -1,0 +1,12 @@
+
+
+$(document).ready(function(){
+	// process..
+	$("#select[name='category']").change(function() {
+		alert($(this).val());
+	});
+	
+	
+	
+	
+});
