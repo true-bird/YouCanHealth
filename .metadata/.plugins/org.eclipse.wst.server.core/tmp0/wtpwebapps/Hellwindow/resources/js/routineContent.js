@@ -2,6 +2,12 @@
 $(document).ready(function(){
 	var cate = $("#title #category").text().split(' ')[0];
 	var background = $(".section-background.background-image");
+	
+	$(".sectionWrapper").click(function() {
+		$("#routineId").val($(this).attr('id'));
+		$("form").submit();
+	});
+	
 	switch (cate){
 		case '인기':
 			background.css("background-image","url('/myHell/images/routine/popular.jpg')");

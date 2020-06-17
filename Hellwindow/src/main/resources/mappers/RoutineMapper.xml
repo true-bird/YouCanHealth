@@ -32,13 +32,15 @@
 	WHERE   CATEGORY = #{category}
 	</select>
 	
-	<select id="selectRoutineDetail" resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
+	<select id="selectRoutineDetail" parameterType="int"
+	resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
 	SELECT  ROUTINE_ID, 
 	        SPORTS_DAY,
 	        SPORTS_NAME,
 	        SPORTS_SET,		                
 	        SPORTS_COUNT
 	FROM    ROUTINE_DETAIL
+	WHERE   ROUTINE_ID = #{id}
 	ORDER BY SPORTS_DAY
 	</select>
 </mapper>

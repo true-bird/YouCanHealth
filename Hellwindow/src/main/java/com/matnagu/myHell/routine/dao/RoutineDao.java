@@ -27,7 +27,6 @@ public class RoutineDao implements IRoutineDao{
 	
 	@Override
 	public List<RoutineDto> selectRoutineList() {
-		System.out.println("!!");
 		List<RoutineDto> routineDtoList = new ArrayList<RoutineDto>();
 		routineDtoList = sqlSession.selectList("routineMapper.selectRoutineAllList");
 		return routineDtoList;
@@ -41,13 +40,10 @@ public class RoutineDao implements IRoutineDao{
 	}
 
 	@Override
-	public List<RoutineDetailDto> selectRoutineDetail() {
+	public List<RoutineDetailDto> selectRoutineDetail(int id) {
 		List<RoutineDetailDto> routineDetailDtoList = new ArrayList<RoutineDetailDto>();
-		routineDetailDtoList = sqlSession.selectList("routineMapper.selectRoutineDetail");
-		
-		
-		
-		return null;
+		routineDetailDtoList = sqlSession.selectList("routineMapper.selectRoutineDetail",id);
+		return routineDetailDtoList;
 	}
 
 }

@@ -30,9 +30,8 @@ public class RoutineService implements IRoutineService{
 	}
 
 	@Override
-	public List<RoutineDetailDto> selectRoutineDetail() {
-		// TODO Auto-generated method stub
-		return routineDao.selectRoutineDetail();
+	public List<RoutineDetailDto> selectRoutineDetail(int id) {
+		return routineDao.selectRoutineDetail(id);
 	}
 
 }

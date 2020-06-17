@@ -9,14 +9,14 @@ import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IRoutineDao {
 
-	// ³ª¸¸ÀÇ ·çÆ¾ »ı¼º
+	// ë‚˜ë§Œì˜ ë£¨í‹´
 	public UserDto createCustomRoutine();
-	// ÀÎ±â ·çÆ¾ Á¶È¸ 
+	// ì¸ê¸° ë£¨í‹´ 
 	public List<RoutineDto> selectRoutineList();
-	// Ä«Å×°í¸®º° ·çÆ¾ Á¶È¸
+	// ì¹´í…Œê³ ë¦¬ë³„ ë£¨í‹´
 	public List<RoutineDto> selectRoutineList(String category);
-	// ·çÆ¾ »ó¼¼ Á¶È¸
-	public List<RoutineDetailDto> selectRoutineDetail();
+	// ë£¨í‹´ ìƒì„¸
+	public List<RoutineDetailDto> selectRoutineDetail(int id);
 		
 	
 }

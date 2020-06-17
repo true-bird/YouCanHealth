@@ -2,7 +2,7 @@ package com.matnagu.myHell.routine.dto;
 
 public class RoutineDetailDto {
 	private int routineId;
-	private String sportsDay;
+	private int sportsDay;
 	private String sportsName;
 	private int sportsSet;
 	private int sportsCount;
@@ -12,10 +12,10 @@ public class RoutineDetailDto {
 	public void setRoutineId(int routineId) {
 		this.routineId = routineId;
 	}
-	public String getSportsDay() {
+	public int getSportsDay() {
 		return sportsDay;
 	}
-	public void setSportsDay(String sportsDay) {
+	public void setSportsDay(int sportsDay) {
 		this.sportsDay = sportsDay;
 	}
 	public String getSportsName() {
@@ -36,5 +36,6 @@ public class RoutineDetailDto {
 	public void setSportsCount(int sportsCount) {
 		this.sportsCount = sportsCount;
 	}
+	
 	
 }

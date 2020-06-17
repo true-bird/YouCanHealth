@@ -9,11 +9,11 @@ import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IRoutineService {
 
-	// ³ª¸¸ÀÇ ·çÆ¾ »ı¼º
+	// ë‚˜ë§Œì˜ ë£¨í‹´
 	public UserDto createCustomRoutine();
-	// ·çÆ¾ ¸®½ºÆ® Á¶È¸
+	// ë£¨í‹´ ì¡°íšŒ
 	public List<RoutineDto> selectRoutineList(String category);
-	//
-	public List<RoutineDetailDto> selectRoutineDetail();
+	// ë£¨í‹´ ìƒì„¸
+	public List<RoutineDetailDto> selectRoutineDetail(int id);
 	
 }

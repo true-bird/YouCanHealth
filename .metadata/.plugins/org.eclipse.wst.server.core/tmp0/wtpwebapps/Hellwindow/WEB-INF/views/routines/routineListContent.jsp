@@ -14,13 +14,15 @@
 			<span >루틴</span>
 		</p>
 	</div>
+	
+	<form method="post" action="routine/routineDetails">
 	<c:forEach var="routine" items="${routineList}" varStatus="status">
 		<div class ="sectionWrapper
 			<c:choose>
 				<c:when test="${status.index%2==0}">rightAlign</c:when>
 				<c:otherwise>leftAlign</c:otherwise>
 			</c:choose>"
-	OnClick="location.href='<c:url value='/routine/routineDetails'/>'" style="cursor:pointer;">
+			style="cursor:pointer;" id="${routine.id}">
 			<div class="section-background background-image"></div>
 			<div class="section-background background-cover"></div>
 			<div class="section">
@@ -32,6 +34,8 @@
 			</div>
 		</div>
 		<br>
-	</c:forEach>	
+	</c:forEach>
+		<input type="hidden" id="routineId" name="routineId">	
+	</form>
 </body>
 </html>

@@ -1,6 +1,10 @@
 package com.matnagu.myHell.routine;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +24,22 @@ public class RoutineController {
 	private RoutineService routineService;
 	// 루틴 상세 화면
 	@RequestMapping(value = "/routineDetails")
-	public String routineDetails(Model model) {
-		//@RequestParam(value="routineId", required=false) int id
-		//id = 1;
-		//List<RoutineDetailDto> routineInfo = routineService.selectRoutineDetail();
+	public String routineDetails(Model model,
+			@RequestParam(value="routineId", required=false) String routineId) {
+		int id = Integer.parseInt(routineId);
+		List<RoutineDetailDto> routineList = routineService.selectRoutineDetail(id);
+		List<RoutineDetailDto>[] routineInfo = new ArrayList[7];
+		for(int i=0;i<7;i++) {
+			routineInfo[i] = new ArrayList<RoutineDetailDto>();
+		}
+		
+		//Map<String, List<RoutineDetailDto>> routineInfo = new LinkedHashMap<String, List<RoutineDetailDto>>();
+		for(RoutineDetailDto dto : routineList) {
+			routineInfo[dto.getSportsDay()].add(dto);
+		}
+		
+		model.addAttribute("routineInfo",routineInfo);
+		model.addAttribute("routineId", routineId);
 		return "routines/routineDetails";
 	}	
 	
