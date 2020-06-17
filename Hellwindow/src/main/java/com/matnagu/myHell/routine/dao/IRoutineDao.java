@@ -11,10 +11,12 @@ public interface IRoutineDao {
 
 	// 나만의 루틴 생성
 	public UserDto createCustomRoutine();
-	// 
-	public Map<String,List<RoutineDto>> selectRoutineList();
-	//
-	public Map<String,List<RoutineDetailDto>> selectRoutineDetail();
+	// 인기 루틴 조회 
+	public List<RoutineDto> selectRoutineList();
+	// 카테고리별 루틴 조회
+	public List<RoutineDto> selectRoutineList(String category);
+	// 루틴 상세 조회
+	public List<RoutineDetailDto> selectRoutineDetail();
 		
 	
 }

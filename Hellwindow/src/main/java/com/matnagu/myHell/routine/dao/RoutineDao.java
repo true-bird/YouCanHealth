@@ -26,26 +26,27 @@ public class RoutineDao implements IRoutineDao{
 	}
 	
 	@Override
-	public Map<String,List<RoutineDto>> selectRoutineList() {
+	public List<RoutineDto> selectRoutineList() {
+		System.out.println("!!");
 		List<RoutineDto> routineDtoList = new ArrayList<RoutineDto>();
 		routineDtoList = sqlSession.selectList("routineMapper.selectRoutineAllList");
-		Map<String,List<RoutineDto>> categoryRoutineList = new HashMap<String, List<RoutineDto>>();
-		for(RoutineDto routine : routineDtoList) {
-			String category = routine.getCategory();
-			if(category==null) category = "기타";
-			System.out.println("cate"+category);
-			if(!categoryRoutineList.containsKey(category)) {
-				categoryRoutineList.put(category, new ArrayList<RoutineDto>());
-			}
-			categoryRoutineList.get(category).add(routine);
-		}
-		//Query 1. resultType 으로 리턴
-		return categoryRoutineList;
+		return routineDtoList;
+	}
+	
+	@Override
+	public List<RoutineDto> selectRoutineList(String category) {
+		List<RoutineDto> routineDtoList = new ArrayList<RoutineDto>();
+		routineDtoList = sqlSession.selectList("routineMapper.selectRoutineList",category);
+		return routineDtoList;
 	}
 
 	@Override
-	public Map<String, List<RoutineDetailDto>> selectRoutineDetail() {
-		// TODO Auto-generated method stub
+	public List<RoutineDetailDto> selectRoutineDetail() {
+		List<RoutineDetailDto> routineDetailDtoList = new ArrayList<RoutineDetailDto>();
+		routineDetailDtoList = sqlSession.selectList("routineMapper.selectRoutineDetail");
+		
+		
+		
 		return null;
 	}
 

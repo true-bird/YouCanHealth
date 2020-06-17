@@ -1,0 +1,9 @@
+
+
+$(document).ready(function(){
+
+	$("select[name='category']").change(function() {
+		$("#list").load("routinesAj",{ category: $(this).val()});
+	});
+	
+});

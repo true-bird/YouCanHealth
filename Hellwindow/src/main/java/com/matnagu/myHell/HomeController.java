@@ -8,10 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.routine.service.IRoutineService;
 import com.matnagu.myHell.routine.service.RoutineService;
 
 @Controller
@@ -19,36 +24,37 @@ public class HomeController {
 	
 
 	@Autowired
-	private RoutineService routineService;
+	private IRoutineService routineService;
 	
-	// È¨
+	// í™ˆ í™”ë©´
 	@RequestMapping(value = "/")
 	public String home() {
 		return "home";
 	}
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸ í™”ë©´
 	@RequestMapping(value = "/signIn")
 	public String signIn() {
 		return "signIn";
 	}
-	// Ä¿¹Â´ÏÆ¼
+	// ì»¤ë®¤ë‹ˆí‹° í™”ë©´
 	@RequestMapping(value = "/community")
 	public String community() {
 		return "community/postList";
 	}
 	
 	
-	// ***** ÁøÈñ
-	// ·Î±×ÀÎ È®ÀÎ
+	// ***** ì§„í¬
+	// ë¡œê·¸ì¸ ì²´í¬
 	@RequestMapping(value = "/loginCheck")
 	public String doIoginCheck(HttpServletRequest request, Model model) {
-		String myId = (String) request.getParameter("myId"); // ¾ÆÀÌµğ °ª
-		String myPassword = (String) request.getParameter("myPassword");// Æä½º¿öµå °ª
-		model.addAttribute("myId", myId); // ¾ÆÀÌµğ Ãß°¡
-		model.addAttribute("myPassword", myPassword); // Æä½º¿öµå Ãß°¡
+		String myId = (String) request.getParameter("myId"); // ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½
+		String myPassword = (String) request.getParameter("myPassword");// ï¿½ä½ºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		model.addAttribute("myId", myId); // ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ß°ï¿½
+		model.addAttribute("myPassword", myPassword); // ï¿½ä½ºï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 		return "signInCheck";
 	}
-	@RequestMapping(value = "/logout") // ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì•„ì›ƒ
+	@RequestMapping(value = "/logout")
 	public ModelAndView doLogout() {
 		ModelAndView mv = new ModelAndView("signOut");
 		return mv;
@@ -57,12 +63,13 @@ public class HomeController {
 	
 	
 	
-	// È¸¿ø°¡ÀÔ
+	// íšŒì› ê°€ì… í™”ë©´
 	@RequestMapping(value = "/signUp")
 	public String signUp() {
 		return "signUp";
 	}
-	// È¸¿ø°¡ÀÔ ÃàÇÏÈ­¸é
+	
+	// íšŒì› ê°€ì… ê²°ê³¼ í™”ë©´
 	@RequestMapping(value = "/signUpResult")
 	public String signUpResult(HttpServletRequest request,Model model) {
 		
@@ -81,19 +88,33 @@ public class HomeController {
 		System.out.println(exerdateArray);
 		return "signUpResult";
 	}
-	// ¿îµ¿¹æ¹ı
+	
+	// ìš´ë™ í™”ë©´
 	@RequestMapping(value = "/sports")
 	public String sports() {
 		return "sports/sportsList";
 	}
-	// ·çÆ¾
+	
+	// ë£¨í‹´ í™”ë©´
 	@RequestMapping(value = "/routines")
 	public String routines(Model model) {
-		Map<String,List<RoutineDto>> routineList = routineService.selectRoutineList();
+		List<RoutineDto> routineList = routineService.selectRoutineList("ì¸ê¸°");
 		model.addAttribute("routineList",routineList);
+		model.addAttribute("category","ì¸ê¸°");
 		return "routines/routineList";
 	}
-	// ³»Á¤º¸
+	
+	// ë£¨í‹´ ë¦¬ìŠ¤íŠ¸	
+	@RequestMapping(value = "/routineList")
+	public String routinesAj(Model model,
+			@RequestParam(value="category", required=true) String category) {
+		List<RoutineDto> routineList = routineService.selectRoutineList(category.split(" ")[0]);
+		model.addAttribute("routineList",routineList);
+		model.addAttribute("category",category);
+		return "routines/routineListContent";
+	}
+	
+	// ë‚´ì •ë³´
 	@RequestMapping(value = "/userInfo")
 	public String userInfo() {
 		return "users/userInfo";

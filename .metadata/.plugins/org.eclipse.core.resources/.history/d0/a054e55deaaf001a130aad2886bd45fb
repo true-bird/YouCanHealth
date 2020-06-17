@@ -1,0 +1,26 @@
+
+
+$(document).ready(function(){
+	// process..
+//	alert("!!");
+	$("select[name='category']").change(function() {
+		alert($(this).val());
+		$.ajax({
+			url: "routinesAj",
+			type: "POST",
+			async: false,
+			data: { category: $(this).val()},
+			cache: false,
+			success: function(data){
+//				$("#list").html(data);
+				for(var i in data) {
+					alert(data[i].name);
+				}
+			},
+			error : function(error) {
+		        alert("Error!");
+		    }
+		});
+	});
+	
+});

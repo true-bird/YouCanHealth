@@ -1,0 +1,9 @@
+
+
+$(document).ready(function(){
+	$("select[name='category']").change(function() {
+		$(".section-background.background-image").css("color","blue");
+		$("#list").load("routineList",{ category: $(this).val()});
+	});
+	
+});

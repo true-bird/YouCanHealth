@@ -1,22 +1,38 @@
 package com.matnagu.myHell.routine;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.matnagu.myHell.routine.dto.RoutineDetailDto;
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.routine.service.RoutineService;
 
 @Controller
 @RequestMapping(value = "/routine")
 public class RoutineController {
-	// ·çÆ¾»ó¼¼È­¸é
+	
+	@Autowired
+	private RoutineService routineService;
+	// ë£¨í‹´ ìƒì„¸ í™”ë©´
 	@RequestMapping(value = "/routineDetails")
-	public String routineDetails() {
+	public String routineDetails(Model model) {
+		//@RequestParam(value="routineId", required=false) int id
+		//id = 1;
+		//List<RoutineDetailDto> routineInfo = routineService.selectRoutineDetail();
 		return "routines/routineDetails";
-	}
-	// ³ª¸¸ÀÇ·çÆ¾¸¸µé±âÈ­¸é
+	}	
+	
+	// ë‚˜ë§Œì˜ ë£¨í‹´ ë§Œë“¤ê¸°
 	@RequestMapping(value = "/createCustomRoutine")
 	public String createCustomRoutine() {
 			return "routines/createCustomRoutine";
 	}
-	// ³ª¸¸ÀÇ·çÆ¾È®ÀÎÈ­¸é
+	// ë‚˜ë§Œì˜ ë£¨í‹´ í™•ì¸
 	@RequestMapping(value = "/checkCustomRoutine")
 	public String checkCustomRoutine() {
 		return "routines/checkCustomRoutine";

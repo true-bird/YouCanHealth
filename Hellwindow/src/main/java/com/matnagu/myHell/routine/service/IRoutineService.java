@@ -11,9 +11,9 @@ public interface IRoutineService {
 
 	// 나만의 루틴 생성
 	public UserDto createCustomRoutine();
-	// 
-	public Map<String,List<RoutineDto>> selectRoutineList();
+	// 루틴 리스트 조회
+	public List<RoutineDto> selectRoutineList(String category);
 	//
-	public Map<String,List<RoutineDetailDto>> selectRoutineDetail();
+	public List<RoutineDetailDto> selectRoutineDetail();
 	
 }

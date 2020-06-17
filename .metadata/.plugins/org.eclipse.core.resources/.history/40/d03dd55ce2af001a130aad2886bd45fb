@@ -1,0 +1,22 @@
+
+
+$(document).ready(function(){
+	// process..
+//	alert("!!");
+	$("select[name='category']").change(function() {
+		alert($(this).val());
+		$.ajax({
+			url: "routinesAj",
+			type: "POST",
+			data: { category: $(this).val()},
+			cache: false,
+			success: function(data){
+				alert(12);
+				for(var routin : data.routineList)
+			}
+		}).done(function(fragment) {
+			$("#list").replaceWith(fragment);
+		});
+	});
+	
+});

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="routineMapper">
+	<select id="selectRoutineAllList" resultType="com.matnagu.myHell.routine.dto.RoutineDto">
+	SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+	FROM    ROUTINE_LIST
+	ORDER BY CATEGORY
+	</select>
+	
+	<select id="selectRoutineDetail" resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
+	SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+	FROM    ROUTINE_LIST
+	ORDER BY CATEGORY
+	</select>
+</mapper>
+ 

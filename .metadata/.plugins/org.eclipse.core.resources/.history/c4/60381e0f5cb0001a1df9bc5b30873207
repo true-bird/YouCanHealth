@@ -1,0 +1,10 @@
+
+
+$(document).ready(function(){
+	$("select[name='category']").change(function() {
+		$(".section-background background-image").css('background-image',"url('/myHell/images/routine/chest.jpg')");
+		$(".section-background background-image").css('width',300);
+		$("#list").load("routineList",{ category: $(this).val()});
+	});
+	
+});

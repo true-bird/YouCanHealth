@@ -1,13 +1,8 @@
 
 
 $(document).ready(function(){
-	// process..
-	alert("!!");
+	$(".section-background.background-image").css("background-image","url('/myHell/images/routine/popular.jpg')");
 	$("select[name='category']").change(function() {
-		alert($(this).val());
+		$("#list").load("routineList",{ category: $(this).val()});
 	});
-	
-	
-	
-	
 });

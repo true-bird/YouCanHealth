@@ -1,0 +1,148 @@
+package com.matnagu.myHell;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.routine.service.RoutineService;
+
+@Controller
+public class HomeController {
+	
+
+	@Autowired
+	private RoutineService routineService;
+	
+	// Ȩ
+	@RequestMapping(value = "/")
+	public String home() {
+		return "home";
+	}
+	// �α���
+	@RequestMapping(value = "/signIn")
+	public String signIn() {
+		return "signIn";
+	}
+	// Ŀ�´�Ƽ
+	@RequestMapping(value = "/community")
+	public String community() {
+		return "community/postList";
+	}
+	
+	
+	// ***** ����
+	// �α��� Ȯ��
+	@RequestMapping(value = "/loginCheck")
+	public String doIoginCheck(HttpServletRequest request, Model model) {
+		String myId = (String) request.getParameter("myId"); // ���̵� ��
+		String myPassword = (String) request.getParameter("myPassword");// �佺���� ��
+		model.addAttribute("myId", myId); // ���̵� �߰�
+		model.addAttribute("myPassword", myPassword); // �佺���� �߰�
+		return "signInCheck";
+	}
+	@RequestMapping(value = "/logout") // �α׾ƿ�
+	public ModelAndView doLogout() {
+		ModelAndView mv = new ModelAndView("signOut");
+		return mv;
+	}
+	// *****
+	
+	
+	
+	// ȸ������
+	@RequestMapping(value = "/signUp")
+	public String signUp() {
+		return "signUp";
+	}
+	// ȸ������ ����ȭ��
+	@RequestMapping(value = "/signUpResult")
+	public String signUpResult(HttpServletRequest request,Model model) {
+		
+		String id = request.getParameter("myId");
+		String password = request.getParameter("myPassword");
+		String name = request.getParameter("MyName");
+		String exerdateArray[] = request.getParameterValues("exerdate");
+		
+		model.addAttribute("myId", id);
+		model.addAttribute("myPassword", password);
+		model.addAttribute("myName", name);
+		model.addAttribute("exerdate", exerdateArray);
+		System.out.println(id);
+		System.out.println(password);
+		System.out.println(name);
+		System.out.println(exerdateArray);
+		return "signUpResult";
+	}
+	// ����
+	@RequestMapping(value = "/sports")
+	public String sports() {
+		return "sports/sportsList";
+	}
+	// ��ƾ
+	@RequestMapping(value = "/routines")
+	public String routines(Model model,
+			@RequestParam(value="category", required=false) String category) {
+		System.out.println("routines:start:");
+		System.out.println(category);
+		
+		if(category==null) category = "�α�";
+		List<RoutineDto> routineList = routineService.selectRoutineList(category);
+		for(RoutineDto dto : routineList) {
+			System.out.println(dto.getName());
+		}
+		model.addAttribute("routineList",routineList);
+		return "routines/routineList";
+	}
+//	
+	@RequestMapping(value = "/routinesAj")
+	public String routinesAj(Model model,
+			@RequestParam(value="category", required=true) String category,
+			RedirectAttributes rttr) {
+//		
+		List<RoutineDto> routineList = routineService.selectRoutineList(category);
+//		for(RoutineDto dto : routineList) {
+//			System.out.println(dto.getName());
+//		}
+//		System.out.println("Aj"+category);
+		model.addAttribute("routineList",routineList);
+		return "routines/routineListContent";
+	}
+	
+	@RequestMapping(value = "/routinesAj2")
+	public String routinesAjj() {
+		System.out.println("123");
+		return "routines/routineList::#list";
+	}
+
+//	@RequestMapping(value = "/routinesAj")
+//	public @ResponseBody List<RoutineDto> routinesAjax(Model model,
+//			@RequestParam(value="category", required=false) String category) {
+//		System.out.println("routinesAj:start:");
+//		
+//		List<RoutineDto> routineList = routineService.selectRoutineList(category);
+//		for(RoutineDto dto : routineList) {
+//			System.out.println(dto.getName());
+//		}
+//		model.addAttribute("routineList",routineList);
+//		return routineList;
+//	}
+	
+	// ������
+	@RequestMapping(value = "/userInfo")
+	public String userInfo() {
+		return "users/userInfo";
+	}
+	
+}

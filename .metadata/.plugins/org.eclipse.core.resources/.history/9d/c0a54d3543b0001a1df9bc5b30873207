@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
+	<script type="text/javascript" src="<%=contextPath%>/js/routine.js"></script>
+</head>
+<body>
+	<hr>
+	<c:forEach var="routine" items="${routineList}" varStatus="status">
+		<div class ="sectionWrapper 
+			<c:choose>
+				<c:when test="${status.index%2==0}">rightAlign</c:when>
+				<c:otherwise>leftAlign</c:otherwise>
+			</c:choose>"
+	OnClick="location.href='<c:url value='/routine/createCustomRoutine'/>'" style="cursor:pointer;">
+			<div class="section-background background-image"></div>
+			<div class="section-background background-cover"></div>
+			<div class="section">
+				<p class="section-text title">${routine.name}</p>
+				<p class="section-text difficulty">
+					난이도 
+					<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
+				</p>
+			</div>
+		</div>
+		<br>
+	</c:forEach>	
+</body>
+</html>

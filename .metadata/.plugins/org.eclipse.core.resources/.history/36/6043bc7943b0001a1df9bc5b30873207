@@ -1,0 +1,14 @@
+
+
+$(document).ready(function(){
+	// process..
+//	alert("!!");
+	$("select[name='category']").change(function() {
+		$("#list").load("routinesAj",{ category: $(this).val()});
+	});
+	
+	
+	
+	
+	
+});
