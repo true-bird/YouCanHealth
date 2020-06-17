@@ -27,7 +27,7 @@
 			<div class="section-background background-cover"></div>
 			<div class="section">
 				<p class="section-text title">${routine.name}</p>
-				<p class="section-text difficulty">
+				<p class="section-text difficulty" id="${routine.difficulty}">
 					난이도 
 					<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
 				</p>
@@ -35,6 +35,9 @@
 		</div>
 		<br>
 	</c:forEach>
+		<input type="hidden" id="url" name="url">
+		<input type="hidden" id="routineDifficulty" name="routineDifficulty">
+		<input type="hidden" id="routineName" name="routineName">
 		<input type="hidden" id="routineId" name="routineId">	
 	</form>
 </body>

@@ -25,21 +25,25 @@ public class RoutineController {
 	// 루틴 상세 화면
 	@RequestMapping(value = "/routineDetails")
 	public String routineDetails(Model model,
-			@RequestParam(value="routineId", required=false) String routineId) {
-		int id = Integer.parseInt(routineId);
+			@RequestParam HashMap<String, String> paramMap) {
+//		@RequestParam("routineId") String routineId,
+//		@RequestParam("routineName") String routineName,
+//		@RequestParam("url") String url
+		int id = Integer.parseInt(paramMap.get("routineId"));
 		List<RoutineDetailDto> routineList = routineService.selectRoutineDetail(id);
-		List<RoutineDetailDto>[] routineInfo = new ArrayList[7];
+		List<List<RoutineDetailDto>> routineInfo = new ArrayList<List<RoutineDetailDto>>();
 		for(int i=0;i<7;i++) {
-			routineInfo[i] = new ArrayList<RoutineDetailDto>();
+			routineInfo.add(new ArrayList<RoutineDetailDto>());
 		}
 		
-		//Map<String, List<RoutineDetailDto>> routineInfo = new LinkedHashMap<String, List<RoutineDetailDto>>();
 		for(RoutineDetailDto dto : routineList) {
-			routineInfo[dto.getSportsDay()].add(dto);
+			routineInfo.get(dto.getSportsDay()).add(dto);
 		}
-		
+		model.addAttribute("url",paramMap.get("url"));
 		model.addAttribute("routineInfo",routineInfo);
-		model.addAttribute("routineId", routineId);
+		model.addAttribute("routineId", paramMap.get("routineId"));
+		model.addAttribute("routineName", paramMap.get("routineName"));
+		model.addAttribute("routineDifficulty", paramMap.get("routineDifficulty"));
 		return "routines/routineDetails";
 	}	
 	

@@ -11,15 +11,29 @@
 	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
 </head>
 <body>
-	${routineId}
+	<br>
+	<br>
+	<br>
+	<div class ="sectionWrapper leftAlign">
+		<div class="section-background background-image"
+		style="background-image:${url}"></div>
+		<div class="section-background background-cover"></div>
+		<div class="section">
+			<p class="section-text title">${routineName}</p>
+			<p class="section-text difficulty">
+				난이도 
+				<c:forEach begin="1" end="${routineDifficulty}">★</c:forEach><c:forEach begin="${routineDifficulty}" end="4">☆</c:forEach>
+			</p>
+		</div>
+	</div>
 	<br>
 	<c:forEach var="array" items="${routineInfo}" varStatus="status">
 		<div class ="sectionWrapper 
 			<c:choose>
-				<c:when test="${status.index%2==0}">rightAlign</c:when>
-				<c:otherwise>leftAlign</c:otherwise>
+				<c:when test="${status.index%2==0}">leftAlign</c:when>
+				<c:otherwise>rightAlign</c:otherwise>
 			</c:choose>">
-			<h4>
+			<h3>
 				<c:choose>
 					<c:when test="${status.index eq 0}">월</c:when>
 					<c:when test="${status.index eq 1}">화</c:when>
@@ -29,16 +43,24 @@
 					<c:when test="${status.index eq 5}">토</c:when>
 					<c:when test="${status.index eq 6}">일</c:when>
 				</c:choose>
-			</h4>
-			<hr>
+			</h3>
+			<hr width="50%">
 			<c:choose>
 				<c:when test="${fn:length(array) == 0}">휴식</c:when>
 				<c:otherwise>
-					<img class="routineImg" src="<c:url value='/images/routine/routine1.png'/>" >
 					<c:forEach var="sports" items="${array}" varStatus="status">
-						<span class="verticalTop">${sports.sportsName}</span>
-						<span class="verticalTop">${sports.sportsSet}</span>/
-						<span>${sports.sportsCount}</span>
+						<table>
+							<tr>
+								<td>
+									<img class="routineImg" src="<c:url value='/images/routine/routine1.png'/>" >		
+								</td>
+								<td>
+									<span class="verticalTop">${sports.sportsName}</span>
+									<span>${sports.sportsSet}세트 </span>/
+									<span>${sports.sportsCount}회</span>
+								</td>
+							</tr>
+						</table>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

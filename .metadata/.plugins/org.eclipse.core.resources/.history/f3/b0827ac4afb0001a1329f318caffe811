@@ -1,0 +1,30 @@
+
+$(document).ready(function(){
+	var cate = $("#title #category").text().split(' ')[0];
+	var background = $(".section-background.background-image");
+	
+	$(".sectionWrapper").click(function() {
+		$("#routineId").val($(this).attr('id'));
+		$("#routineName").val($(this).find('.title').text());
+		$("form").submit();
+	});
+	var url = "url('/myHell/images/routine/";
+	switch (cate){
+		case '인기':
+			url += "popular.jpg')";
+			break;
+		case '등':
+			url += "back.png')";
+			break;
+		case '가슴':
+			url += "chest.jpg')";
+			background.css("background-image","url('/myHell/images/routine/chest.jpg')");
+			break;
+		case '삼분할':
+			background.css("background-image","url('/myHell/images/routine/leg.png')");
+			break;
+		default:
+			break;
+	}
+	background.css("background-image",url);
+});

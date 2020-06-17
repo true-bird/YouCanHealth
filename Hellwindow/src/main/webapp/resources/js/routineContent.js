@@ -2,26 +2,31 @@
 $(document).ready(function(){
 	var cate = $("#title #category").text().split(' ')[0];
 	var background = $(".section-background.background-image");
-	
+	var url = "url('/myHell/images/routine/";
 	$(".sectionWrapper").click(function() {
+		$("#url").val(url);
 		$("#routineId").val($(this).attr('id'));
+		$("#routineName").val($(this).find('.title').text());
+		$("#routineDifficulty").val($(this).find('.difficulty').attr('id'));
 		$("form").submit();
 	});
 	
+	
 	switch (cate){
 		case '인기':
-			background.css("background-image","url('/myHell/images/routine/popular.jpg')");
+			url += "popular.jpg')";
 			break;
 		case '등':
-			background.css("background-image","url('/myHell/images/routine/back.png')");
+			url += "back.png')";
 			break;
 		case '가슴':
-			background.css("background-image","url('/myHell/images/routine/chest.jpg')");
+			url += "chest.jpg')";
 			break;
 		case '삼분할':
-			background.css("background-image","url('/myHell/images/routine/leg.png')");
+			url += "leg.png')";
 			break;
 		default:
 			break;
 	}
+	background.css("background-image",url);
 });
