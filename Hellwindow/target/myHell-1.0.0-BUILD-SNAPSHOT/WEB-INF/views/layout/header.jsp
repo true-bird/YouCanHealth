@@ -8,7 +8,9 @@
     String password=(String)request.getAttribute("myPassword");
 %>
 <head>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/home.css?after">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <div id="box3">
 	<a class="redtext" href="<c:url value='/' />">홈</a>/

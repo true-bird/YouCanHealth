@@ -15,9 +15,9 @@
 	-->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-		<property name="username" value="hr" />
-		<property name="password" value="hr" />
+		<property name="url" value="jdbc:oracle:thin:@oracleinstance.ccwpd79holom.ap-northeast-2.rds.amazonaws.com:1521:ORCL" />
+		<property name="username" value="hell" />
+		<property name="password" value="youcanhell" />
 	</bean>
 	<!--##### (추가) DataSource : 종료 ##### -->
 
