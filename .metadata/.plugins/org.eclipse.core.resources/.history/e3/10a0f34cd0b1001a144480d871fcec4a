@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="userMapper">
+	   <insert id="insertUserInit" parameterType="java.util.HashMap">
+   INSERT INTO INITIATE
+   (SEQ,ID,PASSWORD,NAME,BIRTH,SEX,EXERDATE,MANAGER) 
+   VALUES
+   (
+      SEQ_INITIATE.NEXTVAL
+      ,#{id}
+      ,#{password}
+      ,#{name}
+      ,#{birth}
+      ,#{sex}
+      ,#{exerdate}
+      ,'회원'
+   )
+   </insert>
+   
+   <select id="selectUserInit"
+   parameterType="String"
+   resultType="com.matnagu.myHell.userinit.dto.UserInitDto">
+   SELECT 
+   ID,
+   PASSWORD,
+   NAME
+   FROM INITIATE
+   WHERE ID = #{id}
+   </select> 
+
+   <select id="selectUserInfo"
+   resultType="com.matnagu.myHell.userinit.dto.UserInitDto">
+   SELECT *
+   FROM INITIATE
+   WHERE ID = #{id}
+   
+   
+   </select>
+</mapper>
+ 
