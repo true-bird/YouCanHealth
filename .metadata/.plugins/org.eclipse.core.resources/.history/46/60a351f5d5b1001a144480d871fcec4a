@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%
+	String min1=(String)request.getAttribute("min");
+	int min = Integer.parseInt(min1);
+	String mex1=(String)request.getAttribute("mex");
+	int mex = Integer.parseInt(mex1);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>게시판</h1>
+	전체
+	<hr>
+	<br>
+	<div>
+		<a class="redtext" href="<c:url value='/community' />">전체글보기</a>|
+		<a class="redtext" href="<c:url value='/community/Notice' />">공지사항</a>|
+		<a class="redtext" href="<c:url value='/community/HoneyTip' />">운동꿀팁</a>|
+		<a class="redtext" href="<c:url value='/community/PassTime' />">잡담</a>
+	</div>
+	<br>
+	<table border="1">
+		<tr>
+		<th>번호</th>
+			<th>제목</th>
+			<th>카테고리</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		<tr>
+		<c:forEach var="user" items="${list}" varStatus="status" begin="<%=min%>" end="<%=mex%>">
+		<tr>
+			<td>${status.index+1}</td>	
+			<td><a href="<c:url value='/community/Content' />?seq=${user.seq}">${user.title}</a></td>
+			<td>${user.category}</td>
+			<td>${user.id}</td>
+			<td>${user.creationDate}</td>
+			<td>${user.hit}</td>
+		</tr>
+		</c:forEach>
+	</table>
+	<a class="redtext" href="<c:url value='/community/createPost' />">글쓰기</a>
+</body>
+</html>

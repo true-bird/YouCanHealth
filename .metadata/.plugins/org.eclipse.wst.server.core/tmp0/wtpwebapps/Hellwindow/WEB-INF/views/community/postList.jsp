@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%
+	String min1=(String)request.getAttribute("min");
+	String mex1=(String)request.getAttribute("mex");	
+	int min = Integer.parseInt(min1);
+	int mex = Integer.parseInt(mex1);
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,27 +20,50 @@
 	<hr>
 	<br>
 	<div>
-		<a class="redtext" href="<c:url value='/community' />">전체글보기</a>|
-		<a class="redtext" href="<c:url value='/community/Notice' />">공지사항</a>|
-		<a class="redtext" href="<c:url value='/community/HoneyTip' />">운동꿀팁</a>|
-		<a class="redtext" href="<c:url value='/community/PassTime' />">잡담</a>
+		<a class="redtext" href="<c:url value='/community' />">전체글보기</a>| 
+		<a class="redtext" href="<c:url value='/community/CommunityCategoryList' />?category=공지사항">공지사항</a>|
+		<a class="redtext" href="<c:url value='/community/CommunityCategoryList' />?category=운동꿀팁">운동꿀팁</a>|
+		<a class="redtext" href="<c:url value='/community/CommunityCategoryList' />?category=잡담">잡담</a>
+	
 	</div>
 	<br>
 	<table border="1">
 		<tr>
+		<th>번호</th>
 			<th>제목</th>
+			<th>카테고리</th>
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
 		<tr>
+		<c:forEach var="user" items="${list}" varStatus="status" begin="<%=min%>" end="<%=mex%>">
 		<tr>
-			<th><a href="<c:url value='/community/readPost' />">무슨운동을
-					해야할까요?</a></th>
-			<th>shak1401</th>
-			<th>2020.06.10</th>
-			<th>10</th>
-		<tr>
+			<td>${status.index+1}</td>	
+			<td><a href="<c:url value='/community/readPost' />?seq=${user.seq}">${user.title}</a></td>
+			<td>${user.category}</td>
+			<td>${user.id}</td>
+			<td>${user.creationDate}</td>
+			<td>${user.hit}</td>
+		</tr>
+		</c:forEach>
 	</table>
-	<a class="redtext" href="<c:url value='/community/createPost' />">글쓰기</a>
+	<table>
+		<tr>
+		<%for(int i=0; i<10; i++){%>
+			<td>
+			<form action="<%=contextPath%>/community/cont" method="post">
+			<input type="submit" value="<%=i+1%>">
+			<input type="hidden" name="min" value="<%=i*9%>">
+			<input type="hidden" name="mex" value="<%=(i+1)*9%>">
+			<input type="hidden" name="list" value="${communityDto.id}">
+			<input type="hidden" name="category" value="<%=request.getAttribute("category") %>">
+			</form>
+			</td>
+		<%}%>
+		</tr>
+	</table>
+	<br>
+	<a class="redtext" href="<c:url value='/community/createPost' />">글쓰기</a> | 
+	<a class="redtext" href="<c:url value='/community/MyCommunity' />?category=내가 쓴글">내가 쓴글</a>
 </body>
 </html>

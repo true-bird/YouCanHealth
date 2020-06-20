@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String myId3 =(String)session.getAttribute("myId2");
 	String contextPath = request.getContextPath();//각자의 컨텍스트를  찾아서 자동으로 변경시켜준다.

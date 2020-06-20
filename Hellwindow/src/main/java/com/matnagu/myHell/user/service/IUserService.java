@@ -1,5 +1,6 @@
 package com.matnagu.myHell.user.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.matnagu.myHell.routine.dto.RoutineDto;
@@ -7,17 +8,31 @@ import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IUserService {
 	
-	// À¯Àú Á¤º¸ Á¶È¸
+	/* ì£¼í˜„ìš°
+	// 
 	public UserDto selectUserInfo();
-	// À¯Àú Á¤º¸ ¼öÁ¤
+	// 
 	public void updateUserInfo();
-	// À¯Àú Á¤º¸ »ı¼º
+	// 
 	public void createUserInfo();	
-	// ÁÁ¾ÆÇÏ´Â ¿îµ¿ ¸ñ·Ï Á¶È¸
+	// 
 	public List<String> selectUserFavoriteSports();
-	// ³» ·çÆ¾ ¸ñ·Ï Á¶È¸
+	// 
 	public List<String> selectUserRoutineList();
-	// ³» ·çÆ¾ »ó¼¼ Á¶È¸
+	// 
 	public RoutineDto selectUserRoutineDetails();
+	*/
 	
+	/* ì‹ ë™í›ˆ */
+	public void insertUserinit(HashMap<String,Object> paramMap);
+	// 
+	public UserDto selectUserInit(String id);
+	// 
+	public UserDto selectUserInfo(String id);
+	
+	/* ì´ì§„í¬ */
+	//Guestbook ì „ì²´ ëª©ë¡ ì¡°íšŒ
+	public List<UserDto> selectUserAllList();
+	//ì´ë¦„ìœ¼ë¡œ ì°¾ì•„ì˜¤ê¸°
+	public UserDto selectUserId(String id);
 }

@@ -1,0 +1,66 @@
+package com.matnagu.myHell.sports.dto;
+
+public class SportsDto {
+	private int seq;
+	private String part;
+	private String ex_name;
+	private String image;
+	private String image_parts;
+	private String image_gif;
+	private String link;
+	private String explain;
+	
+	
+	public SportsDto() {
+		
+	}
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getPart() {
+		return part;
+	}
+	public void setPart(String part) {
+		this.part = part;
+	}
+	public String getEx_name() {
+		return ex_name;
+	}
+	public void setEx_name(String ex_name) {
+		this.ex_name = ex_name;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getImage_parts() {
+		return image_parts;
+	}
+	public void setImage_parts(String image_parts) {
+		this.image_parts = image_parts;
+	}
+	public String getImage_gif() {
+		return image_gif;
+	}
+	public void setImage_gif(String image_gif) {
+		this.image_gif = image_gif;
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
+	public String getExplain() {
+		return explain;
+	}
+	public void setExplain(String explain) {
+		this.explain = explain;
+	}
+}

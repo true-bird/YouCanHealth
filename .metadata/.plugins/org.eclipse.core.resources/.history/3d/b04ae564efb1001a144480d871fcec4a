@@ -1,0 +1,5 @@
+package com.matnagu.myHell.comment.service;
+
+public class CommentService {
+
+}

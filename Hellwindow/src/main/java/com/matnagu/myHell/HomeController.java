@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.matnagu.myHell.community.dto.CommunityDto;
+import com.matnagu.myHell.community.service.CommunityServiceImpl;
 import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.routine.service.IRoutineService;
 import com.matnagu.myHell.routine.service.RoutineService;
-import com.matnagu.myHell.user.dto.UserInitDto;
-import com.matnagu.myHell.user.service.UserInitServiceImpl;
+import com.matnagu.myHell.sports.dto.SportsDto;
+import com.matnagu.myHell.sports.service.SportsServiceImpl;
+import com.matnagu.myHell.user.dto.UserDto;
+import com.matnagu.myHell.user.service.UserServiceImpl;
 
 @Controller
 public class HomeController {
@@ -30,7 +34,14 @@ public class HomeController {
 	private IRoutineService routineService;
 	
 	@Autowired
-	private UserInitServiceImpl userInitServiceImpl;
+	private UserServiceImpl userServiceImpl;
+	
+
+	@Autowired
+	private SportsServiceImpl sportsServiceImpl;
+
+	@Autowired
+	private CommunityServiceImpl communityServiceImpl;
 	
 	// 홈 화면
 	@RequestMapping(value = "/")
@@ -44,8 +55,17 @@ public class HomeController {
 	}
 	// 커뮤니티 화면
 	@RequestMapping(value = "/community")
-	public String community() {
-		return "community/postList";
+	public ModelAndView selectCommunityList(Model model) {
+		String min = "0";
+		String mex = "9";
+		String category = "커뮤니티";
+		List<CommunityDto> communityList = communityServiceImpl.selectCommunityAllList();
+		model.addAttribute("list", communityList);
+		model.addAttribute("category", category);
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
 	}
 	
 	
@@ -75,23 +95,45 @@ public class HomeController {
 		return "signUp";
 	}
 	
+	/* 신동훈 */
 	// 회원가입 축하화면
 	@RequestMapping(value = "/signUpResult")
 	public ModelAndView signUpResult(@RequestParam HashMap<String,Object> paramMap,
 	      @RequestParam("id") String id, Model model) {
 		System.out.println("paramMap="+paramMap);
-		userInitServiceImpl.insertUserinit(paramMap); //db에 넣을겁니다.
-	    UserInitDto userinitDto=userInitServiceImpl.selectUserInit(id);
+		userServiceImpl.insertUserinit(paramMap); //db에 넣을겁니다.
+	    UserDto userinitDto=userServiceImpl.selectUserInit(id);
 	    System.out.println(userinitDto);
 	    model.addAttribute("userinitDto",userinitDto);
 	    ModelAndView mv = new ModelAndView("signUpResult");
-	    
 	    return mv;
 	}
 	
 	// 운동 화면
 	@RequestMapping(value = "/sports")
-	public String sports() {
+	public String sports(Model model) {
+
+		// 가슴목록
+		List<SportsDto> sportsChestList = sportsServiceImpl.selectChestList();
+		System.out.println(sportsChestList);
+		// 등목록
+		List<SportsDto> sportsBackList = sportsServiceImpl.selectBackList();
+		System.out.println(sportsBackList);
+		// 어깨목록
+		List<SportsDto> sportsShoulderList = sportsServiceImpl.selectShoulderList();
+		System.out.println(sportsShoulderList);
+		// 복부목록
+		List<SportsDto> sportsAbsList = sportsServiceImpl.selectAbsList();
+		for(SportsDto dto : sportsAbsList) System.out.println(dto.toString());
+		System.out.println(sportsAbsList);
+		// 하체목록
+		List<SportsDto> sportsLowerList = sportsServiceImpl.selectLowerList();
+		System.out.println(sportsLowerList);
+		model.addAttribute("chest", sportsChestList);
+		model.addAttribute("back", sportsBackList);
+		model.addAttribute("shoulder", sportsShoulderList);
+		model.addAttribute("abs", sportsAbsList);
+		model.addAttribute("lower", sportsLowerList);
 		return "sports/sportsList";
 	}
 	

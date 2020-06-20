@@ -1,35 +1,187 @@
 package com.matnagu.myHell.community;
 
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.matnagu.myHell.comment.dto.CommentDto;
+import com.matnagu.myHell.comment.service.CommentServiceImpl;
+import com.matnagu.myHell.community.dto.CommunityDto;
+import com.matnagu.myHell.community.service.CommunityServiceImpl;
+import com.matnagu.myHell.user.dto.UserDto;
+import com.matnagu.myHell.user.service.UserServiceImpl;
 
 @Controller
 @RequestMapping(value = "/community")
 public class CommunityController {
-	// �۾���
-	@RequestMapping(value = "/createPost")
-	public String createPost() {
-		return "community/createPost";
-	}
-	// ���б�
+	
+	
+	@Autowired
+	private CommunityServiceImpl communityServiceImpl;
+	@Autowired
+	private CommentServiceImpl commentServiceImpl;
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+	
+	
+	/* ----------화면---------- */
+	
+	// 글 읽기
 	@RequestMapping(value = "/readPost")
-	public String readPost() {
-		return "community/readPost";
+	public ModelAndView readPost(@RequestParam("seq") int seq, Model model,HttpServletRequest request) {
+		CommunityDto communityDto = communityServiceImpl.selectCommunity(seq); // 해당 글 내용 담기
+		communityServiceImpl.updateHit(seq);
+		model.addAttribute("communityDto", communityDto);
+		HttpSession session=request.getSession();
+		//System.out.println("myId3=" + myId);
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		model.addAttribute("userDto", userDto);
+		List<CommentDto> commentList = commentServiceImpl.selectCommentAllList(seq);// 글에 해당하는 댓글 담기
+		if (commentList.size() > 0) { // 댓글이 0이면 담지 않는다.
+			model.addAttribute("list", commentList);
+		}
+		ModelAndView mv = new ModelAndView("community/readPost");
+		return mv;
 	}
 	
-	// ��������
-	@RequestMapping(value = "/Notice")
-	public String notice() {
-		return "community/Notice";
+	// 글 쓰기 화면
+	@RequestMapping(value = "/createPost")
+	public ModelAndView createPost(HttpServletRequest request, Model model) {
+		HttpSession session=request.getSession();
+		//System.out.println("myId3=" + myId);
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		model.addAttribute("userDto", userDto);
+		String min = "0";
+		String mex = "9";
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/createPost");
+		return mv;
 	}
-	// �����
-	@RequestMapping(value = "/HoneyTip")
-	public String honeyTip() {
-		return "community/HoneyTip";
+
+	// 글 수정 화면
+	@RequestMapping(value = "/updatePost")
+	public ModelAndView domyCommunityupdate(@RequestParam("seq") int seq, Model model,HttpServletRequest request) {
+		CommunityDto communityDto = communityServiceImpl.selectCommunity(seq);
+		HttpSession session=request.getSession();
+		//System.out.println("myId3=" + myId);
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		model.addAttribute("userDto", userDto);
+		model.addAttribute("communityDto", communityDto);
+		ModelAndView mv = new ModelAndView("community/updatePost");
+		return mv;
 	}
-	// ���
-	@RequestMapping(value = "/PassTime")
-	public String passTime() {
-		return "community/PassTime";
+	
+	/* ---------------------- */
+	
+	
+	
+	/* ----------등록---------- */
+	// 글 쓰기 등록
+	@RequestMapping(value = "/WritingContent") 
+	public ModelAndView doWritingContent(@RequestParam HashMap<String, String> paramMap) {
+		communityServiceImpl.insertWritingContent(paramMap);
+		ModelAndView mv = new ModelAndView("redirect:/community");
+		return mv;
+	}
+		
+	// 글 수정 등록
+	@RequestMapping(value = "/WritingContentupdateSet")
+	public ModelAndView doWritingContentupdateSet(@RequestParam HashMap<String, String> paramMap,Model model,@RequestParam("category") String category) {
+		communityServiceImpl.updateCommunity(paramMap);
+		System.out.println("!! : cate : "+category);
+		List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);// 커뮤니티 디비 잡담 출력
+		model.addAttribute("category", category);
+		model.addAttribute("list", communityDto);
+		ModelAndView mv = new ModelAndView("redirect:/community/CommunityCategoryList");
+		return mv;
+	}
+	/* ---------------------- */
+	
+	
+	
+	
+	
+	
+	// 카테고리별 리스트 보기
+	@RequestMapping(value = "/CommunityCategoryList") 
+	public ModelAndView doMainPassTime(@RequestParam("category") String category, Model model) {
+		System.out.println("cate : "+category);
+		List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);// 커뮤니티 디비 잡담 출력
+		model.addAttribute("category", category);
+		model.addAttribute("list", communityDto);
+		String min = "0";
+		String mex = "9";
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
+	}
+	
+	// 내가 쓴글
+	@RequestMapping(value = "/MyCommunity") 
+	public ModelAndView doMyCommunity(HttpServletRequest request, Model model) {
+		String min = "0";
+		String mex = "9";
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("myId2");		
+		model.addAttribute("category", "내가 작성한 글");
+		List<CommunityDto> communityList= communityServiceImpl.selectMyCommunity(id);
+		model.addAttribute("list", communityList);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
+	}
+	
+	// 작성자가 쓴 글
+	@RequestMapping(value = "/communitylist") 
+	public ModelAndView communitylist(@RequestParam("list") String list, Model model) {
+		List<CommunityDto> communityDto = communityServiceImpl.selectCommunityList(list); // 커뮤니티 디비 운동꿀팁 출력
+		model.addAttribute("category","작성자가 작성한 글 목록");
+		model.addAttribute("list", communityDto);
+		String min = "0";
+		String mex = "9";
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
+	}
+	
+	
+	// 페이지 넘기기
+	@RequestMapping(value = "/cont")
+	public ModelAndView docont(HttpServletRequest request,Model model,@RequestParam("list") String list,@RequestParam("min") String min,@RequestParam("mex") String mex,@RequestParam("category") String category) {
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("myId2");		
+		if(category.equals("전체")) {
+			List<CommunityDto> communityList = communityServiceImpl.selectCommunityAllList(); // 커뮤니티 디비 전체 출력
+			model.addAttribute("list", communityList);
+		}else if(category.equals("내가 작성한 글")){
+			List<CommunityDto> communityList= communityServiceImpl.selectMyCommunity(id);
+			model.addAttribute("list", communityList);
+		}else if(category.equals("작성자가 작성한 글 목록")){
+			List<CommunityDto> communityDto = communityServiceImpl.selectCommunityList(list); // 커뮤니티 디비 운동꿀팁 출력
+			model.addAttribute("list", communityDto);
+		}
+		else{
+			List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);
+			model.addAttribute("list", communityDto);
+		}
+		
+		model.addAttribute("category", category);
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
 	}
 }

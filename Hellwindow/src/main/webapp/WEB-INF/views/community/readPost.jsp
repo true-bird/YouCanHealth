@@ -8,35 +8,103 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>글내용</h1>
 	<hr>
-	<br>
-	<div>
-		<a class="redtext" href="<c:url value='/community' />">전체글보기</a>|
-		<a class="redtext" href="<c:url value='/community/Notice' />">공지사항</a>|
-		<a class="redtext" href="<c:url value='/community/HoneyTip' />">운동꿀팁</a>|
-		<a class="redtext" href="<c:url value='/community/PassTime' />">잡담</a>
-	</div>
-	<br>
-	<hr>
-	제목: 불라불라불라
-	<br>
-	<hr>
-	내용: 아아 나는 운동하기 싫은데 살이 너무 쪄서 운동좀 해야겠는뎅 어떻게 어떻게 어똏게 해야할까요??
-	<br>
-	<hr>
-	<a class="redtext" href="<c:url value='/community' />">작성자가
-		작성한 추가 글</a>
+	<table>
+		<tr>
+			<th>작성자:${communityDto.id}</th>
+			<th>카테고리:${communityDto.category}</th>
+			<th>조회수:${communityDto.hit}</th>
+		</tr>
+		<tr>
+			<th colspan="3">제목: ${communityDto.title}</th>
 
+		<tr>
+			<th>내용</th>
+			<th><textarea name="content" cols=85 rows=15 readonly="readonly">${communityDto.content}</textarea>
+			</th>
+		</tr>
+
+	</table>
+	<hr>
+	<a class="redtext"
+		href="<c:url value='/community/communitylist'/>?list=${communityDto.id}">작성자가
+		작성한 추가 글</a>
 	<hr>
 	댓글
+	<table>
+		<c:choose>
+
+			<c:when test="${fn:length(list)>0 }">
+
+				<tr>
+					<td>아이디</td>
+					<td>내용</td>
+					<td>생성일자</td>
+				</tr>
+				<hr>
+			</c:when>
+		</c:choose>
+
+		<c:forEach var="user" items="${list}" varStatus="status">
+			<c:set var="name" value="${userDto.id}" />
+			<c:choose>
+				<c:when test="${user.id eq name}">
+					<tr>
+						<td>${user.id}</td>
+						<td>${user.content}</td>
+						<td>${user.commentdate}</td>
+						<td>
+							<form action="<%=contextPath%>/community/CommentDelete"
+								method="post">
+								<input type="hidden" name="seq" value="${communityDto.seq}">
+								<input type="hidden" name="userseq" value="${user.seq}">
+								<input type="submit" value="삭제">
+							</form>
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>${user.id}</td>
+						<td>${user.content}</td>
+						<td>${user.commentdate}</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+
+	</table>
 	<hr>
-	아이디 [내용] 작성 시간
-	<br> 내가 추가하기
-	<input type="text">
+	<form action="<%=contextPath%>/community/commentset" method="post">
+		<table>
+			<tr>
+				<td><%=myId3%>:<input type="hidden" value="<%=myId3%>"
+					name="id"></td>
+				<td><textarea name="content" cols=40 rows=2 required></textarea></td>
+				<td><input type="submit" value="추가하기"></td>
+		</table>
+		<input type="hidden" value="${communityDto.seq}" name="communitySeq">
+	</form>
 	<hr>
 	<br>
 	<br>
+
 	<a class="redtext" href="<c:url value='/community/createPost' />">글쓰기</a>
+	<a class="redtext"
+		href="<c:url value='/community/CommunityCategoryList'/>?category=${communityDto.category}">목록</a>
+
+	<c:set var="name" value="${userDto.id}" />
+	<c:if test="${communityDto.id eq name}">
+		<form action="<%=contextPath%>/community/updatePost"
+			method="post">
+			<input type="hidden" name="seq" value="${communityDto.seq}">
+			<input type="submit" id="update" name="update" value="수정 ">
+		</form>
+	</c:if>
+	<%-- 	<form name="myForm" action="<%=contextPath%>/community/CommunityCategoryList" method="post"> --%>
+	<!-- 		<input type="button" id="update" name="update" value="수정 " -->
+	<%-- 			onclick="update('${communityDto.id}','<%=myId3%>')"> --%>
+	<!-- 	</form> -->
 </body>
 </html>
