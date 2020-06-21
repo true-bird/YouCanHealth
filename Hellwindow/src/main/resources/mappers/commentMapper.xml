@@ -6,7 +6,8 @@
 <mapper namespace="commentMapper">
 	
 	<select id="selectCommentAllList"
-		resultType="com.matnagu.myHell.comment.dto.CommentDto">
+	
+		resultType="com.matnagu.myHell.community.comment.dto.CommentDto">
 		SELECT
 		SEQ,
 		ID,

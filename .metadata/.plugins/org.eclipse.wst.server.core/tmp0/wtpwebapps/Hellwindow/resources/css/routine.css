@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	background-color:white;	
+}
+
 .rightAlign {
 	text-align: right;
 	padding-right: 3%;
@@ -27,15 +31,6 @@
 
 .verticalTop {
 	vertical-align: top;	
-}
-
-html, body, p {
-	margin: 0;
-	padding: 0;
-    font-size: 100%;
-    font: inherit;
-	vertical-align: baseline;
-	background-image: none;
 }
 
 
@@ -79,7 +74,6 @@ html, body, p {
 
 .section-background.background-image {
 	background-attachment: fixed;
-    
 	background-color: transparent;
 }
 
@@ -89,8 +83,8 @@ html, body, p {
 }
 
 .section-text {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	/*margin-top: 10px;*/
+	/*margin-bottom: 10px;*/
 	
 }
 
@@ -122,6 +116,13 @@ html, body, p {
 .section-text.difficulty {
 	font-size: x-large;
 }
+
+
+#routineDetail {
+	background-color: #1F2324;
+}
+
+
 
 #floatingButton {
 	max-height: none;

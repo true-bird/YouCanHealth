@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
 	<hr>
@@ -17,13 +17,12 @@
 		</tr>
 		<tr>
 			<th colspan="3">제목: ${communityDto.title}</th>
-
 		<tr>
 			<th>내용</th>
-			<th><textarea name="content" cols=85 rows=15 readonly="readonly">${communityDto.content}</textarea>
+			<th>
+				<textarea name="content" cols=85 rows=15 readonly="readonly">${communityDto.content}</textarea>
 			</th>
 		</tr>
-
 	</table>
 	<hr>
 	<a class="redtext"
@@ -33,9 +32,7 @@
 	댓글
 	<table>
 		<c:choose>
-
 			<c:when test="${fn:length(list)>0 }">
-
 				<tr>
 					<td>아이디</td>
 					<td>내용</td>
@@ -54,8 +51,7 @@
 						<td>${user.content}</td>
 						<td>${user.commentdate}</td>
 						<td>
-							<form action="<%=contextPath%>/community/CommentDelete"
-								method="post">
+							<form action="<%=contextPath%>/community/deleteComment" method="post">
 								<input type="hidden" name="seq" value="${communityDto.seq}">
 								<input type="hidden" name="userseq" value="${user.seq}">
 								<input type="submit" value="삭제">
@@ -72,14 +68,12 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-
-
 	</table>
 	<hr>
-	<form action="<%=contextPath%>/community/commentset" method="post">
+	<form action="<%=contextPath%>/community/createComment" method="post">
 		<table>
 			<tr>
-				<td><%=myId3%>:<input type="hidden" value="<%=myId3%>"
+				<td><%=id%>:<input type="hidden" value="<%=id%>"
 					name="id"></td>
 				<td><textarea name="content" cols=40 rows=2 required></textarea></td>
 				<td><input type="submit" value="추가하기"></td>
@@ -89,7 +83,6 @@
 	<hr>
 	<br>
 	<br>
-
 	<a class="redtext" href="<c:url value='/community/createPost' />">글쓰기</a>
 	<a class="redtext"
 		href="<c:url value='/community/CommunityCategoryList'/>?category=${communityDto.category}">목록</a>

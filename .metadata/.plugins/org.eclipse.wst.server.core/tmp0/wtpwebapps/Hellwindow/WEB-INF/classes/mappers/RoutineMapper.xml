@@ -34,14 +34,18 @@
 	
 	<select id="selectRoutineDetail" parameterType="int"
 	resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
-	SELECT  ROUTINE_ID, 
-	        SPORTS_DAY,
-	        SPORTS_NAME,
-	        SPORTS_SET,		                
-	        SPORTS_COUNT
-	FROM    ROUTINE_DETAIL
-	WHERE   ROUTINE_ID = #{id}
+	SELECT  R.ROUTINE_ID, 
+       		R.SPORTS_DAY,
+	   		R.SPORTS_NAME,
+	   		R.SPORTS_SET,		                
+	   		R.SPORTS_COUNT,
+       		S.SEQ,
+       		S.PART,
+       		S.IMAGE
+	FROM    ROUTINE_DETAIL R, SPORTS S
+	WHERE   R.SPORTS_NAME = S.EX_NAME AND R.ROUTINE_ID = #{id}
 	ORDER BY SPORTS_DAY
 	</select>
+	
 </mapper>
  

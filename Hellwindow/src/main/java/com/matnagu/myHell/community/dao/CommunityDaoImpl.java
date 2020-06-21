@@ -10,67 +10,57 @@ import org.springframework.stereotype.Repository;
 
 import com.matnagu.myHell.community.dto.CommunityDto;
 
-@Repository //저장소
+@Repository
 public class CommunityDaoImpl implements ICommunityDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	// 전체 조회
 	@Override
 	public List<CommunityDto> selectCommunityAllList() {
 		List<CommunityDto> UserDtoList = new ArrayList<CommunityDto>();
-		UserDtoList = sqlSession.selectList("CommunityMapper.selectCommunityAllList");
+		UserDtoList = sqlSession.selectList("communityMapper.selectCommunityAllList");
 		return UserDtoList;
 	}
+	// 글 내용 읽기
 	@Override
 	public CommunityDto selectCommunity(int seq) {
-		CommunityDto communityDto =
-				sqlSession.selectOne("CommunityMapper.selectCommunity", seq);
+		CommunityDto communityDto = sqlSession.selectOne("communityMapper.selectCommunity", seq);
 		return communityDto;
 	}
+	// 카테고리 나누기
 	@Override
 	public List<CommunityDto> selectCommunityCategory(String category) {
-		List<CommunityDto> communityDto=
-				new ArrayList<CommunityDto>();
-		 communityDto =
-				sqlSession.selectList("CommunityMapper.selectCommunityCategory", category);
+		List<CommunityDto> communityDto = new ArrayList<CommunityDto>();
+		communityDto = sqlSession.selectList("communityMapper.selectCommunityCategory", category);
 		return communityDto;
 	}
+	// 작성자 이름으로 분류하기
 	@Override
 	public List<CommunityDto> selectCommunityList(String list) {
-		List<CommunityDto> communityDto=
-				new ArrayList<CommunityDto>();
-		 communityDto =
-					sqlSession.selectList("CommunityMapper.selectCommunityList", list);
-			return communityDto;
+		List<CommunityDto> communityDto = new ArrayList<CommunityDto>();
+		communityDto = sqlSession.selectList("communityMapper.selectCommunityList", list);
+		return communityDto;
 	}
+	// 조회수 카운트
 	@Override
 	public void updateHit(int seq) {
-		sqlSession.insert("CommunityMapper.updateHit", seq);
-		
+		sqlSession.insert("communityMapper.updateHit", seq);	
 	}
+	// 글쓰기
 	@Override
 	public void insertWritingContent(HashMap<String,String> paramMap) {
-
-		sqlSession.insert("CommunityMapper.insertWritingContent",paramMap);
-
+		sqlSession.insert("communityMapper.insertWritingContent",paramMap);
 	}
-	@Override
-	public List<CommunityDto> selectMyCommunity(String id) {
-		List<CommunityDto> communityDtoList=
-				new ArrayList<CommunityDto>();
-		
-		communityDtoList=sqlSession.selectList("CommunityMapper.selectMyCommunity", id);
-		return communityDtoList;
-	}
+	// 글 수정
 	@Override
 	public void updateCommunity(HashMap<String, String> paramMap) {
-		sqlSession.update("CommunityMapper.updateCommunity", paramMap);
-		
+		sqlSession.update("communityMapper.updateCommunity", paramMap);
 	}
+	// 글 삭제
 	@Override
 	public void deleteMyCommunity(int seq) {
-		sqlSession.delete("CommunityMapper.deleteMyCommunity", seq);
-		
+		sqlSession.delete("communityMapper.deleteMyCommunity", seq);	
 	}
 
 }

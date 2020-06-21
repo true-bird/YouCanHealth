@@ -1,0 +1,117 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	String myId3 =(String)session.getAttribute("myId2");
+	String contextPath = request.getContextPath();//각자의 컨텍스트를  찾아서 자동으로 변경시켜준다.
+    String id=(String)request.getAttribute("myId");
+    String password=(String)request.getAttribute("myPassword");
+%>
+<head>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/header.css?after">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style>
+		#siteHeader {
+			position: relative;
+			box-sizing: content-box;
+			height: 120px;
+			/*
+			position: absolute;
+    		z-index: 998;
+    		background-color: transparent;
+    		text-align: right;
+    		padding-top: 45px;
+    		padding-bottom: 45px;
+    		width: 100%;
+    		box-sizing: border-box;
+    		font-size: 0;*/
+		}
+		
+		.header-background {
+			position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    		-webkit-background-size: cover !important;
+    		background-size: cover !important;
+    		background-repeat: no-repeat !important;
+    		background-position: 50% 50%;
+		}
+
+		.header-background.background-image {
+			background-image: url(/myHell/images/routine/back.png);
+			background-color: transparent;
+		}
+
+		.header-background.background-cover {
+			background-color: #000000;
+			opacity: 0.5;
+		}
+		
+		.header {
+			padding-top: 45px;
+			padding-bottom: 45px;
+			position: relative;
+    		top: 0;
+    		left: 0;
+    		color: white;
+    		font-size:large;
+    		min-height: 1px;
+    		width: 100%;
+    		height: auto;
+    		z-index:3;
+		}
+		
+		
+		.header > ul {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			vertical-align: baseline;
+		}
+		
+		
+		.menu-item {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+			margin-right: 30px;
+			list-style-type:disc;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<header id="siteHeader">
+		<div class="header-background background-image"></div>
+		<div class="header-background background-cover"></div>
+		<div class="header">
+			<ul>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/' />">홈</a></li>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/community' />">커뮤니티</a></li>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/sports' />">운동방법</a></li>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/routine' />">루틴</a></li>
+				<%
+				if(myId3!=null) { 
+				%>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/user/userInfo' />">내정보</a></li>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/logout' />">로그아웃</a></li>
+				<%
+				} else {
+				%>
+				<li class="menu-item"><a class="redtext" href="<c:url value='/signIn' />">로그인</a></li> 
+				<li class="menu-item"><a class="redtext" href="<c:url value='/signUp' />">회원가입</a></li>
+				<%
+				}
+				%>	
+			</ul>
+		</div>
+	</header>
+</body>

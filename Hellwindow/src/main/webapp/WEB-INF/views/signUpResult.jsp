@@ -6,11 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
-	<h1>회원가입 축하 화면</h1>
 	<h2>회원가입을 축하합니다!!</h2>
 	<br> 회원님이 만드신 정보
 	<table border="1">

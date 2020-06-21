@@ -18,7 +18,7 @@
 <body>
 	<hr>
 	<form action="<%=contextPath%>/community/WritingContent" method="post">
-		<input type="hidden" name="id" value="<%=myId3%>">
+		<input type="hidden" name="id" value="<%=id%>">
 		<table style="padding-top: 50px" align="center" width="1000"
 			border="1" cellpadding="2">
 			<tr>
@@ -57,7 +57,5 @@
 			</tr>
 		</table>
 	</form>
-
-
 </body>
 </html>

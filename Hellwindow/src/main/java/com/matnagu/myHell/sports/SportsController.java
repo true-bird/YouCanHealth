@@ -1,5 +1,7 @@
 package com.matnagu.myHell.sports;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,24 +9,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matnagu.myHell.sports.dto.SportsDto;
-import com.matnagu.myHell.sports.service.SportsServiceImpl;
+import com.matnagu.myHell.sports.service.ISportsService;
 
 @Controller
 @RequestMapping(value = "/sports")
 public class SportsController {
-	
 
 	@Autowired
-	private SportsServiceImpl sportsServiceImpl;
-	
-	// 운동상세정보 페이지
+	private ISportsService sportsServiceImpl;
+
+	// 운동 화면
+	@RequestMapping(value = "")
+	public String sports(Model model) {
+		// 가슴목록
+		List<SportsDto> sportsChestList = sportsServiceImpl.selectChestList();
+		// 등목록
+		List<SportsDto> sportsBackList = sportsServiceImpl.selectBackList();
+		// 어깨목록
+		List<SportsDto> sportsShoulderList = sportsServiceImpl.selectShoulderList();
+		// 복부목록
+		List<SportsDto> sportsAbsList = sportsServiceImpl.selectAbsList();
+		for (SportsDto dto : sportsAbsList)
+			System.out.println(dto.toString());
+		// 하체목록
+		List<SportsDto> sportsLowerList = sportsServiceImpl.selectLowerList();
+		model.addAttribute("chest", sportsChestList);
+		model.addAttribute("back", sportsBackList);
+		model.addAttribute("shoulder", sportsShoulderList);
+		model.addAttribute("abs", sportsAbsList);
+		model.addAttribute("lower", sportsLowerList);
+		return "sports/sportsList";
+	}
+
+	// 운동 상세정보 화면
 	@RequestMapping(value = "/sportsDetails")
 	public String sportsDetails(@RequestParam("seq") int seq, Model model) {
-		System.out.println("seq=" + seq);
-
 		SportsDto SportsDto = sportsServiceImpl.selectSportsInfo(seq);
 		model.addAttribute("SportsDto", SportsDto);
-
 		return "sports/sportsDetails";
 	}
+
 }

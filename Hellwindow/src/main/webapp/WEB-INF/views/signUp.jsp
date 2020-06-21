@@ -5,9 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 
 <script>
@@ -40,14 +39,6 @@ $(document).ready(function() {
 
 </script>
 <body>
-	<h1>회원가입 화면</h1>
-	<hr>
-	<br>
-	<a class="redtext" href="<c:url value='/' />">Home</a>| {회원가입} |
-	<a class="redtext" href="<c:url value='/signIn' />">로그인</a>
-	<hr width="60%">
-	
-
 	<br>
 	<form action="<%=contextPath%>/signUpResult" method="post">
 		아이디 <input type="text" id="id" name="id" size="10" maxlength="10" > 

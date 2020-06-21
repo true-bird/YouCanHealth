@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>야너헬</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css?after'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/signIn.css?after'/>"/>
+</head>
+<body>
+	<c:if test = "${msg eq 'NotMatching'}" >
+		<p style="color:red">아이디나 비밀번호가 일치하지 않습니다</p>
+	</c:if>
+	<br>
+	<form action="<%=contextPath%>/loginCheck" method="post">
+		<table>
+			<tr>
+				<th>아이디</th>
+				<td>
+					<input type="text" name="userId">
+				</td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td>
+					<input type="password" name="userPassword">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<input type="submit" value="로그인">
+				</th>
+				<th>
+					<a href="<c:url value='/signUp' />">
+					<input type="button" value="회원가입">
+					</a>
+				</th>
+			</tr>
+		</table>
+	</form> 
+</body>
+</html>

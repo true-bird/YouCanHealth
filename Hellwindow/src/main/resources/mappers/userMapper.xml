@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="userMapper">
-	<!-- 신동훈 -->
+
+	<!-- 동훈 -->
 	<insert id="insertUserInit" parameterType="java.util.HashMap">
     INSERT INTO INITIATE
     (SEQ,ID,PASSWORD,NAME,BIRTH,SEX,EXERDATE,MANAGER) 
@@ -21,25 +22,7 @@
     )
     </insert>
     
-    <select id="selectUserInit"
-    parameterType="String"
-    resultType="com.matnagu.myHell.user.dto.UserDto">
-    SELECT 
-    ID,
-    PASSWORD,
-    NAME
-    FROM INITIATE
-    WHERE ID = #{id}
-    </select> 
- 
-    <select id="selectUserInfo"
-    resultType="com.matnagu.myHell.user.dto.UserDto">
-    SELECT *
-    FROM INITIATE
-    WHERE ID = #{id}
-    </select>
-    
-    <!-- 이진희 -->
+    <!-- 진희 -->
     <!-- 유저 정보 전체 출력 -->
 	<select id="selectUserAllList"
 		resultType="com.matnagu.myHell.user.dto.UserDto">

@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Body Parts</title>
-	<link rel="stylesheet" href="<c:url value='/css/sports.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/sports.css?after'/>" />
 </head>
 <body>
 	<br>

@@ -6,45 +6,41 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.matnagu.myHell.user.dao.UserDaoImpl;
+import com.matnagu.myHell.user.dao.IUserDao;
 import com.matnagu.myHell.user.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired
-	private UserDaoImpl userDaoImpl;
+	private IUserDao userDaoImpl;
 	
-	
-	/* 신동훈 */
+	@Override
+	public UserDto signInAuth(String id, String password) throws Exception {
+		UserDto userDto = userDaoImpl.selectUserId(id);
+		if(userDto == null || !userDto.getPassword().equals(password)) {
+			throw new IdPasswordNotMatchingException();
+		}
+		return userDto;
+	}
+	/* ---------- 동훈 ---------- */
 	@Override
 	public void insertUserinit(HashMap<String, Object> paramMap) {
 		userDaoImpl.insertUserinit(paramMap);
 	}
-	
-	@Override
-	public UserDto selectUserInit(String id) {
-		return userDaoImpl.selectUserInit(id);
-	}
-	
-	@Override
-	public UserDto selectUserInfo(String id) {
-		return userDaoImpl.selectUserInfo(id);
-	}
-	
-	
-	/* 이진희 */
+	/* ------------------------ */
+
+	/* ---------- 진희 ---------- */
 	@Override
 	public List<UserDto> selectUserAllList(){
 		return userDaoImpl.selectUserAllList();
 	}
 	
-	
 	@Override
 	public UserDto selectUserId(String id) {
-		// TODO Auto-generated method stub
 		return userDaoImpl.selectUserId(id);
 	}
-	
+	/* ------------------------ */
+
 	
 }

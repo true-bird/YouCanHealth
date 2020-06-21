@@ -8,6 +8,7 @@ $(document).ready(function(){
 		$("#routineId").val($(this).attr('id'));
 		$("#routineName").val($(this).find('.title').text());
 		$("#routineDifficulty").val($(this).find('.difficulty').attr('id'));
+		$("#routineCategory").val($(this).find('.category').text());
 		$("form").submit();
 	});
 	

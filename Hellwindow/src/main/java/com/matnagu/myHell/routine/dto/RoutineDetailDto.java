@@ -6,6 +6,13 @@ public class RoutineDetailDto {
 	private String sportsName;
 	private int sportsSet;
 	private int sportsCount;
+	private int seq;
+	private String image;
+	
+	
+	public RoutineDetailDto() {
+	}
+	
 	public int getRoutineId() {
 		return routineId;
 	}
@@ -37,5 +44,19 @@ public class RoutineDetailDto {
 		this.sportsCount = sportsCount;
 	}
 	
-	
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }

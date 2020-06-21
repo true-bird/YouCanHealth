@@ -6,11 +6,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
-	<script type="text/javascript" src="<%=contextPath%>/js/routine.js"></script>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/routine.css?after'/>"/>
+	<script type="text/javascript" src="<c:url value='/js/routine.js'/>"></script>
 </head>
 <body>
-	<hr>
 	<div id="dropbox" class="rightAlign">
 		<select name="category">
 			<option value="인기">인기 루틴</option>
@@ -24,6 +23,7 @@
 	<div id="list">
 		<%@ include file="/WEB-INF/views/routines/routineListContent.jsp" %>
 	</div>
+	<br><br><br>
 	<input id = "floatingButton" type="button" value="나만의 루틴 만들기" onClick="location.href='<c:url value='/routine/createCustomRoutine'/>'">
 	
 </body>

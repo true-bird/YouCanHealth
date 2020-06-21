@@ -5,23 +5,26 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/signIn.css">
+	<title>야너헬</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/signIn.css?after'/>"/>
 </head>
 <body>
-	<h1>로그인 화면</h1>
+	<c:if test = "${msg eq 'NotMatching'}" >
+		<p style="color:red">아이디나 비밀번호가 일치하지 않습니다</p>
+	</c:if>
+	<br>
 	<form action="<%=contextPath%>/loginCheck" method="post">
 		<table>
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" name="myId">
+					<input type="text" name="userId">
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
 				<td>
-					<input type="password" name="myPassword">
+					<input type="password" name="userPassword">
 				</td>
 			</tr>
 			<tr>

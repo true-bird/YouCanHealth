@@ -78,8 +78,6 @@
 		EXPLAIN
 		FROM SPORTS
 		WHERE SEQ = #{seq}
-
 	</select>
-
 </mapper>
  

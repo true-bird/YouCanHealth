@@ -13,42 +13,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.matnagu.myHell.comment.dto.CommentDto;
-import com.matnagu.myHell.comment.service.CommentServiceImpl;
+import com.matnagu.myHell.community.comment.dto.CommentDto;
+import com.matnagu.myHell.community.comment.service.ICommentService;
 import com.matnagu.myHell.community.dto.CommunityDto;
-import com.matnagu.myHell.community.service.CommunityServiceImpl;
+import com.matnagu.myHell.community.service.ICommunityService;
 import com.matnagu.myHell.user.dto.UserDto;
-import com.matnagu.myHell.user.service.UserServiceImpl;
+import com.matnagu.myHell.user.service.IUserService;
 
 @Controller
 @RequestMapping(value = "/community")
 public class CommunityController {
 	
-	
 	@Autowired
-	private CommunityServiceImpl communityServiceImpl;
+	private ICommunityService communityServiceImpl;
 	@Autowired
-	private CommentServiceImpl commentServiceImpl;
+	private ICommentService commentServiceImpl;
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private IUserService userServiceImpl;
 	
 	
 	/* ----------화면---------- */
+	// 전체글 화면
+	@RequestMapping(value = "")
+	public ModelAndView selectCommunityList(Model model) {
+		String min = "0";
+		String mex = "9";
+		String category = "전체글";
+		List<CommunityDto> communityList = communityServiceImpl.selectCommunityAllList();
+		model.addAttribute("list", communityList);
+		model.addAttribute("category", category);
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("community/postList");
+		return mv;
+	}
 	
-	// 글 읽기
+	// 글 읽기 화면
 	@RequestMapping(value = "/readPost")
 	public ModelAndView readPost(@RequestParam("seq") int seq, Model model,HttpServletRequest request) {
 		CommunityDto communityDto = communityServiceImpl.selectCommunity(seq); // 해당 글 내용 담기
 		communityServiceImpl.updateHit(seq);
 		model.addAttribute("communityDto", communityDto);
 		HttpSession session=request.getSession();
-		//System.out.println("myId3=" + myId);
-		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		System.out.println(session.getAttribute("userId"));
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("userId")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		
 		model.addAttribute("userDto", userDto);
 		List<CommentDto> commentList = commentServiceImpl.selectCommentAllList(seq);// 글에 해당하는 댓글 담기
-		if (commentList.size() > 0) { // 댓글이 0이면 담지 않는다.
-			model.addAttribute("list", commentList);
-		}
+		if (commentList.size() > 0) model.addAttribute("list", commentList);
 		ModelAndView mv = new ModelAndView("community/readPost");
 		return mv;
 	}
@@ -57,8 +69,7 @@ public class CommunityController {
 	@RequestMapping(value = "/createPost")
 	public ModelAndView createPost(HttpServletRequest request, Model model) {
 		HttpSession session=request.getSession();
-		//System.out.println("myId3=" + myId);
-		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("userId")); //세션 정보를 받아서 같은 아이디 정보 가져오기
 		model.addAttribute("userDto", userDto);
 		String min = "0";
 		String mex = "9";
@@ -73,14 +84,12 @@ public class CommunityController {
 	public ModelAndView domyCommunityupdate(@RequestParam("seq") int seq, Model model,HttpServletRequest request) {
 		CommunityDto communityDto = communityServiceImpl.selectCommunity(seq);
 		HttpSession session=request.getSession();
-		//System.out.println("myId3=" + myId);
-		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("myId2")); //세션 정보를 받아서 같은 아이디 정보 가져오기
+		UserDto userDto = userServiceImpl.selectUserId((String)session.getAttribute("userId")); //세션 정보를 받아서 같은 아이디 정보 가져오기
 		model.addAttribute("userDto", userDto);
 		model.addAttribute("communityDto", communityDto);
 		ModelAndView mv = new ModelAndView("community/updatePost");
 		return mv;
 	}
-	
 	/* ---------------------- */
 	
 	
@@ -98,29 +107,40 @@ public class CommunityController {
 	@RequestMapping(value = "/WritingContentupdateSet")
 	public ModelAndView doWritingContentupdateSet(@RequestParam HashMap<String, String> paramMap,Model model,@RequestParam("category") String category) {
 		communityServiceImpl.updateCommunity(paramMap);
-		System.out.println("!! : cate : "+category);
 		List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);// 커뮤니티 디비 잡담 출력
 		model.addAttribute("category", category);
 		model.addAttribute("list", communityDto);
 		ModelAndView mv = new ModelAndView("redirect:/community/CommunityCategoryList");
 		return mv;
 	}
+	// 글 삭제 등록
+	@RequestMapping(value = "/MyCommunityDelete")
+	public ModelAndView doMyCommunityDelete(@RequestParam("seq") int seq,HttpServletRequest request, Model model) {
+		String min = "0";
+		String mex = "9";
+		communityServiceImpl.deleteMyCommunity(seq);
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("userId");		
+		model.addAttribute("category", id+" 가작성한 글");
+		List<CommunityDto> communityList= communityServiceImpl.selectCommunityList(id);
+		model.addAttribute("list", communityList);
+		model.addAttribute("min", min);
+		model.addAttribute("mex", mex);
+		ModelAndView mv = new ModelAndView("/community/postList");
+		return mv;
+	}
 	/* ---------------------- */
-	
-	
-	
 	
 	
 	
 	// 카테고리별 리스트 보기
 	@RequestMapping(value = "/CommunityCategoryList") 
 	public ModelAndView doMainPassTime(@RequestParam("category") String category, Model model) {
-		System.out.println("cate : "+category);
+		String min = "0";
+		String mex = "9";
 		List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);// 커뮤니티 디비 잡담 출력
 		model.addAttribute("category", category);
 		model.addAttribute("list", communityDto);
-		String min = "0";
-		String mex = "9";
 		model.addAttribute("min", min);
 		model.addAttribute("mex", mex);
 		ModelAndView mv = new ModelAndView("community/postList");
@@ -135,9 +155,9 @@ public class CommunityController {
 		model.addAttribute("min", min);
 		model.addAttribute("mex", mex);
 		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("myId2");		
+		String id=(String)session.getAttribute("userId");		
 		model.addAttribute("category", "내가 작성한 글");
-		List<CommunityDto> communityList= communityServiceImpl.selectMyCommunity(id);
+		List<CommunityDto> communityList= communityServiceImpl.selectCommunityList(id);
 		model.addAttribute("list", communityList);
 		ModelAndView mv = new ModelAndView("community/postList");
 		return mv;
@@ -157,27 +177,24 @@ public class CommunityController {
 		return mv;
 	}
 	
-	
 	// 페이지 넘기기
 	@RequestMapping(value = "/cont")
 	public ModelAndView docont(HttpServletRequest request,Model model,@RequestParam("list") String list,@RequestParam("min") String min,@RequestParam("mex") String mex,@RequestParam("category") String category) {
 		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("myId2");		
-		if(category.equals("전체")) {
+		String id=(String)session.getAttribute("userId");		
+		if(category.equals("전체글")) {
 			List<CommunityDto> communityList = communityServiceImpl.selectCommunityAllList(); // 커뮤니티 디비 전체 출력
 			model.addAttribute("list", communityList);
-		}else if(category.equals("내가 작성한 글")){
-			List<CommunityDto> communityList= communityServiceImpl.selectMyCommunity(id);
+		} else if(category.equals("내가 작성한 글")){
+			List<CommunityDto> communityList= communityServiceImpl.selectCommunityList(id);
 			model.addAttribute("list", communityList);
-		}else if(category.equals("작성자가 작성한 글 목록")){
+		} else if(category.equals("작성자가 작성한 글 목록")){
 			List<CommunityDto> communityDto = communityServiceImpl.selectCommunityList(list); // 커뮤니티 디비 운동꿀팁 출력
 			model.addAttribute("list", communityDto);
-		}
-		else{
+		} else{
 			List<CommunityDto> communityDto = communityServiceImpl.selectCommunityCategory(category);
 			model.addAttribute("list", communityDto);
 		}
-		
 		model.addAttribute("category", category);
 		model.addAttribute("min", min);
 		model.addAttribute("mex", mex);

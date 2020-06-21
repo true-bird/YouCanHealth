@@ -11,6 +11,7 @@ import com.matnagu.myHell.sports.dto.SportsDto;
 
 @Repository
 public class SportsDaoImpl implements ISportsDao {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -49,10 +50,9 @@ public class SportsDaoImpl implements ISportsDao {
 		SportsLowerDtoList = sqlSession.selectList("sportsMapper.selectLowerList");
 		return SportsLowerDtoList;
 	}
-	@Override // 운동상제정보
+	@Override // 운동상세정보
 	public SportsDto selectSportsInfo(int seq) {
 		SportsDto SportsDto = sqlSession.selectOne("sportsMapper.selectSportsInfo", seq);
 		return SportsDto;
 	}
-
 }

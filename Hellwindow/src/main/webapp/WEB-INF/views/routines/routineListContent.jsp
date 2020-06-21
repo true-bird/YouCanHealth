@@ -17,15 +17,15 @@
 	
 	<form method="post" action="routine/routineDetails">
 	<c:forEach var="routine" items="${routineList}" varStatus="status">
-		<div class ="sectionWrapper
+		<div class ="sectionWrapper" style="cursor:pointer;" id="${routine.id}">
+			<div class="section-background background-image"></div>
+			<div class="section-background background-cover"></div>
+			<div class="section
 			<c:choose>
 				<c:when test="${status.index%2==0}">rightAlign</c:when>
 				<c:otherwise>leftAlign</c:otherwise>
-			</c:choose>"
-			style="cursor:pointer;" id="${routine.id}">
-			<div class="section-background background-image"></div>
-			<div class="section-background background-cover"></div>
-			<div class="section">
+			</c:choose>">
+				<div class="category" style="display:none;">${routine.category}</div>
 				<p class="section-text title">${routine.name}</p>
 				<p class="section-text difficulty" id="${routine.difficulty}">
 					난이도 
@@ -36,6 +36,7 @@
 		<br>
 	</c:forEach>
 		<input type="hidden" id="url" name="url">
+		<input type="hidden" id="routineCategory" name="routineCategory">
 		<input type="hidden" id="routineDifficulty" name="routineDifficulty">
 		<input type="hidden" id="routineName" name="routineName">
 		<input type="hidden" id="routineId" name="routineId">	

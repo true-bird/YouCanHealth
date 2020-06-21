@@ -1,13 +1,13 @@
 package com.matnagu.myHell.community.dto;
 
 public class CommunityDto {
-	private int seq; //번호
-	private String id; //작성자이름
-	private String category; //카테고리
-	private String title; //제목
-	private String content;//내용
-	private String creationDate;//생성일자
-	private int hit;//조회수
+	private int seq; // 번호
+	private String id; // 작성자이름
+	private String category; // 카테고리
+	private String title; // 제목
+	private String content; // 내용
+	private String creationDate; // 생성일자
+	private int hit; // 조회수
 	
 	public CommunityDto() {
 		

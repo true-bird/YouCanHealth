@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="<c:url value='/css/sports.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/sports.css?after'/>"/>
 	<!-- ========== bxSlider : 시작 ==========  -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

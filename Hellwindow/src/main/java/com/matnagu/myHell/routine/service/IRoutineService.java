@@ -1,7 +1,6 @@
 package com.matnagu.myHell.routine.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.matnagu.myHell.routine.dto.RoutineDetailDto;
 import com.matnagu.myHell.routine.dto.RoutineDto;
