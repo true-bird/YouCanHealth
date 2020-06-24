@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.container{
+	width: 70%;
+	margin: 0 auto;
+}
+
+tab-link {
+	color:white;
+}
+
+tab-link.current {
+	
+}
+
+
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}

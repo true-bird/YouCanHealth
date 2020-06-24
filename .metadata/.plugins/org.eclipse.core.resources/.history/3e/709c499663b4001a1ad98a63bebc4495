@@ -1,0 +1,58 @@
+package com.matnagu.myHell.user.dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.matnagu.myHell.user.dto.UserDto;
+
+@Repository
+public class UserDaoImpl implements IUserDao {
+
+	@Autowired
+	private SqlSessionTemplate sqlSession; 
+	
+	
+	/* ---------- 동훈 ---------- */
+	@Override
+	public void insertUserinit(HashMap<String, Object> paramMap) {
+		sqlSession.insert("userMapper.insertUserInit", paramMap);
+	}
+	/* ------------------------ */
+	
+	
+	/* ---------- 진희 ---------- */
+	@Override
+	public List<UserDto> selectUserAllList(){
+		List<UserDto> UserDtoList = new ArrayList<UserDto>();
+		UserDtoList = sqlSession.selectList("userMapper.selectUserAllList");
+		return UserDtoList;
+	}
+
+	@Override
+	public UserDto selectUserId(String id) {
+		UserDto UserDtoId = sqlSession.selectOne("userMapper.selectUserId", id);
+		return UserDtoId;
+	}
+	/* ------------------------ */
+
+
+	@Override
+	public void insertUserRoutine(Map<String, Integer> userRoutine) {
+		sqlSession.insert("userMapper.insertUserRoutine", userRoutine);
+	}
+
+
+	@Override
+	public List<Integer> selectUserRoutine(String userSeq) {
+		List<Integer> routineIdList = sqlSession.selectList("userMapper.selectUserRoutine",userSeq);
+		return routineIdList;
+	}
+
+
+}

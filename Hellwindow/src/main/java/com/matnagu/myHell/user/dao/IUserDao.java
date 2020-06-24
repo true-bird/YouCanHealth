@@ -2,7 +2,9 @@ package com.matnagu.myHell.user.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IUserDao {
@@ -15,4 +17,9 @@ public interface IUserDao {
 	public List<UserDto> selectUserAllList();
 	public UserDto selectUserId(String id);
 	/* ------------------------ */
+	// 내가 고른 루틴 추가하기
+	public void insertUserRoutine(Map<String, Integer> userRoutine);
+	// 내가 고른 루틴 조회
+	public List<Integer> selectUserRoutine(int userSeq);
+	
 }

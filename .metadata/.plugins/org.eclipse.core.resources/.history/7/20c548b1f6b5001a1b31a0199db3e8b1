@@ -1,0 +1,39 @@
+
+
+$(document).ready(function(){
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	});
+	
+	
+	$("input[type='checkbox']").click(function () {
+		var id = "#"+$(this).parents(".tab-content").attr('id')+"-result";
+		var ul = $(".selectResult").find(id);
+		var name = $('<p>', {
+			text: $(this).closest("p").text()
+		});
+		var cnt = $('<p>', {
+			
+		});
+		cnt.append($('<input>',{
+			attr : {
+				'type' : 'number'; 
+				'placeholder' : '세트'
+			}
+		});
+		if($(this).is(":checked")) {
+			ul.append($('<li>',{
+				id: $(this).val(),
+				text: $(this).closest("p").text()
+			}));
+		} else {
+			ul.children("#"+$(this).val()).remove();
+		}
+	});
+
+
+});

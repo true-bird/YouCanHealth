@@ -1,7 +1,9 @@
 package com.matnagu.myHell.routine.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,14 @@ public class RoutineDao implements IRoutineDao{
 		List<RoutineDetailDto> routineDetailDtoList = new ArrayList<RoutineDetailDto>();
 		routineDetailDtoList = sqlSession.selectList("routineMapper.selectRoutineDetail",id);
 		return routineDetailDtoList;
+	}
+
+	@Override
+	public List<RoutineDto> selectRoutineList(List<Integer> routineList) {
+		Map<String,List<Integer>> param = new HashMap<String,List<Integer>>(); 
+		param.put("routineList",routineList);
+		List<RoutineDto> routineDtoList = sqlSession.selectList("routineMapper.selectRoutineUserList",param);
+		return routineDtoList;
 	}
 
 }

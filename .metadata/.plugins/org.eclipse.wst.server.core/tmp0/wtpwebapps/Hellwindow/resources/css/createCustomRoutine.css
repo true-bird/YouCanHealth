@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.container{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.sportInfo {
+	width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+ul.tabs{
+	text-align:center;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: white;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+	padding-bottom: 30px;
+	border-radius: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+
+.checkBoxList th {
+	padding:15px;
+	font-weight:bold;
+}
+
+.checkBoxList p {
+	margin:5px;
+}
+
+.myRoutine > p {
+    font-size: x-large;
+    margin: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.selectResult {
+	background: #ededed;
+}
+
+.selectResult table {
+	text-align: center;
+	height: 300px;
+}
+
+.selectResult tbody {
+	background: white;
+}
+
+.selectResult ul {
+	list-style:none;
+}
+
+.selectResult th {
+	width:150px;
+	padding:15px;
+	font-weight:bold;
+}
+.selectResult td {
+	width:150px;
+}
+
+
+.selectResult input[type='number'] {
+	width: 40%;
+}
+
+.selectResult li {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+
+
+#floatingButton {
+	max-height: none;
+	bottom: 50px;
+	right: 50px;
+	height: auto;
+	position: fixed;
+	z-index: 9999;
+	width: 250px;
+	padding: 15px 15px;
+	border-style: none;
+	border-radius: 15px;
+	background-color: black;
+	color: white;
+	font-size: 15px; /* 폰트 크기 */
+	font-weight: bold;
+}
+
+#floatingButton:hover {
+	background-color: white;
+	color: black;
+	cursor:pointer;
+} 

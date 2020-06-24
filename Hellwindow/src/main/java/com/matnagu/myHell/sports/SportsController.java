@@ -1,5 +1,6 @@
 package com.matnagu.myHell.sports;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,6 @@ public class SportsController {
 		List<SportsDto> sportsShoulderList = sportsServiceImpl.selectShoulderList();
 		// 복부목록
 		List<SportsDto> sportsAbsList = sportsServiceImpl.selectAbsList();
-		for (SportsDto dto : sportsAbsList)
-			System.out.println(dto.toString());
 		// 하체목록
 		List<SportsDto> sportsLowerList = sportsServiceImpl.selectLowerList();
 		model.addAttribute("chest", sportsChestList);
@@ -43,9 +42,12 @@ public class SportsController {
 
 	// 운동 상세정보 화면
 	@RequestMapping(value = "/sportsDetails")
-	public String sportsDetails(@RequestParam("seq") int seq, Model model) {
+	public String sportsDetails(@RequestParam HashMap<String, String> paramMap,
+			Model model) {
+		int seq = Integer.parseInt(paramMap.get("seq"));
 		SportsDto SportsDto = sportsServiceImpl.selectSportsInfo(seq);
 		model.addAttribute("SportsDto", SportsDto);
+		if(paramMap.containsKey("msg")) model.addAttribute("msg", paramMap.get("msg"));
 		return "sports/sportsDetails";
 	}
 

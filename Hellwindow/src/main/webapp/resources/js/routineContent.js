@@ -9,7 +9,7 @@ $(document).ready(function(){
 		$("#routineName").val($(this).find('.title').text());
 		$("#routineDifficulty").val($(this).find('.difficulty').attr('id'));
 		$("#routineCategory").val($(this).find('.category').text());
-		$("form").submit();
+		$("#routineDetails").submit();
 	});
 	
 	

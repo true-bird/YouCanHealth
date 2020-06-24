@@ -1,0 +1,73 @@
+
+
+$(document).ready(function(){
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	});
+	
+	var routine = new Array();
+	for(var i=0;i<7;i++) {
+		routine[i] = new Array();
+	}
+	$("input[type='checkbox']").click(function () {
+		var id = "#"+$(this).parents(".tab-content").attr('id')+"-result";
+		var ul = $(".selectResult").find(id);
+		var name = $('<p>', {
+			text: $(this).closest("p").text()
+		});
+		var cnt = $('<p>', {
+			html: [$("<input type='number' placeholder='세트'>"),
+				$("<span> / </span>"),
+				$("<input type='number' placeholder='횟수'>")]
+		});
+		if($(this).is(":checked")) {
+			var li = ul.append($('<li>',{
+				id: $(this).val(),
+				html: [name,cnt]
+			}));
+		} else {
+			ul.children("#"+$(this).val()).remove();
+		}
+	});
+	
+	
+	$("#floatingButton").click(function() {
+		
+		var mon = $("#tab-1-result").children();
+//		alert(mon.length);
+		for(var i =0; i<mon.length;i++) {
+			alert($(mon[i]).attr('id'));
+		}
+//		mon.forEach(function(e) {
+//			alert(e.attr('id'));
+//		});
+		
+		
+		
+//		$.ajax({
+//			type : 'POST',
+//			data : {target: JSON.stringify(routine)},
+//			datatype : 'json',
+//			url : '/myHell/routine/checkCustomRoutine',
+//			succes : function() {
+//				
+//			},
+//			error : function() {
+//				alert("error!!");
+//			}
+//		});
+	});
+	
+	
+	$(".sportInfo").click(function() {
+		$("#msg").val('back');
+		$("#sportsSeq").val($(this).prev('input').val());
+		$("#sportsInfo").submit();
+	});
+
+
+});

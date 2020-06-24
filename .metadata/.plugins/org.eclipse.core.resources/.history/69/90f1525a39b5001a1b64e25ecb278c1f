@@ -1,0 +1,26 @@
+
+
+$(document).ready(function(){
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	});
+	$('.add').click(function ()
+		{
+			$('#dialog-message').dialog({
+				modal: true, 
+				buttons: {
+					"PHP": function() { $(this).dialog('close'); },
+					"ASP": function() { $(this).dialog('close'); },
+					"JSP": function() { $(this).dialog('close'); }
+				}
+			});
+		}
+	});
+
+
+});

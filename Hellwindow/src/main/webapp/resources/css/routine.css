@@ -9,6 +9,10 @@ body {
 	padding-right: 3%;
 }
 
+#routineDetail .rightAlign {
+	padding-left: 3%;
+}
+
 .rightAlign hr {
 	margin-right: 0px;
 	margin-left: auto;
@@ -17,6 +21,10 @@ body {
 .leftAlign {
 	text-align: left;
 	padding-left: 3%;
+}
+
+#routineDetail .leftAlign {
+	padding-right: 3%;
 }
 
 .leftAlign hr {
@@ -82,6 +90,13 @@ body {
 	opacity: 0.5;
 }
 
+.myroutine-image {
+	background-image:url('/myHell/images/routine/myRoutine.jpg');
+	background-position: 50% 30%;
+}
+
+
+
 .section-text {
 	/*margin-top: 10px;*/
 	/*margin-bottom: 10px;*/
@@ -119,9 +134,59 @@ body {
 
 
 #routineDetail {
-	background-color: #1F2324;
+    font-size: x-large;
+    color: #1F2324;
 }
 
+.day {
+    padding-top: 30px;
+    font-weight: bold;
+}
+
+.dayHr {
+	margin-bottom:25px;
+	
+}
+
+.daySports {
+	background-color:#1F2324;
+	position: relative;
+	margin: 10px 30px 10px auto;
+    min-width: 700px;
+    color:white;
+    cursor:pointer;
+}
+.sportsList {
+	text-align:right;
+}
+.sportsList .rest {
+    color: #1F2324;
+    text-align: center;
+    background: #a5a5a538
+}
+.sportsList .sportsPart {
+	position:relative;
+	right:630px;	
+}
+.sportsPart span {
+	text-align: center;
+	display: inline-block;
+    width: 100px;
+    background: #1F2324;
+    border-radius: 5px;
+    vertical-align: middle;
+    color: white;
+}
+
+.daySports td {
+	width: 200px;
+}
+
+.daySports .routineSet {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
 
 
 #floatingButton {
@@ -135,13 +200,17 @@ body {
 	padding: 15px 15px;
 	border-style: none;
 	border-radius: 15px;
-	background-color: #222222;
+	background-color: black;
 	color: white;
 	font-size: 15px; /* 폰트 크기 */
 	font-weight: bold;
 }
 
-
+#floatingButton:hover {
+	background-color: white;
+	color: black;
+	cursor:pointer;
+} 
 
 
 

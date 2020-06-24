@@ -2,10 +2,13 @@ package com.matnagu.myHell.user.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matnagu.myHell.routine.dao.IRoutineDao;
+import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.user.dao.IUserDao;
 import com.matnagu.myHell.user.dto.UserDto;
 
@@ -14,6 +17,9 @@ public class UserServiceImpl implements IUserService{
 	
 	@Autowired
 	private IUserDao userDaoImpl;
+	
+	@Autowired
+	private IRoutineDao routineDao;
 	
 	@Override
 	public UserDto signInAuth(String id, String password) throws Exception {
@@ -41,6 +47,16 @@ public class UserServiceImpl implements IUserService{
 		return userDaoImpl.selectUserId(id);
 	}
 	/* ------------------------ */
-
+	@Override
+	public void insertUserRoutine(Map<String, Integer> userRoutine) {
+		userDaoImpl.insertUserRoutine(userRoutine);		
+	}
+	
+	@Override
+	public List<RoutineDto> selectUserRoutine(int userSeq) {
+		List<Integer> routineIdList = userDaoImpl.selectUserRoutine(userSeq);
+		return routineDao.selectRoutineList(routineIdList);
+	}
+	
 	
 }

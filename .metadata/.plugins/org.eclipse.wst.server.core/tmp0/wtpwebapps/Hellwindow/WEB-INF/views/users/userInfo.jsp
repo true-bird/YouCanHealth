@@ -63,6 +63,7 @@
 	<br>
 	<input type="button" value="내정보 수정하기"
 	onClick="location.href='<%=contextPath%>/user/updateUserInfo'">
-	
+	<input type="button" value="내 루틴 보기"
+	onClick="location.href='<%=contextPath%>/user/userRoutineList'">
 </body>
 </html>

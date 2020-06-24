@@ -44,6 +44,7 @@ public class HomeController {
 		try {
 			UserDto userDto = userServiceImpl.signInAuth(userId,userPassword);
 			Map<String,String> userInfo = new HashMap<String,String>();
+			userInfo.put("userSeq", String.valueOf(userDto.getSeq()));
 			userInfo.put("userId", userDto.getId());
 			userInfo.put("userName", userDto.getName());
 			userInfo.put("userBirth", userDto.getBirth());
@@ -52,7 +53,6 @@ public class HomeController {
 			userInfo.put("userRating", String.valueOf(userDto.getRating()));
 			session.setAttribute("userInfo", userInfo);
 			session.setAttribute("userId", userInfo.get("userId"));
-		    session.setMaxInactiveInterval(60*5);
 		} catch (IdPasswordNotMatchingException e) {
 			model.addAttribute("msg", "NotMatching");
 			return "signIn";

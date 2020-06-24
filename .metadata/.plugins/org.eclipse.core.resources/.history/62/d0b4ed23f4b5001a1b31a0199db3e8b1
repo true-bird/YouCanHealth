@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.container{
+	width: 65%;
+	margin: 0 auto;
+}
+
+
+
+ul.tabs{
+	text-align:center;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: white;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+	padding-bottom: 30px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+
+.checkBoxList th {
+	padding:15px;
+	font-weight:bold;
+}
+
+.checkBoxList p {
+	margin:5px;
+}
+
+.selectResult {
+	background: #ededed;
+	padding: 15px;
+	padding-bottom: 30px;
+}
+
+.selectResult table {
+	text-align: center;
+}
+
+.selectResult th {
+	width:150px;
+	padding:15px;
+	font-weight:bold;
+}
+
+
+
+

@@ -66,6 +66,9 @@
 		</tr>
 	</table>
 	<a href="<c:url value='/sports'/>">다른 운동 보러가기</a>
+	<c:if test="${not empty msg}">
+		<button onclick="history.back()">돌아가기</button>
+	</c:if>
 	<form action="/sports/SportsLike" method="post">
 		<input type="hidden" name="sportsSeq" value="${sports.seq}">
 		<input type="hidden" name="userId" value="${id}">

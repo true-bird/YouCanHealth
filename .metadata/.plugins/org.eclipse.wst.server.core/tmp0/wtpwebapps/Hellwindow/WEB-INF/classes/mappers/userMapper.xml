@@ -40,5 +40,27 @@
 		ID = #{id}
 		<!-- ORDER BY NAME ASC -->
 	</select>
+	
+    <!-- 내가 고른 루틴 삽입 -->
+	<insert id="insertUserRoutine" parameterType="java.util.HashMap">
+    INSERT INTO USER_ROUTINE
+    (USER_SEQ,ROUTINE_ID,CUSTOM) 
+    VALUES
+    (	
+    	#{userSeq},
+    	#{routineId},
+    	'0'
+    )
+    </insert>
+    
+    <select id="selectUserRoutine"
+		parameterType="int" resultType="int">
+		SELECT 
+		ROUTINE_ID
+		FROM USER_ROUTINE
+		WHERE
+		USER_SEQ = #{userSeq}
+		<!-- ORDER BY NAME ASC -->
+	</select>
 </mapper>
   

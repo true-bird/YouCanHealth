@@ -2,7 +2,9 @@ package com.matnagu.myHell.user.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IUserService {
@@ -20,4 +22,8 @@ public interface IUserService {
 	// 이름으로 찾아오기
 	public UserDto selectUserId(String id);
 	/* ------------------------ */
+	// 내가 고른 루틴 추가하기
+	public void insertUserRoutine(Map<String, Integer> userRoutine);
+	// 내가 고른 루틴 조회
+	public List<RoutineDto> selectUserRoutine(int userSeq);
 }

@@ -7,6 +7,7 @@ public class RoutineDetailDto {
 	private int sportsSet;
 	private int sportsCount;
 	private int seq;
+	private String sportsPart;
 	private String image;
 	
 	
@@ -51,7 +52,15 @@ public class RoutineDetailDto {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+	
+	public String getSportsPart() {
+		return sportsPart;
+	}
 
+	public void setSportsPart(String sportsPart) {
+		this.sportsPart = sportsPart;
+	}
+	
 	public String getImage() {
 		return image;
 	}
@@ -59,4 +68,6 @@ public class RoutineDetailDto {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	
 }

@@ -14,6 +14,8 @@ public interface IRoutineDao {
 	public List<RoutineDto> selectRoutineList();
 	// 카테고리별 루틴
 	public List<RoutineDto> selectRoutineList(String category);
+	// 사용자 루틴
+	public List<RoutineDto> selectRoutineList(List<Integer> routineList);
 	// 루틴 상세
 	public List<RoutineDetailDto> selectRoutineDetail(int id);
 		

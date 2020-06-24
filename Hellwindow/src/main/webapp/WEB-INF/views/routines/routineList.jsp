@@ -24,7 +24,9 @@
 		<%@ include file="/WEB-INF/views/routines/routineListContent.jsp" %>
 	</div>
 	<br><br><br>
-	<input id = "floatingButton" type="button" value="나만의 루틴 만들기" onClick="location.href='<c:url value='/routine/createCustomRoutine'/>'">
-	
+	<div id="userId" style="display:none;"><%=id%></div>
+	<form id="makeRoutine" method="post" action="<c:url value='/'/>routine/createCustomRoutine">
+		<input id = "floatingButton" type="submit" value="나만의 루틴 만들기">
+	</form>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body style="color:white;">
+	<h1>월</h1>
+	<ul>
+		<c:forEach var="chest" items="${chest}" varStatus="status">
+			<li>${chest.exName}</li>
+		</c:forEach>
+	</ul>
+	<div id="monday">
+		<h4>월</h4>
+		<ul class="sportsList"></ul>
+		<input type="button" value="추가하기"/>
+		<input type="button" value="편집하기"/>
+	</div>
+	<div id="tuesday">
+		<h4>화</h4>
+		<ul class="sportsList"></ul>
+		<input type="button" value="추가하기"/>
+		<input type="button" value="편집하기"/>
+	</div>
+	<a class="redtext" href="<c:url value='/routine/checkCustomRoutine' />">최종확인</a>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.matnagu.myHell.user.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,19 @@ public class UserDaoImpl implements IUserDao {
 		return UserDtoId;
 	}
 	/* ------------------------ */
+
+
+	@Override
+	public void insertUserRoutine(Map<String, Integer> userRoutine) {
+		sqlSession.insert("userMapper.insertUserRoutine", userRoutine);
+	}
+
+
+	@Override
+	public List<Integer> selectUserRoutine(int userSeq) {
+		List<Integer> routineIdList = sqlSession.selectList("userMapper.selectUserRoutine",userSeq);
+		return routineIdList;
+	}
 
 
 }

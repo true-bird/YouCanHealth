@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/routine.css?after'/>" />
+</head>
+<body>
+	<div id="dropbox" class="rightAlign">
+		<select name="category">
+			<option value="">내가 고른 루틴</option>
+			<option value="">내가 만든 루틴</option>
+		</select>
+	</div>
+	<div></div>
+	<div id="list">
+		<div id="title">
+			<p>
+				<span id="category" style="font-weight: bold">${category} </span> <span>루틴</span>
+			</p>
+		</div>
+		<form method="post" action="<c:url value='/'/>routine/routineDetails">
+			<c:forEach var="routine" items="${routineList}" varStatus="status">
+				<div class="sectionWrapper" style="cursor: pointer;"
+					id="${routine.id}">
+					<div class="section-background background-image"
+					style="background-image:url('/myHell/images/routine/myRoutine.jpg')"></div>
+					<div class="section-background background-cover"></div>
+					<div
+						class="section
+			<c:choose>
+				<c:when test="${status.index%2==0}">rightAlign</c:when>
+				<c:otherwise>leftAlign</c:otherwise>
+			</c:choose>">
+						<div class="category" style="display: none;">${routine.category}</div>
+						<p class="section-text title">${routine.name}</p>
+						<p class="section-text difficulty" id="${routine.difficulty}">
+							난이도
+							<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
+						</p>
+					</div>
+				</div>
+				<br>
+			</c:forEach>
+			<input type="hidden" id="url" name="url"> <input
+				type="hidden" id="routineCategory" name="routineCategory"> <input
+				type="hidden" id="routineDifficulty" name="routineDifficulty">
+			<input type="hidden" id="routineName" name="routineName"> <input
+				type="hidden" id="routineId" name="routineId">
+		</form>
+	</div>
+	<br>
+	<br>
+</body>
+</html>
