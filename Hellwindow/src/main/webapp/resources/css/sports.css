@@ -1,34 +1,70 @@
-body{
+body {
 	background-image: none;
-	background-color:#1F2324;
-	color:#FFFFFF;
-}
-h3{
-	color:#FF2F2F;
+	background-color: #1F2324;
+	color: #FFFFFF;
 }
 
+h3 {
+	color: #FF2F2F;
+}
+/* ìš´ë™í˜ì´ì§€ ìš´ë™ëª©ë¡ ì¢Œìš° */
+#h1_left {
+	margin-left: 15%;
+}
+
+#h1_right {
+	margin-left: 83%;
+}
+/* ë§í¬ ê´€ë ¨ */
 a:link {
-	color: #990003;
+	color: #FF2F2F;
 	text-decoration: none;
-} /*  ¹æ¹®Àü ¸µÅ©*/
+} /*  ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½Å©*/
 a:visited {
-	color: #A9C4C4;
+	color: #FF2F2F;
 	text-decoration: none;
-} /*¹æ¹®ÈÄ ¸µÅ©  */
+} /*ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½Å©  */
 a:hover {
-	color: #990003;
+	color: #FF2F2F;
 	text-decoration: underline;
-} /*¸¶¿ì½º ¿À¹ö  */
+} /*ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½  */
 a:active {
 	color: #A9C4C4;
 	text-decoration: none;
-} /*¸¶¿ì½ºÅ¬¸¯  */
+} /*ï¿½ï¿½ï¿½ì½ºÅ¬ï¿½ï¿½  */
 
-#hrhr{
-	width:70%;
-	margin-left:0;
+
+#hrhr {
+	width: 70%;
+	margin-left: 15%;
 }
-img{
-	width:300px;
-	height:300px;
+
+img {
+	width: 300px;
+	height: 300px;
 }
+
+#table {
+	padding: 80px;
+}
+
+#listTable_left {
+	margin-left: 15%;
+}
+
+#listTable_right {
+	margin-right: 15%;
+}
+
+#selectbutton{
+	margin-left: 75%;
+	border: 1px solid #FF2F2F;
+	background-color:#1F2324;
+	color: #FF2F2F;
+	padding: 10px;
+}
+#selectbutton:hover{
+	color:white;
+	background-color:#FF2F2F;
+}
+

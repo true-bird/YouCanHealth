@@ -58,6 +58,26 @@
 	<br>
 	<a href="<c:url value='/user/userFavoriteSports'/>">내가선택한 운동</a>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="<c:url value='/user/userRoutineList' />">내가만든 루틴</a>
+	
+	<table border="4">
+		
+		<tr>
+		<td>
+		운동명
+		</td>
+		<td>
+		<c:forEach var="sportsLike" items="${sportsLike}"
+					varStatus="status">
+				
+			<input type="hidden" name="userId" value="<%= id %>">
+			${sportsLike.exName}
+			
+		</c:forEach>
+		</td>	
+		</tr>
+	</table>
+	
+	
 	<br>
 	<br>
 	<br>

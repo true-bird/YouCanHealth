@@ -1,43 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+	pageEncoding="UTF-8"%>
+
+<%
+	String seq = request.getParameter("seq");
+%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/sports.css?after'/>"/>
-	<!-- ========== bxSlider : 시작 ==========  -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	<!-- ========== bxSlider : 종료 ==========  -->
-	<script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/sports.css?after'/>" />
+<!-- ========== bxSlider : 시작 ==========  -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- ========== bxSlider : 종료 ==========  -->
+<script>
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({
 			mode : 'horizontal', // 이미지 교체 방식. 'horizontal', 'vertical', 'fade'
 			captions : false,
 
 			slideWidth : 300,
-			slideheight :300,
-			speed: 1000,
+			slideheight : 300,
+			speed : 1000,
 			adaptiveHeight : true,
 
 			//추가속성
-			controls : true, 
+			controls : true,
 			auto : true, //이미지 회전 자동 실행 여부
-			autoHover : true 
+			autoHover : true
 		});
 	});
-	</script>
+</script>
 </head>
 <body>
-	<h2>Infomation</h2>
+	<h1 id="h1_left">Infomation</h1>
 	<hr id="hrhr">
 	<input type="hidden" name="seq" value="${sports.seq}">
 	<table>
 		<tr>
-			<td>
+			<td id="table">
 				<div class="bxslider">
 					<div>
 						<img src="<c:url value='${SportsDto.image}'/>" />
@@ -45,34 +53,36 @@
 					<div>
 						<img src="<c:url value='${SportsDto.imageParts}'/>" />
 					</div>
-					<div><img src="<c:url value='${SportsDto.imageGif}'/>" /></div>
+					<div>
+						<img src="<c:url value='${SportsDto.imageGif}'/>" />
+					</div>
 				</div>
 			</td>
-			<td>
+			<td id="table">
+				<h3>${SportsDto.exName}</h3>
+				<h2>
+					<hr color="#FF2F2F">
+				</h2> &nbsp;&nbsp;
+					<ul>
+						<li>부위 : ${SportsDto.part}</li> &nbsp;&nbsp;
+						<li>운동 방법 :</li> 
+							<c:forTokens items="${SportsDto.explain}" delims="-" var="explain">
+						<li>${explain}</li>
+							</c:forTokens> &nbsp;&nbsp;
+					</ul>
 				<ul>
-					<h3>${SportsDto.exName}</h3>
-					<h2><hr color="#FF2F2F"></h2>
-					<li>부위 : ${SportsDto.part}</li>
-					<li>운동 방법 :</li>
-						<ul>
-						<c:forTokens items="${SportsDto.explain}" delims="-" var="explain">
-							<li>${explain}</li>
-						</c:forTokens>
-						</ul>
-					<li><a href="<c:url value='${SportsDto.link}/'/>">다른영상
-							참조하기</a></li>	
+				<li><a href="<c:url value='${SportsDto.link}/'/>">다른 영상
+						참조하기</a></li>
+				<li><a href="<c:url value='/sports'/>">다른 운동 보러가기</a></li>
 				</ul>
 			</td>
 		</tr>
 	</table>
-	<a href="<c:url value='/sports'/>">다른 운동 보러가기</a>
-	<c:if test="${not empty msg}">
-		<button onclick="history.back()">돌아가기</button>
-	</c:if>
-	<form action="/sports/SportsLike" method="post">
-		<input type="hidden" name="sportsSeq" value="${sports.seq}">
-		<input type="hidden" name="userId" value="${id}">
-		<input type="submit" value="좋아하는 운동에 추가하기">
+	<form action="<%=contextPath%>/sports/SportsLike" method="post">
+		<input type="hidden" name="sportsName" value="${SportsDto.exName}">
+		<input type="hidden" name="userId" value="<%=id%>">
+		<input type="hidden" name="seq" value="<%=seq%>">
+		<input id="selectbutton" type="submit" value="좋아하는 운동에 추가하기">
 	</form>
 </body>
 </html>

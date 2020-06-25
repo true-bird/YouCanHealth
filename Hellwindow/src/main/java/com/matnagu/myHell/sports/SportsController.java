@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matnagu.myHell.sports.dto.SportsDto;
+import com.matnagu.myHell.sports.dto.SportsLikeDto;
 import com.matnagu.myHell.sports.service.ISportsService;
 
 @Controller
@@ -17,21 +18,21 @@ import com.matnagu.myHell.sports.service.ISportsService;
 public class SportsController {
 
 	@Autowired
-	private ISportsService sportsServiceImpl;
+	private ISportsService sportsService;
 
 	// 운동 화면
 	@RequestMapping(value = "")
 	public String sports(Model model) {
 		// 가슴목록
-		List<SportsDto> sportsChestList = sportsServiceImpl.selectChestList();
+		List<SportsDto> sportsChestList = sportsService.selectChestList();
 		// 등목록
-		List<SportsDto> sportsBackList = sportsServiceImpl.selectBackList();
+		List<SportsDto> sportsBackList = sportsService.selectBackList();
 		// 어깨목록
-		List<SportsDto> sportsShoulderList = sportsServiceImpl.selectShoulderList();
+		List<SportsDto> sportsShoulderList = sportsService.selectShoulderList();
 		// 복부목록
-		List<SportsDto> sportsAbsList = sportsServiceImpl.selectAbsList();
+		List<SportsDto> sportsAbsList = sportsService.selectAbsList();
 		// 하체목록
-		List<SportsDto> sportsLowerList = sportsServiceImpl.selectLowerList();
+		List<SportsDto> sportsLowerList = sportsService.selectLowerList();
 		model.addAttribute("chest", sportsChestList);
 		model.addAttribute("back", sportsBackList);
 		model.addAttribute("shoulder", sportsShoulderList);
@@ -45,10 +46,37 @@ public class SportsController {
 	public String sportsDetails(@RequestParam HashMap<String, String> paramMap,
 			Model model) {
 		int seq = Integer.parseInt(paramMap.get("seq"));
-		SportsDto SportsDto = sportsServiceImpl.selectSportsInfo(seq);
+		SportsDto SportsDto = sportsService.selectSportsInfo(seq);
 		model.addAttribute("SportsDto", SportsDto);
 		if(paramMap.containsKey("msg")) model.addAttribute("msg", paramMap.get("msg"));
 		return "sports/sportsDetails";
 	}
 
+	@RequestMapping(value = "/SportsLike") // 내가 좋아하는 운동
+	public String selectSportsLike(@RequestParam HashMap<String, String> sportLike,
+			@RequestParam("sportsName") String sportsName, @RequestParam("seq") int seq, Model model) {
+		int i = 0;
+		// 내가좋아하는 운동 조회
+		List<SportsLikeDto> sportsLikeList = sportsService.selectSportsLikeList(sportLike);
+		
+		
+		while (i < sportsLikeList.size()) {
+			if (sportsName.equals(sportsLikeList.get(i).getExName())) {
+
+				String message = "이미 운동이 있습니다.";
+
+				model.addAttribute("message", message);
+				model.addAttribute("seq", seq);
+				return "redirect:/sports/sportsDetails";
+			}
+			i++;
+		}
+		;
+		sportsService.insertSportsLike(sportLike);
+		model.addAttribute("sportsLike", sportsLikeList);
+
+		return "users/userInfo";
+	}
+	
+	
 }

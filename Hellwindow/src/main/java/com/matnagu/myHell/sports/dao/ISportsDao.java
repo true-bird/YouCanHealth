@@ -1,8 +1,10 @@
 package com.matnagu.myHell.sports.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.matnagu.myHell.sports.dto.SportsDto;
+import com.matnagu.myHell.sports.dto.SportsLikeDto;
 
 public interface ISportsDao {
 	// 운동목록(가슴)
@@ -22,5 +24,9 @@ public interface ISportsDao {
 
 	// 운동상세정보
 	public SportsDto selectSportsInfo(int seq);
+
+	public void insertSportsLike(HashMap<String, String> sportLike);
+
+	public List<SportsLikeDto> selectSportsLikeList(HashMap<String, String> sportLike);
 
 }

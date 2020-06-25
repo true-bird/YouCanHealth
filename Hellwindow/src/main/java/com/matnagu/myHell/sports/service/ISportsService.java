@@ -1,8 +1,11 @@
 package com.matnagu.myHell.sports.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.matnagu.myHell.sports.dto.SportsDto;
+import com.matnagu.myHell.sports.dto.SportsLikeDto;
+
 
 public interface ISportsService {
 
@@ -23,4 +26,10 @@ public interface ISportsService {
 
 	// 운동상세정보
 	public SportsDto selectSportsInfo(int seq);
-}
+
+	// 내가 좋아하는 운동 추가
+	public void insertSportsLike(HashMap<String, String> sportLike);
+
+	// 내가 좋아하는 운동 보기
+	public List<SportsLikeDto> selectSportsLikeList(HashMap<String, String> sportLike);
+} 

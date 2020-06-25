@@ -79,5 +79,18 @@
 		FROM SPORTS
 		WHERE SEQ = #{seq}
 	</select>
+	<insert id="insertSportsLike" parameterType="java.util.HashMap">
+	INSERT INTO SPORTSLIKE
+	(SEQ, ID, EX_NAME) VALUES
+	(SPORTSLIKESEQ.NEXTVAL, #{userId}, #{sportsName})
+	</insert>
+	
+	<select id= "selectSportsLikeList" parameterType="java.lang.String" resultType="com.matnagu.myHell.sports.dto.SportsLikeDto">
+		SELECT SEQ,
+		ID,
+		EX_NAME
+		FROM SPORTSLIKE
+		WHERE ID = #{userId}
+	</select>
 </mapper>
  
