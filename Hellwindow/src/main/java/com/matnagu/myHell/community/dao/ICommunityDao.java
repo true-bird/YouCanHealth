@@ -23,4 +23,7 @@ public interface ICommunityDao {
 	public void updateCommunity(HashMap<String,String> paramMap);
 	// 글 삭제
 	public void deleteMyCommunity(int seq);
+	//조건 검색	 (추가)
+	public List<CommunityDto>  selectSearch(HashMap<String,String> paramMap);
+
 }

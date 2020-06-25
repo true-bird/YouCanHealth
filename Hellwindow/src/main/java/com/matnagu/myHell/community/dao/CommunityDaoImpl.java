@@ -62,5 +62,12 @@ public class CommunityDaoImpl implements ICommunityDao {
 	public void deleteMyCommunity(int seq) {
 		sqlSession.delete("communityMapper.deleteMyCommunity", seq);	
 	}
+	@Override
+	public List<CommunityDto> selectSearch(HashMap<String, String> paramMap) {
+		List<CommunityDto> communityDto = new ArrayList<CommunityDto>();
+		communityDto = sqlSession.selectList("communityMapper.selectSearch", paramMap);
+		return communityDto;
+
+	}
 
 }

@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+body {
+	background-image: none;
+	background-color: #1F2324;
+	color: #FFFFFF;
+}
+
 input[type=text], [type=password] {
 	width: 270px;
 	border: 2px solod #ccc;

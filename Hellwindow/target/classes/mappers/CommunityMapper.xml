@@ -102,4 +102,29 @@
 		WHERE SEQ = #{seq}
 	</delete>
 	
+		<select id="selectSearch" parameterType="java.util.HashMap" resultType="com.matnagu.myHell.community.dto.CommunityDto">
+
+		SELECT
+		SEQ,
+		ID,
+		CATEGORY,
+		TITLE,
+		CONTENT,
+		 creationDATE,
+		HIT
+		FROM COMMUNITY
+WHERE  1=1
+			<if test="title != null and title != ''">
+				 AND TITLE LIKE '%'||#{title}||'%' 
+			</if>
+			<if test="content != null and content != ''">
+				 AND CONTENT LIKE '%'||#{content}||'%' 
+			</if>
+			<if test="creationDate != null and creationDate != ''">
+				AND TO_CHAR(creationDATE, 'YYYY-MM-DD')= #{creationDate}
+			</if>
+
+		ORDER BY creationDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
 </mapper>

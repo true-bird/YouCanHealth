@@ -54,5 +54,11 @@ public class CommunityServiceImpl implements ICommunityService{
 	public void deleteMyCommunity(int seq) {
 		communityDaoImpl.deleteMyCommunity(seq);
 	}
+
+	@Override
+	public List<CommunityDto> selectSearch(HashMap<String, String> paramMap) {
+		// TODO Auto-generated method stub
+		return communityDaoImpl.selectSearch(paramMap);
+	}
 	
 }
