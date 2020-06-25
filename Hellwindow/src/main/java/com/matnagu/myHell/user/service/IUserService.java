@@ -31,6 +31,7 @@ public interface IUserService {
 	// 내가 고른 루틴 추가하기
 	public void insertUserRoutine(Map<String, Integer> userRoutine);
 	// 내가 고른 루틴 조회
+	public int selectUserRoutine(Map<String, Integer> userRoutine);
 	public List<RoutineDto> selectUserRoutine(int userSeq);
 	public List<RoutineDto> selectUserCustomRoutine(int userSeq);
 	public void deleteUserRoutine(Map<String,Integer> paramMap);

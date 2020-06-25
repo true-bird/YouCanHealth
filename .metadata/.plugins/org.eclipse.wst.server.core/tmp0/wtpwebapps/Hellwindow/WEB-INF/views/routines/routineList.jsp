@@ -8,6 +8,11 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/routine.css?after'/>"/>
 	<script type="text/javascript" src="<c:url value='/js/routine.js'/>"></script>
+	<script>
+		if(${msg}) {
+			alert("이미 내 루틴에 있습니다");
+		}
+	</script>
 </head>
 <body>
 	<div id="dropbox" class="rightAlign">

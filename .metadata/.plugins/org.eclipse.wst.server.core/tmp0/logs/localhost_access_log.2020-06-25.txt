@@ -2419,3 +2419,11 @@
 0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:21:18 +0900] "GET /myHell/css/header.css?after HTTP/1.1" 200 1327
 0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:21:18 +0900] "GET /myHell/css/sports.css?after HTTP/1.1" 200 1044
 0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:21:18 +0900] "GET /myHell/images/header.jpg HTTP/1.1" 200 531220
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:22 +0900] "GET /myHell HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:22 +0900] "GET /myHell/ HTTP/1.1" 200 3839
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:23 +0900] "GET /myHell/logout HTTP/1.1" 200 3833
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:23 +0900] "GET /myHell/images/home/hell.mp4 HTTP/1.1" 200 6045696
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:24 +0900] "GET /myHell/signUp HTTP/1.1" 200 6402
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:24 +0900] "GET /myHell/images/home/hell.mp4 HTTP/1.1" 200 5242880
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:27 +0900] "POST /myHell/idChk HTTP/1.1" 200 1
+0:0:0:0:0:0:0:1 - - [25/Jun/2020:23:39:36 +0900] "POST /myHell/signUpResult HTTP/1.1" 200 2314

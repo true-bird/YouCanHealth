@@ -72,6 +72,15 @@
 		USER_SEQ = #{userSeq}
 		<!-- ORDER BY NAME ASC -->
 	</select>
+	
+	<select id="selectUserRoutineCheck"  parameterType="java.util.HashMap"
+	resultType="int">
+	SELECT COUNT(*)
+	FROM USER_ROUTINE
+	WHERE USER_SEQ = #{userSeq} AND ROUTINE_ID = #{routineId}
+	</select>
+	
+	
 	<select id="selectUserCustomRoutine"
 		parameterType="int" resultType="com.matnagu.myHell.routine.dto.RoutineDto">
 		SELECT 

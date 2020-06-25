@@ -22,6 +22,10 @@ public class UserDaoImpl implements IUserDao {
 	/* ---------- 동훈 ---------- */
 	@Override
 	public void insertUserinit(HashMap<String, Object> paramMap) {
+		for(String key : paramMap.keySet()) {
+			System.out.println(key);
+			System.out.println(paramMap.get(key).toString());
+		}
 		sqlSession.insert("userMapper.insertUserInit", paramMap);
 	}
 	/* ------------------------ */
@@ -99,6 +103,13 @@ public class UserDaoImpl implements IUserDao {
 	public List<RoutineDto> selectUserCustomRoutine(int userSeq) {
 		List<RoutineDto> routineList = sqlSession.selectList("userMapper.selectUserCustomRoutine",userSeq);
 		return routineList;
+	}
+
+
+	@Override
+	public int selectUserRoutine(Map<String, Integer> userRoutine) {
+		int result = sqlSession.selectOne("userMapper.selectUserRoutineCheck",userRoutine);
+		return result;
 	}
 
 

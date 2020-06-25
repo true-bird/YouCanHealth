@@ -59,6 +59,8 @@ public class UserServiceImpl implements IUserService{
 		if(routineIdList.size()==0) return new ArrayList<RoutineDto>();
 		return routineDao.selectRoutineList(routineIdList);
 	}
+	
+	
 	@Override
 	public void updateUserInfo(HashMap<String, Object> paramMap) {
 		userDaoImpl.updateUserInfo(paramMap);
@@ -88,6 +90,10 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public List<RoutineDto> selectUserCustomRoutine(int userSeq) {
 		return userDaoImpl.selectUserCustomRoutine(userSeq);
+	}
+	@Override
+	public int selectUserRoutine(Map<String, Integer> userRoutine) {
+		return userDaoImpl.selectUserRoutine(userRoutine);
 	}
 	
 	

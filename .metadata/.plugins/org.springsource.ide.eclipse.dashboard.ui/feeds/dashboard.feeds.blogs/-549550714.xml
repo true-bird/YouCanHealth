@@ -15,16 +15,16 @@
     </author>
     <id>tag:spring.io,2020-06-25:4115</id>
     <updated>2020-06-25T10:23:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the Spring Data team, I¡¯m happy to announce the first milestone of the 2020.0 (Code name &lt;a href="https://en.wikipedia.org/wiki/William_of_Ockham"&gt;&amp;ldquo;Ockham&amp;rdquo;&lt;/a&gt;) release train &lt;code&gt;2020.0.0-M1&lt;/code&gt;. This release ships &lt;a href="https://jira.spring.io/issues/?filter=16934"&gt;over 120 tickets fixed&lt;/a&gt;. This Spring Data release is the first release using &lt;a href="https://spring.io/blog/2020/04/30/updates-to-spring-versions"&gt;calver&lt;/a&gt; as an update to the release train version scheme.&lt;/p&gt;
+    <content type="html">&lt;p&gt;On behalf of the Spring Data team, I¡¯m happy to announce the first milestone of the 2020.0 (Code name &lt;a href="https://en.wikipedia.org/wiki/William_of_Ockham"&gt;&amp;ldquo;Ockham&amp;rdquo;&lt;/a&gt;) release train, &lt;code&gt;2020.0.0-M1&lt;/code&gt;. This release ships with &lt;a href="https://jira.spring.io/issues/?filter=16934"&gt;over 120 tickets fixed&lt;/a&gt;. This Spring Data release is the first release using &lt;a href="https://spring.io/blog/2020/04/30/updates-to-spring-versions"&gt;calver&lt;/a&gt; as an update to the release train version scheme.&lt;/p&gt;
 &lt;p&gt;The most notable new features are:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Support for RxJava 3&lt;/li&gt;
-  &lt;li&gt;Introduction of &lt;code&gt;org.springframework.data:spring-data-bom&lt;/code&gt; which replaces &lt;code&gt;org.springframework.data:spring-data-releasetrain&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Introduction of &lt;code&gt;org.springframework.data:spring-data-bom&lt;/code&gt;, which replaces &lt;code&gt;org.springframework.data:spring-data-releasetrain&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Find a curated changelog in our &lt;a href="https://github.com/spring-projects/spring-data-commons/wiki/Release-Train-Ockham-%282020.0.0%29"&gt;release train wiki&lt;/a&gt; or skim through a &lt;a href="https://jira.spring.io/issues/?filter=16934"&gt;full list of changes in JIRA&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;A second milestone is planned for August containing a full rewrite of Spring Data Neo4j along with a version bump to 6.0 as well as the adoption of the newly introduced Spring R2DBC module in Spring Data R2DBC. Release candidates are scheduled for mid-September, followed by a GA release in late October.&lt;/p&gt;
-&lt;p&gt;We¡¯re looking forward to your feedback!&lt;/p&gt;
-&lt;p&gt;Finally, here are links to all artifacts, changelogs and documentation:&lt;/p&gt;
+&lt;p&gt;You can find a curated changelog in our &lt;a href="https://github.com/spring-projects/spring-data-commons/wiki/Release-Train-Ockham-%282020.0.0%29"&gt;release train wiki&lt;/a&gt; or skim through a &lt;a href="https://jira.spring.io/issues/?filter=16934"&gt;full list of changes in JIRA&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;A second milestone is planned for August. It will contain a full rewrite of Spring Data Neo4j, along with a version bump to 6.0 and the adoption of the newly introduced Spring R2DBC module in Spring Data R2DBC. Release candidates are scheduled for mid-September, followed by a GA release in late October.&lt;/p&gt;
+&lt;p&gt;We look forward to your feedback!&lt;/p&gt;
+&lt;p&gt;Finally, here are links to all the artifacts, changelogs, and documentation:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Spring Data Commons 2.4 M1 - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-commons/2.4.0-M1"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/commons/docs/2.4.0-M1/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/commons/docs/2.4.0-M1/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/commons/docs/2.4.0-M1/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Spring Data JDBC 2.1 M1 - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-jdbc/2.1.0-M1"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/2.1.0-M1/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/2.1.0-M1/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/2.1.0-M1/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;

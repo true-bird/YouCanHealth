@@ -153,12 +153,16 @@ public class UserController {
 	@RequestMapping(value = "/insertUserRoutine")
 	public String insertUserRoutine(@RequestParam(value = "routineId", required = false) int routineId,
 			HttpSession session, Model model) {
-		if (session.getAttribute("userInfo") == null)
-			return "/";
 		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
 		Map<String, Integer> userRoutine = new HashMap<String, Integer>();
 		userRoutine.put("routineId", routineId);
 		userRoutine.put("userSeq", userSeq);
+		int cnt = userServiceImpl.selectUserRoutine(userRoutine);
+		if(cnt>0) {
+			model.addAttribute("msg","1");
+			return "redirect:/routine";
+		}
+		
 		userServiceImpl.insertUserRoutine(userRoutine);
 		return "redirect:/user/userRoutineList";
 	}

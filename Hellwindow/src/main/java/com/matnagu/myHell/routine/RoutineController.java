@@ -40,10 +40,11 @@ public class RoutineController {
 
 	// 루틴 화면
 	@RequestMapping(value = "")
-	public String routines(Model model) {
+	public String routines(Model model, @RequestParam(value="msg", required=false) String msg) {
 		List<RoutineDto> routineList = routineService.selectRoutineList("인기");
 		model.addAttribute("routineList", routineList);
 		model.addAttribute("category", "인기");
+		if(msg != null) model.addAttribute("msg", msg);
 		return "routines/routineList";
 	}
 

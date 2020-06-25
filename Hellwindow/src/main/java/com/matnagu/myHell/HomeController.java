@@ -74,6 +74,7 @@ public class HomeController {
 	@RequestMapping(value = "/logout")
 	public ModelAndView doLogout(HttpSession session) {
 		session.removeAttribute("userInfo");
+		session.removeAttribute("userId");
 		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
