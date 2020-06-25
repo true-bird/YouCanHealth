@@ -64,4 +64,15 @@ public class SportsServiceImpl implements ISportsService {
 	public List<SportsLikeDto> selectSportsLikeList(HashMap<String, String> sportLike) {
 		return sportsDao.selectSportsLikeList(sportLike);
 	}
+	
+	@Override
+	public List<SportsLikeDto> selectUserLikeSports(String id) {
+		return sportsDao.selectUserLikeSports(id);
+	}
+
+	@Override
+	public void deleteSportsLike(int seq) {
+		sportsDao.deleteSportsLike(seq);
+		
+	}
 }

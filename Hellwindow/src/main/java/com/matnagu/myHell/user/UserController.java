@@ -1,5 +1,6 @@
 package com.matnagu.myHell.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.sports.dto.SportsLikeDto;
+import com.matnagu.myHell.sports.service.ISportsService;
 import com.matnagu.myHell.user.dto.UserDto;
 import com.matnagu.myHell.user.service.IUserService;
 
@@ -24,7 +27,9 @@ public class UserController {
 
 	@Autowired
 	private IUserService userServiceImpl;
-
+	
+	@Autowired
+	private ISportsService sportsService; 
 	/*---------- 구현 예정 ----------*/
 
 	// 내 정보 수정 화면
@@ -109,18 +114,40 @@ public class UserController {
 	
 	// 내가 좋아하는 운동 화면
 	@RequestMapping(value = "/userFavoriteSports")
-	public String userFavoriteSports() {
-		return "users/userFavoriteSports";
+	public ModelAndView userFavoriteSports(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		List<SportsLikeDto> selectSportsLikeDtoList = new ArrayList<SportsLikeDto>();
+		selectSportsLikeDtoList = sportsService.selectUserLikeSports((String) session.getAttribute("userId"));
+		model.addAttribute("userLikeSports",selectSportsLikeDtoList);
+		ModelAndView mv = new ModelAndView("users/userFavoriteSports");
+		return mv;
 	}
-
+	
 	// 내 루틴 목록 화면
 	@RequestMapping(value = "/userRoutineList")
 	public String userRoutineList(HttpSession session, Model model) {
 		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
 		List<RoutineDto> routineList = userServiceImpl.selectUserRoutine(userSeq);
+		System.out.println(routineList.size());
 		model.addAttribute("routineList", routineList);
+		model.addAttribute("category", 0);
 		return "users/userRoutineList";
 	}
+	
+	// 고른 루틴 리스트
+	@RequestMapping(value = "/userRoutineListContent")
+	public String userRoutineListContent(Model model, HttpSession session,
+			@RequestParam("category") String category) {
+		System.out.println(category);
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		List<RoutineDto> routineList = new ArrayList<RoutineDto>();
+		if(category.equals("0")) routineList = userServiceImpl.selectUserRoutine(userSeq);
+		else routineList = userServiceImpl.selectUserCustomRoutine(userSeq);
+		model.addAttribute("routineList", routineList);
+		model.addAttribute("category", category);
+		return "users/userRoutineListContent";
+	}
+
 
 	// 고른 루틴 넣기
 	@RequestMapping(value = "/insertUserRoutine")
@@ -136,12 +163,30 @@ public class UserController {
 		return "redirect:/user/userRoutineList";
 	}
 
-	// 내 루틴 상세 화면
-	@RequestMapping(value = "/userRoutineDetails")
-	public String userRoutineDetails() {
-		return "users/userRoutineDetails";
+	
+	// 내 루틴 삭제
+	@RequestMapping(value = "/deleteUserRoutine")
+	public String deleteUserRoutine(@RequestParam("routineId") int routineId,
+			HttpSession session, Model model) {
+		Map<String,Integer> param = new HashMap<String, Integer>();
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		param.put("routineId", routineId);
+		param.put("userSeq", userSeq);
+		userServiceImpl.deleteUserRoutine(param);
+		return "redirect:/user/userRoutineList";
 	}
-
+	
+	@RequestMapping(value = "/deleteUserCustomRoutine")
+	public String deleteUserCustomRoutine(@RequestParam("routineId") int routineId,
+			HttpSession session, Model model) {
+		Map<String,Integer> param = new HashMap<String, Integer>();
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		param.put("routineId", routineId);
+		param.put("userSeq", userSeq);
+		userServiceImpl.deleteUserCustomRoutine(param);
+		return "redirect:/user/userRoutineList";
+	}
+	
 	/*---------- 동훈 ----------*/
 	// 내 정보 화면
 	@RequestMapping(value = "/userInfo")
@@ -154,4 +199,14 @@ public class UserController {
 		return mv;
 	}
 	/*------------------------*/
+	@RequestMapping(value = "/deleteUserLike")
+	public ModelAndView deleteUserLike(HttpServletRequest request, Model model ,@RequestParam("seq") int seq) {
+		sportsService.deleteSportsLike(seq);
+		HttpSession session = request.getSession();
+		List<SportsLikeDto> selectSportsLikeDtoList = new ArrayList<SportsLikeDto>();
+		selectSportsLikeDtoList = sportsService.selectUserLikeSports((String) session.getAttribute("userId"));
+		model.addAttribute("userLikeSports",selectSportsLikeDtoList);
+		ModelAndView mv = new ModelAndView("users/userFavoriteSports");
+		return mv;
+	}
 }

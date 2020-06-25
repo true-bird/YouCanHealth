@@ -44,14 +44,24 @@
     <!-- 내가 고른 루틴 삽입 -->
 	<insert id="insertUserRoutine" parameterType="java.util.HashMap">
     INSERT INTO USER_ROUTINE
-    (USER_SEQ,ROUTINE_ID,CUSTOM) 
+    (USER_SEQ,ROUTINE_ID) 
     VALUES
     (	
     	#{userSeq},
-    	#{routineId},
-    	'0'
+    	#{routineId}
     )
     </insert>
+    
+    <delete id="deleteUserRoutine" parameterType="int">
+	DELETE FROM USER_ROUTINE
+	WHERE USER_SEQ = #{userSeq} and ROUTINE_ID = #{routineId}
+	</delete>
+	
+    <delete id="deleteUserCustomRoutine" parameterType="int">
+	DELETE FROM USER_ROUTINE_LIST
+	WHERE USER_SEQ = #{userSeq} and ROUTINE_ID = #{routineId}
+	</delete>
+    
     
     <select id="selectUserRoutine"
 		parameterType="int" resultType="int">
@@ -62,6 +72,17 @@
 		USER_SEQ = #{userSeq}
 		<!-- ORDER BY NAME ASC -->
 	</select>
+	<select id="selectUserCustomRoutine"
+		parameterType="int" resultType="com.matnagu.myHell.routine.dto.RoutineDto">
+		SELECT 
+		ROUTINE_ID as ID,
+		ROUTINE_NAME as NAME
+		FROM USER_ROUTINE_LIST
+		WHERE
+		USER_SEQ = #{userSeq}
+		<!-- ORDER BY NAME ASC -->
+	</select>
+	
 	
 	
 	<update id="updateUserInfo" parameterType="java.util.HashMap">
@@ -92,6 +113,23 @@
 	FROM INITIATE
 	WHERE ID= #{id}
 	</select>
+	<!-- 종호 -->
+	<select id="selectUserLikeSports" parameterType="String" resultType="com.matnagu.myHell.sports.dto.SportsLikeDto">
+		SELECT
+		SEQ,
+		ID,
+		EX_NAME
+		FROM SPORTSLIKE
+		WHERE
+		ID = #{id}
+	</select>
+	
+	<delete id="deleteSportsLike" parameterType="int">
+		DELETE
+		FROM SPORTSLIKE
+		WHERE
+		SEQ= #{seq}
+	</delete>
 	
 </mapper>
   

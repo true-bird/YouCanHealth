@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.user.dto.UserDto;
 
 @Repository
@@ -78,6 +79,26 @@ public class UserDaoImpl implements IUserDao {
 	public int idCheck(HashMap<String, Object> paramMap) {
 		int result = sqlSession.selectOne("userMapper.idCheck",paramMap);
 		return result;
+	}
+
+
+	@Override
+	public void deleteUserRoutine(Map<String, Integer> paramMap) {
+		sqlSession.delete("userMapper.deleteUserRoutine", paramMap);
+		
+		
+		
+	}
+	@Override
+	public void deleteUserCustomRoutine(Map<String, Integer> paramMap) {
+		sqlSession.delete("userMapper.deleteUserCustomRoutine", paramMap);
+	}
+	
+
+	@Override
+	public List<RoutineDto> selectUserCustomRoutine(int userSeq) {
+		List<RoutineDto> routineList = sqlSession.selectList("userMapper.selectUserCustomRoutine",userSeq);
+		return routineList;
 	}
 
 

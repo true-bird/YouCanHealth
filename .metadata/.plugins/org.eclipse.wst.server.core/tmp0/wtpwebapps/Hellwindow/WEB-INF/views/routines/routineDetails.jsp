@@ -20,6 +20,7 @@
 			<span style="font-weight: bold">${routine.name}</span>
 		</p>
 	</div>
+	<div id="userId" style="display: none">${userId}</div>
 	<div id="url" style="display: none">${url}</div>
 	<div class="sectionWrapper leftAlign">
 		<div
@@ -101,12 +102,22 @@
 		action="<c:url value='/'/>sports/sportsDetails">
 		<input type="hidden" id="sportsSeq" name="seq">
 	</form>
-	<c:if test="${not empty msg}">
-		<form id="routineEnroll" method="post"
-			action="<c:url value='/'/>user/insertUserRoutine">
-			<input type="hidden" name="routineId" value="${routine.id}">
-			<input id="floatingButton" type="submit" value="루틴 확정">
-		</form>
-	</c:if>
+	<c:choose>
+		<c:when test="${not empty msg}">
+			<form id="routineEnroll" method="post"
+				action="<c:url value='/'/>user/insertUserRoutine">
+				<input type="hidden" name="routineId" value="${routine.id}">
+				<input id="floatingButton" type="submit" value="루틴 확정">
+			</form>
+		</c:when>
+		<c:otherwise>
+			<form id="routineDelete" method="post"
+				action="<c:url value='/'/>user/deleteUserRoutine">
+				<input type="hidden" name="routineId" value="${routine.id}">
+				<input id="floatingButton" type="submit" value="루틴 제거">
+			</form>
+		</c:otherwise>
+	</c:choose>
+	
 </body>
 </html>

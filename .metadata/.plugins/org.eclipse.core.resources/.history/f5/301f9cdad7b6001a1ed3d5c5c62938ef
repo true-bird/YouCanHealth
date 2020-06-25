@@ -1,0 +1,46 @@
+package com.matnagu.myHell.routine.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.matnagu.myHell.routine.dao.IRoutineDao;
+import com.matnagu.myHell.routine.dto.RoutineDetailDto;
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.user.dto.UserDto;
+
+@Service
+public class RoutineService implements IRoutineService{
+
+	@Autowired
+	private IRoutineDao routineDao;
+	
+	@Override
+	public void createCustomRoutine(Map<String,String> param) {
+		routineDao.createCustomRoutine(param);
+	}
+
+	@Override
+	public List<RoutineDto> selectRoutineList(String category) {
+		if(category.equals("인기")) return routineDao.selectRoutineList();
+		return routineDao.selectRoutineList(category);
+	}
+
+	@Override
+	public List<RoutineDetailDto> selectRoutineDetail(int id) {
+		return routineDao.selectRoutineDetail(id);
+	}
+
+	@Override
+	public int selectCustomRoutine(Map<String, String> param) {
+		return routineDao.selectCustomRoutine(param);
+	}
+
+	@Override
+	public void insertCustomRoutineDetail(List<List<List<String>>> list, int routineId) {
+		routineDao.insertCustomRoutineDetail(list,routineId);
+	}
+
+}

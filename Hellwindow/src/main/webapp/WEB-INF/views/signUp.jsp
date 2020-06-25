@@ -18,6 +18,12 @@
 	.chkFail {
 		background-color:none;
 	}
+	body {
+	font-size: 25px;
+		text-align:center;
+		background-color: #1F2324;
+		color: #ffffff;
+}
 </style>
 </head>
 
@@ -107,42 +113,46 @@ $(document).ready(function() {
 
 </script>
 <body>
+<div style="color: #ffffff; font-size: 30px;">회원가입</div>
 	<hr>
-	<br>
-	<a class="redtext" href="<c:url value='/' />">Home</a>| {회원가입} |
-	<a class="redtext" href="<c:url value='/signIn' />">로그인</a>
-	<hr width="60%">
 	
 
 	<br>
+	<br>
+	<br>
 	<form action="<%=contextPath%>/signUpResult" method="post">
 	<input type="hidden" value="">
-	<table>
-		<tr><td>아이디</td><td> <input type="text" id="id" name="id" size="10" minlength="5" maxlength="10" ></td>
+	<table style="background-color: #364156; ">
+	<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>아이디</td><td> <input style="font-size: 30px;"type="text" id="id" name="id" size="10" minlength="5" maxlength="10" ></td>
 
 		<td>
-			<input type="button" id="idChk" class="chkFail" value="중복체크">
-		</td></tr>  
-
-		<tr><td>패스워드</td><td><input type="password"id="password"name="password" size="20" minlength="5" maxlength="10"></td></tr> 
-		
-		<tr><td>패스워드(확인)</td><td><input type="password"id="repassword" name="repassword" size="20" maxlength="10" minlength="5" ></td></tr>
-
-		<tr><td>이름</td><td><input type="text" id="name" name="name" size="20" maxlength="21"> </td></tr>
-		
-		<tr><td>생년월일</td><td><input type="date" id="birth" name="birth" min="1960-01-01" max="2020-07-01">
-		
-		<tr><td>성별</td><td><input type="radio" name="sex" value="M" checked>남자<input type="radio" name="sex" value="F">여자 
-		<tr><td>운동경력</td><td><input 	type="radio" name="exerdate" checked value="0">
+			<input  style="font-size: 25px;" type="button" id="idChk" class="chkFail" value="중복체크">
+		</td><td>&nbsp&nbsp&nbsp</td></tr>  
+<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>패스워드</td><td colspan="2"><input style="font-size: 30px;"type="password"id="password"name="password" size="20" minlength="5" maxlength="10"></td><td>&nbsp&nbsp&nbsp</td></tr> 
+		<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>패스워드(확인)</td><td colspan="2"><input style="font-size: 30px;"type="password"id="repassword" name="repassword" size="20" maxlength="10" minlength="5" ></td><td>&nbsp&nbsp&nbsp</td></tr>
+<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>이름</td><td colspan="2"><input style="font-size: 30px;"type="text" id="name" name="name" size="20" maxlength="21"> </td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>생년월일</td><td colspan="2"><input style="font-size: 30px;"type="date" id="birth" name="birth" min="1960-01-01" max="2020-07-01">
+		<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>성별</td><td colspan="2"><input style="font-size: 30px;"type="radio" name="sex" value="M" checked>남자<input type="radio" name="sex" value="F">여자 
+		<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td>&nbsp&nbsp&nbsp</td><td>운동경력</td><td colspan="2"><input 	style="font-size: 30px;"type="radio" name="exerdate" checked value="0">
 		처음<input type="radio" name="exerdate" value="1">1~6개월
 		
 		<input	type="radio" name="exerdate" value="2">6~12개월 
 		
-		<input	type="radio" name="exerdate" value="3">1년 이상  </td></tr> 
-		
-		<tr><td></td><td><input 	type="submit"  size="20" value="등록" id="btnreg"></td>
-		<td><input	type="reset" value="초기화"></td></tr>
-	</table>
+		<input	type="radio" name="exerdate" value="3">1년 이상  </td><td>&nbsp&nbsp&nbsp</td></tr> 
+		<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+		<tr><td colspan="5"><table>
+		<tr><td>&nbsp&nbsp&nbsp</td><td><input style="font-size: 25px;" type="submit" value="등록" id="btnreg">
+		</td><td>&nbsp&nbsp&nbsp</td><td><input	style="font-size: 25px;" type="reset" value="초기화"></td></tr>
+	<tr><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp</td></tr>
+	</table></td></tr></table>
 	</form>
+
 </body>
 </html>

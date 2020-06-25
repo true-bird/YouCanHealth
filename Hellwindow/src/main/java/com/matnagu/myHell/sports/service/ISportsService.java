@@ -32,4 +32,9 @@ public interface ISportsService {
 
 	// 내가 좋아하는 운동 보기
 	public List<SportsLikeDto> selectSportsLikeList(HashMap<String, String> sportLike);
+	
+	public List<SportsLikeDto> selectUserLikeSports(String id);
+	//내가 좋아하는 운동 삭제
+	public void deleteSportsLike(int seq);
+	
 } 

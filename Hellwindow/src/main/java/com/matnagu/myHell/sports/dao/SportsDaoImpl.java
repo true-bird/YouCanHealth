@@ -77,4 +77,17 @@ public class SportsDaoImpl implements ISportsDao {
 		System.out.println();
 		return selectSportsLikeDtoList;
 	}
+
+	@Override
+	public List<SportsLikeDto> selectUserLikeSports(String id) {
+	List<SportsLikeDto> selectSportsLikeDtoList = new ArrayList<SportsLikeDto>();
+	selectSportsLikeDtoList = sqlSession.selectList("userMapper.selectUserLikeSports", id);			
+		return selectSportsLikeDtoList;
+	}
+
+	@Override
+	public void deleteSportsLike(int seq) {
+		sqlSession.delete("userMapper.deleteSportsLike", seq);
+		
+	}
 }

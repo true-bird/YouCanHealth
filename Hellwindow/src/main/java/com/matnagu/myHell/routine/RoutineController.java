@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +81,23 @@ public class RoutineController {
 		return "routines/routineDetails";
 	}
 
+	// 커스텀 루틴 상세 화면
+	@RequestMapping(value = "/customRoutineDetails")
+	public String customRoutineDetails(Model model, @RequestParam HashMap<String, String> paramMap) {
+		int id = Integer.parseInt(paramMap.get("routineId"));
+		List<RoutineDetailDto> routineList = routineService.selectCustomRoutineDetail(id);
+		List<List<RoutineDetailDto>> routineInfo = new ArrayList<List<RoutineDetailDto>>();
+		for (int i = 0; i < 7; i++)
+			routineInfo.add(new ArrayList<RoutineDetailDto>());
+		for (RoutineDetailDto dto : routineList) routineInfo.get(dto.getSportsDay()).add(dto);
+		Map<String, String> routine = new HashMap<String, String>();
+		routine.put("id", paramMap.get("routineId"));
+		routine.put("name", paramMap.get("routineName"));
+		model.addAttribute("routineInfo", routineInfo);
+		model.addAttribute("routine", routine);
+		return "users/userRoutineDetails";
+	}
+
 	// 나만의 루틴 만들기
 	@RequestMapping(value = "/createCustomRoutine")
 	public String createCustomRoutine(Model model) {
@@ -92,40 +111,38 @@ public class RoutineController {
 		List<SportsDto> sportsAbsList = sportsServiceImpl.selectAbsList();
 		// 하체목록
 		List<SportsDto> sportsLowerList = sportsServiceImpl.selectLowerList();
-		char[] week = {'월','화','수','목','금','토','일'};
+		char[] week = { '월', '화', '수', '목', '금', '토', '일' };
 		model.addAttribute("chest", sportsChestList);
 		model.addAttribute("back", sportsBackList);
 		model.addAttribute("shoulder", sportsShoulderList);
 		model.addAttribute("abs", sportsAbsList);
 		model.addAttribute("lower", sportsLowerList);
 		model.addAttribute("week", week);
-		
+
 		return "routines/createCustomRoutine";
 	}
 
 	// 나만의 루틴 확인
 	@RequestMapping(value = "/checkCustomRoutine")
-	@ResponseBody
-	public String checkCustomRoutine(@RequestParam HashMap<String, String> param,
-			Model model) throws JsonParseException, JsonMappingException, IOException {
+	public String checkCustomRoutine(@RequestParam HashMap<String, String> param, HttpSession session, Model model)
+			throws JsonParseException, JsonMappingException, IOException {
 		String rountineStr = param.get("target");
-		ObjectMapper obm  = new ObjectMapper();
-		List<List<List<String>>> routine = obm.readValue(rountineStr, new TypeReference<List>(){});
-		for(List<List<String>> day: routine) {
-			for(List<String> sports: day) {
-				for(String info : sports) {
-					System.out.print(info+" ");
-				}
-				System.out.println();
-			}
-		}
-		
-		System.out.println(param.get("userId"));
-		System.out.println(param.get("routineName"));
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("userId", param.get("userId"));
+		ObjectMapper obm = new ObjectMapper();
+		List<List<List<String>>> routine = obm.readValue(rountineStr, new TypeReference<List>() {
+		});
+		String userSeq = ((Map<String, String>) session.getAttribute("userInfo")).get("userSeq");
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userSeq", userSeq);
 		map.put("routineName", param.get("routineName"));
-		
-		return "routines/checkCustomRoutine";
+		System.out.println(map.get("userSeq"));
+		System.out.println(map.get("routineName"));
+
+		routineService.createCustomRoutine(map);
+		String routineId = routineService.selectCustomRoutine(map);
+		routineService.insertCustomRoutineDetail(routine, routineId);
+
+		return "redirect:/user/userRoutineList";
 	}
+
 }

@@ -52,6 +52,12 @@
 	</select>
 	
 	
+	
+	
+	
+	
+	
+	
 	<select id="selectRoutineDetail" parameterType="int"
 	resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
 	SELECT  R.ROUTINE_ID, 
@@ -67,13 +73,43 @@
 	ORDER BY SPORTS_DAY
 	</select>
 	
+	<select id="selectCustomRoutineDetail" parameterType="int"
+	resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
+	SELECT  R.ROUTINE_ID, 
+       		R.SPORTS_DAY,
+       		S.EX_NAME AS SPORTS_NAME,
+	   		R.SPORTS_SET,		                
+	   		R.SPORTS_COUNT,
+       		S.SEQ,
+       		S.PART AS SPORTS_PART,
+       		S.IMAGE
+	FROM    USER_ROUTINE_DETAIL R, SPORTS S
+	WHERE   R.SPORTS_SEQ = S.SEQ AND R.ROUTINE_ID = #{id}
+	ORDER BY SPORTS_DAY
+	</select>
+	
+	
+	
+	
 	<insert id="createCustomRoutine" parameterType="java.util.HashMap">
-		INSERT INTO USER_ROUTINE
-		(rountine_id, rountine_name, user_id)
+		INSERT INTO USER_ROUTINE_LIST
+		(routine_id, routine_name, user_seq)
 		VALUES 
-		(SEQ_USER_ROUTINE.NEXTVAL, #{userId}, #{routineName},#{userId})
+		(SEQ_USER_ROUTINE.NEXTVAL, #{routineName},#{userSeq})
 	</insert>
 	
+	<select id="selectCustomRoutine" parameterType="java.util.HashMap"
+	resultType="String">
+	SELECT  routine_id 
+	FROM    USER_ROUTINE_LIST
+	WHERE   routine_name = #{routineName} and user_seq = #{userSeq}
+	</select>
 	
+	<insert id="insertCustomRoutineDetail" parameterType="java.util.HashMap">
+		INSERT INTO USER_ROUTINE_DETAIL
+		(ROUTINE_ID, SPORTS_DAY,SPORTS_SET, SPORTS_COUNT,SPORTS_SEQ)
+		VALUES 
+		(#{routineId}, #{sportsDay},#{sportsSet},#{sportsCount},#{sportsSeq})
+	</insert>
 </mapper>
  

@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/routine.css?after'/>" />
+<script>
+
+$(document).ready(function(){
+	$(".section-background.background-image").css("background-image","url('/myHell/images/routine/popular.jpg')");
+	$("select[name='category']").change(function() {
+		$("#list").load("/myHell/routine/routineList",{ category: $(this).val()});
+	});
+	
+});
+</script>
+</head>
+<body>
+	<div id="dropbox" class="rightAlign">
+		<select name="category">
+			<option value="0">내가 고른 루틴</option>
+			<option value="1">내가 만든 루틴</option>
+		</select>
+	</div>
+	<div></div>
+	<div id="list">
+		<%@ include file="/WEB-INF/views/users/userRoutineListContent.jsp" %>
+	</div>
+	<br>
+	<br>
+</body>
+</html>

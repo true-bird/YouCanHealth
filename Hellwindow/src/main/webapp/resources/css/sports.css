@@ -9,29 +9,31 @@ h3 {
 }
 /* 운동페이지 운동목록 좌우 */
 #h1_left {
-	margin-left: 15%;
+	text-align:center;
+	font-size: 25px;
 }
 
 #h1_right {
 	margin-left: 83%;
+	font-size: 25px;
 }
 /* 링크 관련 */
 a:link {
 	color: #FF2F2F;
 	text-decoration: none;
-} /*  �湮�� ��ũ*/
+} /*방문한 링크*/
 a:visited {
 	color: #FF2F2F;
 	text-decoration: none;
-} /*�湮�� ��ũ  */
+} /*마우스 올렸을때 */
 a:hover {
 	color: #FF2F2F;
 	text-decoration: underline;
-} /*���콺 ����  */
+} /*누를때*/
 a:active {
 	color: #A9C4C4;
 	text-decoration: none;
-} /*���콺Ŭ��  */
+} 
 
 
 #hrhr {
@@ -47,6 +49,10 @@ img {
 #table {
 	padding: 80px;
 }
+#tablelike {
+	padding: 80px;
+}
+
 
 #listTable_left {
 	margin-left: 15%;

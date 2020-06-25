@@ -1,5 +1,6 @@
 package com.matnagu.myHell.user.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public List<RoutineDto> selectUserRoutine(int userSeq) {
 		List<Integer> routineIdList = userDaoImpl.selectUserRoutine(userSeq);
+		if(routineIdList.size()==0) return new ArrayList<RoutineDto>();
 		return routineDao.selectRoutineList(routineIdList);
 	}
 	@Override
@@ -72,6 +74,20 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public int idCheck(HashMap<String, Object> paramMap) {
 		return userDaoImpl.idCheck(paramMap);
+	}
+	@Override
+	public void deleteUserRoutine(Map<String, Integer> paramMap) {
+		userDaoImpl.deleteUserRoutine(paramMap);
+		
+	}
+	@Override
+	public void deleteUserCustomRoutine(Map<String, Integer> paramMap) {
+		userDaoImpl.deleteUserCustomRoutine(paramMap);
+		
+	}
+	@Override
+	public List<RoutineDto> selectUserCustomRoutine(int userSeq) {
+		return userDaoImpl.selectUserCustomRoutine(userSeq);
 	}
 	
 	

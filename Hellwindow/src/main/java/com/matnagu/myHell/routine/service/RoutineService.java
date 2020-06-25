@@ -19,7 +19,7 @@ public class RoutineService implements IRoutineService{
 	
 	@Override
 	public void createCustomRoutine(Map<String,String> param) {
-		
+		routineDao.createCustomRoutine(param);
 	}
 
 	@Override
@@ -31,6 +31,21 @@ public class RoutineService implements IRoutineService{
 	@Override
 	public List<RoutineDetailDto> selectRoutineDetail(int id) {
 		return routineDao.selectRoutineDetail(id);
+	}
+
+	@Override
+	public String selectCustomRoutine(Map<String, String> param) {
+		return routineDao.selectCustomRoutine(param);
+	}
+
+	@Override
+	public void insertCustomRoutineDetail(List<List<List<String>>> list, String routineId) {
+		routineDao.insertCustomRoutineDetail(list,routineId);
+	}
+
+	@Override
+	public List<RoutineDetailDto> selectCustomRoutineDetail(int id) {
+		return routineDao.selectCustomRoutineDetail(id);
 	}
 
 }

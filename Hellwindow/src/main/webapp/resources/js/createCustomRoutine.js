@@ -37,11 +37,12 @@ $(document).ready(function(){
 	
 	$("#routineEnroll").submit(function(e) {
 		var routineName = $('#routineName').val();
+		
 		if(!routineName) {
 			alert("루틴 이름을 입력해주세요");
 			e.preventDefault();
 		}
-		
+
 		var day = new Array();
 		day[0] = $("#tab-1-result").children();
 		day[1] = $("#tab-2-result").children();
@@ -50,6 +51,29 @@ $(document).ready(function(){
 		day[4] = $("#tab-5-result").children();
 		day[5] = $("#tab-6-result").children();
 		day[6] = $("#tab-7-result").children();
+		
+		var cnt = 0;
+		outer: for(var i=0;i<7;i++) {
+			cnt += day[i].length;
+			if(day[i].length==0) continue;
+			for(var item in day[i]) {
+//				alert(day[i]);
+//				alert($(day[i][item]).find('p'));
+//				e.preventDefault();
+//				break outer;
+				if($(day[i][item]).find("#sportsSet").val()=='' || $(day[i][item]).find("#sportsCnt").val()=='') {
+					alert("세트와 횟수를 입력해주세요");
+					e.preventDefault();
+					break outer;
+				}
+			}
+		}
+		
+		if(cnt==0) {
+			alert("운동을 등록해주세요");
+			e.preventDefault();
+		}
+		
 		for(var d =0; d<day.length;d++) {
 			for(var i =0; i<day[d].length;i++) {
 				var dto = new Array();
@@ -61,7 +85,6 @@ $(document).ready(function(){
 		}
 		$('input[name=target]').val(JSON.stringify(routine));
 		$('input[name=routineName]').val(routineName);
-		
 		
 		
 		

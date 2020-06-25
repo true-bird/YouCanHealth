@@ -9,58 +9,25 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/routine.css?after'/>" />
 <script>
+
 $(document).ready(function(){
-	$(".sectionWrapper").click(function() {
-		$("#routineId").val($(this).attr('id'));
-		$("#routineName").val($(this).find('.title').text());
-		$("#routineDifficulty").val($(this).find('.difficulty').attr('id'));
-		$("#routineCategory").val($(this).find('.category').text());
-		$("form").submit();
+	$("select[name='category']").change(function() {
+		$("#list").load("/myHell/user/userRoutineListContent",{ category: $(this).val()});
 	});
+	
 });
 </script>
 </head>
 <body>
 	<div id="dropbox" class="rightAlign">
 		<select name="category">
-			<option value="">내가 고른 루틴</option>
-			<option value="">내가 만든 루틴</option>
+			<option value="0">내가 고른 루틴</option>
+			<option value="1">내가 만든 루틴</option>
 		</select>
 	</div>
 	<div></div>
 	<div id="list">
-		<div id="title">
-			<p>
-				<span id="category" style="font-weight: bold">내가 고른 </span> <span>루틴</span>
-			</p>
-		</div>
-		<c:forEach var="routine" items="${routineList}" varStatus="status">
-			<div class="sectionWrapper" style="cursor: pointer;"
-				id="${routine.id}">
-				<div class="section-background background-image myroutine-image"></div>
-				<div class="section-background background-cover"></div>
-				<div
-					class="section
-			<c:choose>
-				<c:when test="${status.index%2==0}">rightAlign</c:when>
-				<c:otherwise>leftAlign</c:otherwise>
-			</c:choose>">
-					<div class="category" style="display: none;">${routine.category}</div>
-					<p class="section-text title">${routine.name}</p>
-					<p class="section-text difficulty" id="${routine.difficulty}">
-						난이도
-						<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
-					</p>
-				</div>
-			</div>
-			<br>
-		</c:forEach>
-		<form method="post" action="<c:url value='/'/>routine/routineDetails">
-			<input type="hidden" id="routineCategory" name="routineCategory">
-			<input type="hidden" id="routineDifficulty" name="routineDifficulty">
-			<input type="hidden" id="routineName" name="routineName">
-			<input type="hidden" id="routineId" name="routineId">
-		</form>
+		<%@ include file="/WEB-INF/views/users/userRoutineListContent.jsp" %>
 	</div>
 	<br>
 	<br>

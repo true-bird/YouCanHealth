@@ -1,0 +1,70 @@
+body {
+	background-image: none;
+	background-color: #1F2324;
+	color: #FFFFFF;
+}
+
+h3 {
+	color: #FF2F2F;
+}
+/* 운동페이지 운동목록 좌우 */
+#h1_left {
+	margin-left: 15%;
+}
+
+#h1_right {
+	margin-left: 83%;
+}
+/* 링크 관련 */
+a:link {
+	color: #FF2F2F;
+	text-decoration: none;
+} /*  �湮�� ��ũ*/
+a:visited {
+	color: #FF2F2F;
+	text-decoration: none;
+} /*�湮�� ��ũ  */
+a:hover {
+	color: #FF2F2F;
+	text-decoration: underline;
+} /*���콺 ����  */
+a:active {
+	color: #A9C4C4;
+	text-decoration: none;
+} /*���콺Ŭ��  */
+
+
+#hrhr {
+	width: 70%;
+	margin-left: 15%;
+}
+
+img {
+	width: 300px;
+	height: 300px;
+}
+
+#table {
+	padding: 80px;
+}
+
+#listTable_left {
+	margin-left: 15%;
+}
+
+#listTable_right {
+	margin-right: 15%;
+}
+
+#selectbutton{
+	margin-left: 75%;
+	border: 1px solid #FF2F2F;
+	background-color:#1F2324;
+	color: #FF2F2F;
+	padding: 10px;
+}
+#selectbutton:hover{
+	color:white;
+	background-color:#FF2F2F;
+}
+

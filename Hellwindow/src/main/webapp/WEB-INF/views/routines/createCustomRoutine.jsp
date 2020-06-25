@@ -147,7 +147,7 @@
 		<input type="hidden" id="sportsSeq" name="seq">
 	</form>
 	<form id="routineEnroll" method="post" action="<c:url value='/'/>routine/checkCustomRoutine">
-		<input type="hidden" name="routineName" value="${userId}">
+		<input type="hidden" name="routineName">
 		<input type="hidden" name="userId" value="${userId}">
 		<input type="hidden" name="target">
 		<input id="floatingButton" type="submit" value="루틴 생성">

@@ -27,5 +27,7 @@ public interface IUserDao {
 	public void insertUserRoutine(Map<String, Integer> userRoutine);
 	// 내가 고른 루틴 조회
 	public List<Integer> selectUserRoutine(int userSeq);
-	
+	public List<RoutineDto> selectUserCustomRoutine(int userSeq);
+	public void deleteUserRoutine(Map<String,Integer> paramMap);
+	public void deleteUserCustomRoutine(Map<String, Integer> paramMap);
 }

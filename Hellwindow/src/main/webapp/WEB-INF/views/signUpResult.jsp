@@ -8,22 +8,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+	.chkOk {
+    	color: black;
+		background-color:green;
+		border: 0;
+		outline: 0;
+	}
+	.chkFail {
+		background-color:none;
+	}
+	body {
+	font-size: 30px;
+		text-align:center;
+		background-color: #1F2324;
+		color: #ffffff;
+	
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/community.css?after'/>" />
 </head>
 <body>
 	<h2>회원가입을 축하합니다!!</h2>
+	<br>
 	<br> 회원님이 만드신 정보
-	<table border="1">
+	<br><br>
+	<table class="type08">
 
 		<tr>
 			<th>아이디</th>
 			<th>패스워드</th>
 			<th>이름</th>
+			
 		</tr>
 		<tr>
 			<td>${userinitDto.id}</td>
 			<td>${userinitDto.password}</td>
 			<td>${userinitDto.name}</td>
+			
 		</tr>
+		
 	</table>
 	<br>
 	<br> *현재 회원님의 포인트는 [ ] 점 이며, 향후 저희 페이지에 방문해 활동하시는만큼 누적됩니다.
