@@ -95,7 +95,12 @@ ul.tabs li.current{
 	margin-bottom:10px;
 }
 
-
+#routineName {
+    margin: 15px;
+    margin-left: 30px;
+    height: 30px;
+    width: 300px;
+}
 
 #floatingButton {
 	max-height: none;

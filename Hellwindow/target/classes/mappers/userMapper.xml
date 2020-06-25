@@ -62,5 +62,36 @@
 		USER_SEQ = #{userSeq}
 		<!-- ORDER BY NAME ASC -->
 	</select>
+	
+	
+	<update id="updateUserInfo" parameterType="java.util.HashMap">
+	UPDATE INITIATE
+	SET
+		EXERDATE=#{exerdate}
+		
+		WHERE seq=#{seq}	
+	
+	</update>
+	
+	<update id="updatePassword" parameterType="java.util.HashMap">
+	UPDATE INITIATE 
+	SET
+	PASSWORD =#{Repw}
+	WHERE ID = #{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="int">
+	DELETE FROM INITIATE
+	WHERE SEQ = #{seq}
+	</delete>
+	
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="int">
+	SELECT COUNT(*)
+	FROM INITIATE
+	WHERE ID= #{id}
+	</select>
+	
 </mapper>
   

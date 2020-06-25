@@ -22,6 +22,10 @@
 <!-- ========== bxSlider : 종료 ==========  -->
 <script>
 	$(document).ready(function() {
+		if($('#hasSports').text()) {
+			alert("이미 운동이 있습니다");
+		}
+		
 		$('.bxslider').bxSlider({
 			mode : 'horizontal', // 이미지 교체 방식. 'horizontal', 'vertical', 'fade'
 			captions : false,
@@ -36,10 +40,19 @@
 			auto : true, //이미지 회전 자동 실행 여부
 			autoHover : true
 		});
+		
+		$('form').submit(function(e) {
+			if(!$(this).children('input[name=userId]').val()) {
+				alert("로그인이 필요합니다.");
+				e.preventDefault();
+			}
+		});
+		
 	});
 </script>
 </head>
 <body>
+	<div id="hasSports" style="display:none">${message}</div>
 	<h1 id="h1_left">Infomation</h1>
 	<hr id="hrhr">
 	<input type="hidden" name="seq" value="${sports.seq}">

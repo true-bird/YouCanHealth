@@ -57,6 +57,22 @@ public class UserServiceImpl implements IUserService{
 		List<Integer> routineIdList = userDaoImpl.selectUserRoutine(userSeq);
 		return routineDao.selectRoutineList(routineIdList);
 	}
+	@Override
+	public void updateUserInfo(HashMap<String, Object> paramMap) {
+		userDaoImpl.updateUserInfo(paramMap);
+	}
+	@Override
+	public void updatePassword(HashMap<String, Object> paramMap) {
+		userDaoImpl.updatePassword(paramMap);
+	}
+	@Override
+	public void deleteUser(int seq) {
+		userDaoImpl.deleteUser(seq);
+	}
+	@Override
+	public int idCheck(HashMap<String, Object> paramMap) {
+		return userDaoImpl.idCheck(paramMap);
+	}
 	
 	
 }

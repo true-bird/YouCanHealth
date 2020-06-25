@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.matnagu.myHell.user.dto.UserDto;
@@ -42,8 +44,8 @@ public class HomeController {
 		String userId = (String) request.getParameter("userId");
 		String userPassword = (String) request.getParameter("userPassword");
 		try {
-			UserDto userDto = userServiceImpl.signInAuth(userId,userPassword);
-			Map<String,String> userInfo = new HashMap<String,String>();
+			UserDto userDto = userServiceImpl.signInAuth(userId, userPassword);
+			Map<String, String> userInfo = new HashMap<String, String>();
 			userInfo.put("userSeq", String.valueOf(userDto.getSeq()));
 			userInfo.put("userId", userDto.getId());
 			userInfo.put("userName", userDto.getName());
@@ -58,6 +60,14 @@ public class HomeController {
 			return "signIn";
 		}
 		return "home";
+	}
+
+	// 아이디중복체크
+	@RequestMapping(value = "idChk", method = { RequestMethod.POST })
+	@ResponseBody
+	public String idchk(@RequestParam HashMap<String, Object> paramMap) {
+		String result = userServiceImpl.idCheck(paramMap) + "";
+		return result;
 	}
 
 	// 로그아웃

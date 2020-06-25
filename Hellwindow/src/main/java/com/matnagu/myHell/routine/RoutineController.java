@@ -106,9 +106,9 @@ public class RoutineController {
 	// 나만의 루틴 확인
 	@RequestMapping(value = "/checkCustomRoutine")
 	@ResponseBody
-	public String checkCustomRoutine(@RequestParam HashMap<Object, Object> param,
+	public String checkCustomRoutine(@RequestParam HashMap<String, String> param,
 			Model model) throws JsonParseException, JsonMappingException, IOException {
-		String rountineStr = param.get("target").toString();
+		String rountineStr = param.get("target");
 		ObjectMapper obm  = new ObjectMapper();
 		List<List<List<String>>> routine = obm.readValue(rountineStr, new TypeReference<List>(){});
 		for(List<List<String>> day: routine) {
@@ -119,6 +119,13 @@ public class RoutineController {
 				System.out.println();
 			}
 		}
+		
+		System.out.println(param.get("userId"));
+		System.out.println(param.get("routineName"));
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("userId", param.get("userId"));
+		map.put("routineName", param.get("routineName"));
+		
 		return "routines/checkCustomRoutine";
 	}
 }

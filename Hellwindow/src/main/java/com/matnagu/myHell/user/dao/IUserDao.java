@@ -9,6 +9,12 @@ import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IUserDao {
 	
+	
+	public void updateUserInfo(HashMap<String,Object> paramMap);
+	public void updatePassword(HashMap<String,Object> paramMap);
+	public void deleteUser(int seq);
+	public int idCheck(HashMap<String, Object> paramMap);
+	
 	/* ---------- 동훈 ---------- */
 	public void insertUserinit(HashMap<String,Object> paramMap);
 	/* ------------------------ */

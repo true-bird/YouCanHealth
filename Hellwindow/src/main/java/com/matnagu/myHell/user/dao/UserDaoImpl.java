@@ -55,4 +55,30 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 
+	@Override
+	public void updateUserInfo(HashMap<String, Object> paramMap) {
+		sqlSession.update("userMapper.updateUserInfo", paramMap);
+		
+	}
+
+
+	@Override
+	public void updatePassword(HashMap<String, Object> paramMap) {
+		sqlSession.update("userMapper.updatePassword", paramMap);
+	}
+
+
+	@Override
+	public void deleteUser(int seq) {
+		sqlSession.delete("userMapper.deleteUser", seq);
+	}
+
+
+	@Override
+	public int idCheck(HashMap<String, Object> paramMap) {
+		int result = sqlSession.selectOne("userMapper.idCheck",paramMap);
+		return result;
+	}
+
+
 }

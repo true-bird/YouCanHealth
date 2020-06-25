@@ -48,6 +48,7 @@ public class SportsController {
 		int seq = Integer.parseInt(paramMap.get("seq"));
 		SportsDto SportsDto = sportsService.selectSportsInfo(seq);
 		model.addAttribute("SportsDto", SportsDto);
+		model.addAttribute("message", paramMap.get("message"));
 		if(paramMap.containsKey("msg")) model.addAttribute("msg", paramMap.get("msg"));
 		return "sports/sportsDetails";
 	}
@@ -58,12 +59,10 @@ public class SportsController {
 		int i = 0;
 		// 내가좋아하는 운동 조회
 		List<SportsLikeDto> sportsLikeList = sportsService.selectSportsLikeList(sportLike);
-		
-		
 		while (i < sportsLikeList.size()) {
 			if (sportsName.equals(sportsLikeList.get(i).getExName())) {
 
-				String message = "이미 운동이 있습니다.";
+				String message = "hasSports";
 
 				model.addAttribute("message", message);
 				model.addAttribute("seq", seq);
@@ -71,10 +70,14 @@ public class SportsController {
 			}
 			i++;
 		}
-		;
+		
 		sportsService.insertSportsLike(sportLike);
+		SportsLikeDto nSports =  new SportsLikeDto();
+		nSports.setSeq(Integer.parseInt(sportLike.get("seq")));
+		nSports.setId(sportLike.get("userId"));
+		nSports.setExName(sportLike.get("sportsName"));
+		sportsLikeList.add(nSports);
 		model.addAttribute("sportsLike", sportsLikeList);
-
 		return "users/userInfo";
 	}
 	

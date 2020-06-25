@@ -35,7 +35,13 @@ $(document).ready(function(){
 	});
 	
 	
-	$("#floatingButton").click(function() {
+	$("#routineEnroll").submit(function(e) {
+		var routineName = $('#routineName').val();
+		if(!routineName) {
+			alert("루틴 이름을 입력해주세요");
+			e.preventDefault();
+		}
+		
 		var day = new Array();
 		day[0] = $("#tab-1-result").children();
 		day[1] = $("#tab-2-result").children();
@@ -53,19 +59,24 @@ $(document).ready(function(){
 				routine[d].push(dto);
 			}
 		}
+		$('input[name=target]').val(JSON.stringify(routine));
+		$('input[name=routineName]').val(routineName);
 		
-		$.ajax({
-			type : 'POST',
-			data : {target: JSON.stringify(routine)},
-			datatype : 'json',
-			url : '/myHell/routine/checkCustomRoutine',
-			succes : function() {
-				
-			},
-			error : function() {
-				alert("error!!");
-			}
-		});
+		
+		
+		
+//		$.ajax({
+//			type : 'POST',
+//			data : {target: JSON.stringify(routine)},
+//			datatype : 'json',
+//			url : '/myHell/routine/checkCustomRoutine',
+//			succes : function() {
+//				
+//			},
+//			error : function() {
+//				alert("error!!");
+//			}
+//		});
 	});
 	
 	

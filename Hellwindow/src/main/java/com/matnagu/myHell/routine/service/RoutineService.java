@@ -1,6 +1,7 @@
 package com.matnagu.myHell.routine.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class RoutineService implements IRoutineService{
 	private IRoutineDao routineDao;
 	
 	@Override
-	public UserDto createCustomRoutine() {
-		return null;
+	public void createCustomRoutine(Map<String,String> param) {
+		
 	}
 
 	@Override

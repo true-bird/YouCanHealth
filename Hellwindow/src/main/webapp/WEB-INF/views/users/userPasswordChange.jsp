@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%-- JSTL Core --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%-- JSTL Function --%>
+<%
+	String message = request.getParameter("message");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+<%if (message != null) {%>
+alert("<%=message%>");
+<%}%>
+	
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	패스워드 변경하기
+	<br>
+	<br>
+	<br>
+	<hr width="80%">
+	<br>
+	<form action="<%=contextPath%>/user/userPasswordCheck" method="post">
+		<input type="hidden" name="id" value="${userId}">
+		<table>
+			<tr>
+				<td>현재패스워드</td>
+				<td><input type="password" name="password"></td>
+			</tr>
+
+			<tr>
+				<td>패스워드</td>
+				<td><input type="password" name="newpw"></td>
+			</tr>
+
+			<tr>
+				<td>재확인</td>
+				<td><input type="password" name="Repw"></td>
+			</tr>
+		</table>
+
+		<input type="submit" value="변경하기">
+		<a href="<c:url value='/user/userInfo' />">
+			<input type="button" value="취소">
+		</a>
+		<input type="reset" value="초기화">
+	</form>
+</body>
+</html>

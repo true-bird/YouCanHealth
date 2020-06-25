@@ -67,7 +67,12 @@
 	ORDER BY SPORTS_DAY
 	</select>
 	
-	
+	<insert id="createCustomRoutine" parameterType="java.util.HashMap">
+		INSERT INTO USER_ROUTINE
+		(rountine_id, rountine_name, user_id)
+		VALUES 
+		(SEQ_USER_ROUTINE.NEXTVAL, #{userId}, #{routineName},#{userId})
+	</insert>
 	
 	
 </mapper>

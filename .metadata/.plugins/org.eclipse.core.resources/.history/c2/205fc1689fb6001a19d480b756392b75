@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%-- JSTL Core --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%-- JSTL Function --%>
+<%
+	Object sessionid = request.getSession().getAttribute("userId");
+%>
+<%
+	String message = request.getParameter("message");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+<%if (message != null) {%>
+alert("<%=message%>
+	");
+<%}%>
+	
+</script>
+</head>
+
+<body>
+	<h1>내정보수정화면</h1>
+	<br>
+	<form action="<%=contextPath%>/updateUserReInfo" method="post">
+		<input type="hidden" name="seq" value="${userinitDto.seq}"> <input
+			type="hidden" name="id1" value="${userinitDto.id}">
+		<table border="10">
+			<tr>
+				<td>사용자의 아이디</td>
+				<td>${userinitDto.id} <br>
+			<tr>
+				<td>회원님이 선택한 운동경력</td>
+				<td><br> 운동경력 <c:choose>
+						<c:when test="${userinitDto.exerdate eq 0 }">
+		초심자			
+		</c:when>
+						<c:when test="${userinitDto.exerdate eq 1 }">
+		1~6개월		
+		</c:when>
+						<c:when test="${userinitDto.exerdate eq 2 }">
+		6~12개월			
+		</c:when>
+						<c:when test="${userinitDto.exerdate eq 3 }">
+		1년이상		
+		</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose> <br> 운동경력이 변하셨나요? <br> <input type="radio"
+					name="exerdate" checked value="0"> 처음 <input type="radio"
+					name="exerdate" value="1">1~6개월 <input type="radio"
+					name="exerdate" value="2">6~12개월 <input type="radio"
+					name="exerdate" value="3">1년 이상</td>
+			</tr>
+		</table>
+
+		<br> 변경하시려면 비밀번호를 입력하여주십시오. <br>
+		<table>
+
+			<tr>
+				<td>사용자의 비밀번호</td>
+
+				<td><input type="password" name="password"></td>
+			</tr>
+
+
+			<tr>
+				<td>재확인</td>
+
+				<td><input type="password" name="repassword"></td>
+			</tr>
+
+
+		</table>
+		<input type="submit" size="20" value="수정하기"> <input
+			type="reset" value="초기화">
+	</form>
+
+</body>
+</html>

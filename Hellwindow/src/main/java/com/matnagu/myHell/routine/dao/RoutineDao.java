@@ -20,8 +20,9 @@ public class RoutineDao implements IRoutineDao{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public UserDto createCustomRoutine() {
-		return null;
+	public void createCustomRoutine(Map<String,String> param) {
+		//sqlSession.insert("routineMapper.createCustomRoutine", param);
+
 	}
 	
 	@Override

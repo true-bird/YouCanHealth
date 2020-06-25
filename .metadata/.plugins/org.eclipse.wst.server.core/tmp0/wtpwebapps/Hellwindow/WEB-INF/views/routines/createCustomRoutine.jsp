@@ -88,7 +88,9 @@
 	</div>
 	<hr>
 	<div class="myRoutine">
-		<p>나만의 루틴</p>
+		<p>나만의 루틴
+			<input id="routineName" type="text" placeholder="루틴 이름">
+		</p>
 		<div class="selectResult">
 			<table>
 				<thead>
@@ -144,8 +146,12 @@
 		<input type="hidden" id="msg" name="msg">
 		<input type="hidden" id="sportsSeq" name="seq">
 	</form>
-	
-	<input id="floatingButton" type="submit" value="루틴 생성">
+	<form id="routineEnroll" method="post" action="<c:url value='/'/>routine/checkCustomRoutine">
+		<input type="hidden" name="routineName" value="${userId}">
+		<input type="hidden" name="userId" value="${userId}">
+		<input type="hidden" name="target">
+		<input id="floatingButton" type="submit" value="루틴 생성">
+	</form>
 	<br>
 	<br>
 	<br>

@@ -11,6 +11,12 @@ public interface IUserService {
 	
 	// 로그인
 	public UserDto signInAuth(String id, String password) throws Exception;
+	
+	
+	public void updateUserInfo(HashMap<String,Object> paramMap);
+	public void updatePassword(HashMap<String,Object> paramMap);
+	public void deleteUser(int seq);
+	public int idCheck(HashMap<String, Object> paramMap);
 	/* ---------- 동훈 ---------- */
 	// 회원가입
 	public void insertUserinit(HashMap<String,Object> paramMap);
