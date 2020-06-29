@@ -78,7 +78,7 @@ public class SportsController {
 		nSports.setExName(sportLike.get("sportsName"));
 		sportsLikeList.add(nSports);
 		model.addAttribute("sportsLike", sportsLikeList);
-		return "redirect:/user/userFavoriteSports";
+		return "users/userInfo";
 	}
 	
 	

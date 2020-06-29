@@ -35,7 +35,6 @@
 	<table class="type08">
 	<tr><th colspan="2">정보</th>
 	<tr><th>아이디</th><td>${userDto.id}</td></tr>
-	<tr><th>패스워드 </th><td>${userDto.password}</td></tr>
 	<tr><th>이름</th><td> ${userDto.name}</td></tr>
 	<tr><th>생년월일</th><td>${userDto.birth}</td></tr>
 	<tr><th>성별</th><td> ${userDto.sex}</td></tr>
