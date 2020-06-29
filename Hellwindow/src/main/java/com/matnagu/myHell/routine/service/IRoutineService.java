@@ -1,9 +1,23 @@
 package com.matnagu.myHell.routine.service;
 
-import com.matnagu.myHell.user.dto.UserDto;
+import java.util.List;
+import java.util.Map;
+
+import com.matnagu.myHell.routine.dto.RoutineDetailDto;
+import com.matnagu.myHell.routine.dto.RoutineDto;
 
 public interface IRoutineService {
 
-	// ³ª¸¸ÀÇ ·çÆ¾ »ı¼º
-	public UserDto createCustomRoutine();
+	// ë‚˜ë§Œì˜ ë£¨í‹´ ë§Œë“¤ê¸°
+	public void createCustomRoutine(Map<String,String> param);
+	//
+	public void insertCustomRoutineDetail(List<List<List<String>>> list, String routineId);
+	
+	// ë£¨í‹´ id ì°¾ê¸°
+	public String selectCustomRoutine(Map<String,String> param);
+	// ë£¨í‹´ ì¡°íšŒ
+	public List<RoutineDto> selectRoutineList(String category);
+	// ë£¨í‹´ ìƒì„¸
+	public List<RoutineDetailDto> selectRoutineDetail(int id);
+	public List<RoutineDetailDto> selectCustomRoutineDetail(int id);
 }

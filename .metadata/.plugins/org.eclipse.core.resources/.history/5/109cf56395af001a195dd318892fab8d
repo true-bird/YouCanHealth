@@ -1,0 +1,56 @@
+package com.matnagu.myHell.routine.dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.matnagu.myHell.routine.dto.RoutineDetailDto;
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.user.dto.UserDto;
+
+@Repository
+public class RoutineDao implements IRoutineDao{
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public UserDto createCustomRoutine() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Map<String,List<RoutineDto>> selectRoutineList() {
+		List<RoutineDto> routineDtoList = new ArrayList<RoutineDto>();
+		routineDtoList = sqlSession.selectList("routineMapper.selectRoutineAllList");
+		Map<String,List<RoutineDto>> categoryRoutineList = new HashMap<String, List<RoutineDto>>();
+		for(RoutineDto routine : routineDtoList) {
+			String category = routine.getCategory();
+			if(category==null) category = "기타";
+			System.out.println("cate"+category);
+			if(!categoryRoutineList.containsKey(category)) {
+				categoryRoutineList.put(category, new ArrayList<RoutineDto>());
+			}
+			categoryRoutineList.get(category).add(routine);
+		}
+		//Query 1. resultType 으로 리턴
+		return categoryRoutineList;
+	}
+
+	@Override
+	public List<RoutineDetailDto> selectRoutineDetail() {
+		List<RoutineDtoDetail> routineDtoDetail = new ArrayList<RoutineDto>();
+		routineDtoList = sqlSession.selectList("routineMapper.selectRoutineAllList");
+		Map<String,List<RoutineDto>> categoryRoutineList = new HashMap<String, List<RoutineDto>>();
+		
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,40 @@
+package com.matnagu.myHell.routine.dto;
+
+public class RoutineDetailDto {
+	private int routineId;
+	private int sportsDay;
+	private String sportsName;
+	private int sportsSet;
+	private int sportsCount;
+	public int getRoutineId() {
+		return routineId;
+	}
+	public void setRoutineId(int routineId) {
+		this.routineId = routineId;
+	}
+	public String getSportsDay() {
+		return sportsDay;
+	}
+	public void setSportsDay(String sportsDay) {
+		this.sportsDay = sportsDay;
+	}
+	public String getSportsName() {
+		return sportsName;
+	}
+	public void setSportsName(String sportsName) {
+		this.sportsName = sportsName;
+	}
+	public int getSportsSet() {
+		return sportsSet;
+	}
+	public void setSportsSet(int sportsSet) {
+		this.sportsSet = sportsSet;
+	}
+	public int getSportsCount() {
+		return sportsCount;
+	}
+	public void setSportsCount(int sportsCount) {
+		this.sportsCount = sportsCount;
+	}
+	
+}

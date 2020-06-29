@@ -1,0 +1,33 @@
+body{
+	background-color:#1F2324;
+	color:#FFFFFF;
+}
+h3{
+	color:#FF2F2F;
+}
+
+a:link {
+	color: #990003;
+	text-decoration: none;
+} /*  방문전 링크*/
+a:visited {
+	color: #A9C4C4;
+	text-decoration: none;
+} /*방문후 링크  */
+a:hover {
+	color: #990003;
+	text-decoration: underline;
+} /*마우스 오버  */
+a:active {
+	color: #A9C4C4;
+	text-decoration: none;
+} /*마우스클릭  */
+
+#hrhr{
+	width:70%;
+	margin-left:0;
+}
+img{
+	width:300px;
+	height:300px;
+}

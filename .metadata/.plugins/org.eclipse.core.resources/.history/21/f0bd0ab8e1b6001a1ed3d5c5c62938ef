@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+$(document).ready(function(){
+	$(".sectionWrapper").click(function() {
+		$("#routineId").val($(this).attr('id'));
+		$("#routineName").val($(this).find('.title').text());
+		$("#routineDifficulty").val($(this).find('.difficulty').attr('id'));
+		$("#routineCategory").val($(this).find('.category').text());
+		$("form").submit();
+	});
+});
+</script>
+</head>
+<body>
+	<div id="title">
+		<p>
+			<span id="category" style="font-weight: bold">
+			<c:choose>
+				<c:when test="${category eq '0'}">내가 고른	</c:when>
+				<c:otherwise>내가 만든</c:otherwise>
+			</c:choose>
+			</span> <span>루틴</span>
+		</p>
+	</div>
+	<c:forEach var="routine" items="${routineList}" varStatus="status">
+		<div class="sectionWrapper" style="cursor: pointer;"
+			id="${routine.id}">
+			<div class="section-background background-image myroutine-image"></div>
+			<div class="section-background background-cover"></div>
+			<div
+				class="section
+			<c:choose>
+				<c:when test="${status.index%2==0}">rightAlign</c:when>
+				<c:otherwise>leftAlign</c:otherwise>
+			</c:choose>">
+				<div class="category" style="display: none;">${routine.category}</div>
+				<p class="section-text title">${routine.name}</p>
+				
+				<p class="section-text difficulty" id="${routine.difficulty}">
+					<c:if test="${routine.difficulty ne 0}">
+					난이도
+					<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
+					</c:if>
+				</p>
+			</div>
+		</div>
+		<br>
+	</c:forEach>
+	<form method="post" action="<c:url value='/'/>routine/routineDetails">
+		<input type="hidden" id="routineCategory" name="routineCategory">
+		<input type="hidden" id="routineDifficulty" name="routineDifficulty">
+		<input type="hidden" id="routineName" name="routineName"> <input
+			type="hidden" id="routineId" name="routineId">
+	</form>
+</body>
+</html>

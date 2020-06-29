@@ -1,88 +1,102 @@
 package com.matnagu.myHell;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.matnagu.myHell.user.dto.UserDto;
+import com.matnagu.myHell.user.service.IdPasswordNotMatchingException;
+import com.matnagu.myHell.user.service.UserServiceImpl;
 
 @Controller
 public class HomeController {
-	// È¨
+
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+
+	/*---------- ì§„í¬ ----------*/
+	// í™ˆ í™”ë©´
 	@RequestMapping(value = "/")
 	public String home() {
 		return "home";
 	}
-	// ·Î±×ÀÎ
+
+	// ë¡œê·¸ì¸ í™”ë©´
 	@RequestMapping(value = "/signIn")
 	public String signIn() {
 		return "signIn";
 	}
-	// Ä¿¹Â´ÏÆ¼
-	@RequestMapping(value = "/community")
-	public String community() {
-		return "community/postList";
-	}
-	
-	
-	// ***** ÁøÈñ
-	// ·Î±×ÀÎ È®ÀÎ
+
+	// ë¡œê·¸ì¸ ì²´í¬
 	@RequestMapping(value = "/loginCheck")
-	public String doIoginCheck(HttpServletRequest request, Model model) {
-		String myId = (String) request.getParameter("myId"); // ¾ÆÀÌµğ °ª
-		String myPassword = (String) request.getParameter("myPassword");// Æä½º¿öµå °ª
-		model.addAttribute("myId", myId); // ¾ÆÀÌµğ Ãß°¡
-		model.addAttribute("myPassword", myPassword); // Æä½º¿öµå Ãß°¡
-		return "signInCheck";
+	public String doIoginCheck(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+		String userId = (String) request.getParameter("userId");
+		String userPassword = (String) request.getParameter("userPassword");
+		try {
+			UserDto userDto = userServiceImpl.signInAuth(userId, userPassword);
+			Map<String, String> userInfo = new HashMap<String, String>();
+			userInfo.put("userSeq", String.valueOf(userDto.getSeq()));
+			userInfo.put("userId", userDto.getId());
+			userInfo.put("userName", userDto.getName());
+			userInfo.put("userBirth", userDto.getBirth());
+			userInfo.put("userSex", String.valueOf(userDto.getSex()));
+			userInfo.put("userExerdate", String.valueOf(userDto.getExerdate()));
+			userInfo.put("userRating", String.valueOf(userDto.getRating()));
+			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("userId", userInfo.get("userId"));
+		} catch (IdPasswordNotMatchingException e) {
+			model.addAttribute("msg", "NotMatching");
+			return "signIn";
+		}
+		return "home";
 	}
-	@RequestMapping(value = "/logout") // ·Î±×¾Æ¿ô
-	public ModelAndView doLogout() {
-		ModelAndView mv = new ModelAndView("signOut");
+
+	// ì•„ì´ë””ì¤‘ë³µì²´í¬
+	@RequestMapping(value = "idChk", method = { RequestMethod.POST })
+	@ResponseBody
+	public String idchk(@RequestParam HashMap<String, Object> paramMap) {
+		String result = userServiceImpl.idCheck(paramMap) + "";
+		return result;
+	}
+
+	// ë¡œê·¸ì•„ì›ƒ
+	@RequestMapping(value = "/logout")
+	public ModelAndView doLogout(HttpSession session) {
+		session.removeAttribute("userInfo");
+		session.removeAttribute("userId");
+		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
-	// *****
-	
-	
-	
-	// È¸¿ø°¡ÀÔ
+	/*------------------------*/
+
+	/*---------- ë™í›ˆ ----------*/
+	// íšŒì›ê°€ì… í™”ë©´
 	@RequestMapping(value = "/signUp")
 	public String signUp() {
 		return "signUp";
 	}
-	// È¸¿ø°¡ÀÔ ÃàÇÏÈ­¸é
+
+	// íšŒì›ê°€ì… ì¶•í•˜í™”ë©´
 	@RequestMapping(value = "/signUpResult")
-	public String signUpResult(HttpServletRequest request,Model model) {
-		
-		String id = request.getParameter("myId");
-		String password = request.getParameter("myPassword");
-		String name = request.getParameter("MyName");
-		String exerdateArray[] = request.getParameterValues("exerdate");
-		
-		model.addAttribute("myId", id);
-		model.addAttribute("myPassword", password);
-		model.addAttribute("myName", name);
-		model.addAttribute("exerdate", exerdateArray);
-		System.out.println(id);
-		System.out.println(password);
-		System.out.println(name);
-		System.out.println(exerdateArray);
-		return "signUpResult";
+	public ModelAndView signUpResult(@RequestParam HashMap<String, Object> paramMap, @RequestParam("id") String id,
+			Model model) {
+		userServiceImpl.insertUserinit(paramMap); // dbì— ë„£ì„ê²ë‹ˆë‹¤.
+		UserDto userinitDto = userServiceImpl.selectUserId(id);
+		model.addAttribute("userinitDto", userinitDto);
+		ModelAndView mv = new ModelAndView("signUpResult");
+		return mv;
 	}
-	// ¿îµ¿¹æ¹ı
-	@RequestMapping(value = "/sports")
-	public String sports() {
-		return "sports/sportsList";
-	}
-	// ·çÆ¾
-	@RequestMapping(value = "/routines")
-	public String routines() {
-		return "routines/routineList";
-	}
-	// ³»Á¤º¸
-	@RequestMapping(value = "/userInfo")
-	public String userInfo() {
-		return "users/userInfo";
-	}
-	
+	/*------------------------*/
+
 }

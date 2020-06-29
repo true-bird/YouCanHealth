@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="routineMapper">
+	<select id="selectRoutineAllList" resultType="com.matnagu.myHell.routine.dto.RoutineDto">
+	SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+	FROM (
+		SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+			FROM    ROUTINE_LIST
+			ORDER BY STAR
+	) <![CDATA[ WHERE ROWNUM <= 6]]>
+	</select>
+	
+	<select id="selectRoutineList" parameterType="String"
+	resultType="com.matnagu.myHell.routine.dto.RoutineDto">
+	SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+	FROM    ROUTINE_LIST
+	WHERE   CATEGORY = #{category}
+	</select>
+	
+	
+	<select id="selectRoutineUserList" parameterType="java.util.ArrayList"
+	resultType="com.matnagu.myHell.routine.dto.RoutineDto">
+	SELECT  ID, 
+	        NAME,
+	        DIFFICULTY,
+	        CATEGORY,		                
+	        STAR
+	FROM    ROUTINE_LIST
+	WHERE   ID IN 
+	<foreach collection="routineList" item="routine" index="index" open="(" separator="," close=")">
+		#{routine.value}
+    </foreach>
+	</select>
+	
+	
+	<select id="selectRoutineDetail" parameterType="int"
+	resultType="com.matnagu.myHell.routine.dto.RoutineDetailDto">
+	SELECT  R.ROUTINE_ID, 
+       		R.SPORTS_DAY,
+       		S.EX_NAME AS SPORTS_NAME,
+	   		R.SPORTS_SET,		                
+	   		R.SPORTS_COUNT,
+       		S.SEQ,
+       		S.PART AS SPORTS_PART,
+       		S.IMAGE
+	FROM    ROUTINE_DETAIL R, SPORTS S
+	WHERE   R.SPORTS_SEQ = S.SEQ AND R.ROUTINE_ID = #{id}
+	ORDER BY SPORTS_DAY
+	</select>
+	
+	
+	
+	
+</mapper>
+ 

@@ -1,0 +1,90 @@
+package com.matnagu.myHell.user.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.matnagu.myHell.routine.dao.IRoutineDao;
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.user.dao.IUserDao;
+import com.matnagu.myHell.user.dto.UserDto;
+
+@Service
+public class UserServiceImpl implements IUserService{
+	
+	@Autowired
+	private IUserDao userDaoImpl;
+	
+	@Autowired
+	private IRoutineDao routineDao;
+	
+	@Override
+	public UserDto signInAuth(String id, String password) throws Exception {
+		UserDto userDto = userDaoImpl.selectUserId(id);
+		if(userDto == null || !userDto.getPassword().equals(password)) {
+			throw new IdPasswordNotMatchingException();
+		}
+		return userDto;
+	}
+	/* ---------- 동훈 ---------- */
+	@Override
+	public void insertUserinit(HashMap<String, Object> paramMap) {
+		userDaoImpl.insertUserinit(paramMap);
+	}
+	/* ------------------------ */
+
+	/* ---------- 진희 ---------- */
+	@Override
+	public List<UserDto> selectUserAllList(){
+		return userDaoImpl.selectUserAllList();
+	}
+	
+	@Override
+	public UserDto selectUserId(String id) {
+		return userDaoImpl.selectUserId(id);
+	}
+	/* ------------------------ */
+	@Override
+	public void insertUserRoutine(Map<String, Integer> userRoutine) {
+		userDaoImpl.insertUserRoutine(userRoutine);		
+	}
+	
+	@Override
+	public List<RoutineDto> selectUserRoutine(int userSeq) {
+		List<Integer> routineIdList = userDaoImpl.selectUserRoutine(userSeq);
+		return routineDao.selectRoutineList(routineIdList);
+	}
+	@Override
+	public void updateUserInfo(HashMap<String, Object> paramMap) {
+		userDaoImpl.updateUserInfo(paramMap);
+	}
+	@Override
+	public void updatePassword(HashMap<String, Object> paramMap) {
+		userDaoImpl.updatePassword(paramMap);
+	}
+	@Override
+	public void deleteUser(int seq) {
+		userDaoImpl.deleteUser(seq);
+	}
+	@Override
+	public int idCheck(HashMap<String, Object> paramMap) {
+		return userDaoImpl.idCheck(paramMap);
+	}
+	@Override
+	public void deleteUserRoutine(Map<String, Integer> paramMap) {
+		userDaoImpl.deleteUserRoutine(paramMap);
+		
+	}
+	
+	@Override
+	public List<RoutineDto> selectUserCustomRoutine(int userSeq) {
+		List<Map<String,String>> routineIdList = userDaoImpl.selectUserCustomRoutine(userSeq);
+		selectCustomRoutineList
+		return routineDao.selectRoutineList(routineIdList);
+	}
+	
+	
+}

@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
+	<script type="text/javascript" src="<%=contextPath%>/js/routine.js"></script>
+</head>
+<body>
+	<hr>
+	<c:forEach var="routine" items="${routineList}" varStatus="status">
+		<span>${routine.name}</span>|
+		<span>${routine.difficulty}</span>|
+		<span>${routine.category}</span>|
+		<span>${routine.star}</span>
+		<br>
+	</c:forEach>
+	<div id="dropbox" class="rightAlign">
+		<select name="category">
+			<option value="인기">인기 루틴</option>
+			<option value="등 중심">등 중심 루틴</option>
+			<option value="가슴 중심">가슴 중심 루틴</option>
+			<option value="삼분할">삼분할 루틴</option>
+		</select>
+	</div>
+	<div>
+	</div>
+	<div id="list">
+	<div id="title">
+		<p>
+			<span style="font-weight: bold">인기 </span>
+			<span >루틴</span>
+		</p>
+	</div>
+	<c:forEach var="routine" items="${routineList}" varStatus="status">
+		<div class ="sectionWrapper 
+			<c:choose>
+				<c:when test="${status.index%2==0}">rightAlign</c:when>
+				<c:otherwise>leftAlign</c:otherwise>
+			</c:choose>"
+	OnClick="location.href='<c:url value='/routine/createCustomRoutine'/>'" style="cursor:pointer;">
+			<div class="section-background background-image"></div>
+			<div class="section-background background-cover"></div>
+			<div class="section">
+				<p class="section-text title">${routine.name}</p>
+				<p class="section-text difficulty">
+					난이도 
+					<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
+				</p>
+			</div>
+		</div>
+		<br>
+	</c:forEach>
+	</div>
+	<input id = "floatingButton" type="button" value="나만의 루틴 만들기" onClick="location.href='<c:url value='/routine/createCustomRoutine'/>'">
+	
+</body>
+</html>

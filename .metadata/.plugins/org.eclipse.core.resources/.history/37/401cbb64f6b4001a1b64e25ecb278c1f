@@ -1,0 +1,8 @@
+
+$(document).ready(function(){
+	$(".daySports").click(function() {
+		$("#sportsSeq").val($(this).find('.seq').text());
+		$("#sportsInfo").submit();
+	});
+//	href="<%=contextPath%>/sports/sportsDetails?seq=${shoulder.seq}"
+});

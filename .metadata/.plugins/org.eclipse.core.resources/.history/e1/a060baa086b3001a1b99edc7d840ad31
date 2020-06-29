@@ -1,0 +1,81 @@
+@charset "UTF-8";
+		
+		#siteHeader {
+			position: relative;
+			box-sizing: content-box;
+			height: 120px;
+			margin-bottom: 35px;
+			/*
+			position: absolute;
+    		z-index: 998;
+    		background-color: transparent;
+    		text-align: right;
+    		padding-top: 45px;
+    		padding-bottom: 45px;
+    		width: 100%;
+    		box-sizing: border-box;
+    		font-size: 0;*/
+		}
+		
+		.header-background {
+			position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    		-webkit-background-size: cover !important;
+    		background-size: cover !important;
+    		background-repeat: no-repeat !important;
+    		background-position: 20% 70%;
+		}
+
+		.header-background.background-image {
+			background-image: url(/myHell/images/header.jpg);
+			background-color: transparent;
+		}
+
+		.header-background.background-cover {
+			background-color: #000000;
+			opacity: 1.0;
+		}
+		
+		.header {
+			text-align: right;
+			padding-top: 30px;
+			padding-bottom: 30px;
+			position: relative;
+    		top: 0;
+    		left: 0;
+    		color: white;
+    		font-size:large;
+    		min-height: 1px;
+    		width: 100%;
+    		height: auto;
+    		z-index:3;
+		}
+		
+		
+		.menu-item {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+			margin-right: 30px;
+			list-style-type:disc;
+			
+		}
+		
+		a:hover {
+			text-decoration: none;
+			opacity: 0.7;
+		}
+		a {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: x-large;
+			color: #fff !important;
+			text-decoration: none;
+			outline: none !important;
+			display: inline-block;
+		}
+		

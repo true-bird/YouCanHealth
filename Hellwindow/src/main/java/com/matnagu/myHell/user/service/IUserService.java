@@ -1,23 +1,39 @@
 package com.matnagu.myHell.user.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.matnagu.myHell.routine.dto.RoutineDto;
 import com.matnagu.myHell.user.dto.UserDto;
 
 public interface IUserService {
 	
-	// À¯Àú Á¤º¸ Á¶È¸
-	public UserDto selectUserInfo();
-	// À¯Àú Á¤º¸ ¼öÁ¤
-	public void updateUserInfo();
-	// À¯Àú Á¤º¸ »ı¼º
-	public void createUserInfo();	
-	// ÁÁ¾ÆÇÏ´Â ¿îµ¿ ¸ñ·Ï Á¶È¸
-	public List<String> selectUserFavoriteSports();
-	// ³» ·çÆ¾ ¸ñ·Ï Á¶È¸
-	public List<String> selectUserRoutineList();
-	// ³» ·çÆ¾ »ó¼¼ Á¶È¸
-	public RoutineDto selectUserRoutineDetails();
+	// ë¡œê·¸ì¸
+	public UserDto signInAuth(String id, String password) throws Exception;
 	
+	
+	public void updateUserInfo(HashMap<String,Object> paramMap);
+	public void updatePassword(HashMap<String,Object> paramMap);
+	public void deleteUser(int seq);
+	public int idCheck(HashMap<String, Object> paramMap);
+	/* ---------- ë™í›ˆ ---------- */
+	// íšŒì›ê°€ì…
+	public void insertUserinit(HashMap<String,Object> paramMap);
+	/* ------------------------ */
+
+	/* ---------- ì§„í¬ ---------- */
+	// ì „ì²´ ëª©ë¡ ì¡°íšŒ
+	public List<UserDto> selectUserAllList();
+	// ì´ë¦„ìœ¼ë¡œ ì°¾ì•„ì˜¤ê¸°
+	public UserDto selectUserId(String id);
+	/* ------------------------ */
+	// ë‚´ê°€ ê³ ë¥¸ ë£¨í‹´ ì¶”ê°€í•˜ê¸°
+	public void insertUserRoutine(Map<String, Integer> userRoutine);
+	// ë‚´ê°€ ê³ ë¥¸ ë£¨í‹´ ì¡°íšŒ
+	public int selectUserRoutine(Map<String, Integer> userRoutine);
+	public List<RoutineDto> selectUserRoutine(int userSeq);
+	public List<RoutineDto> selectUserCustomRoutine(int userSeq);
+	public void deleteUserRoutine(Map<String,Integer> paramMap);
+	public void deleteUserCustomRoutine(Map<String, Integer> paramMap);
 }

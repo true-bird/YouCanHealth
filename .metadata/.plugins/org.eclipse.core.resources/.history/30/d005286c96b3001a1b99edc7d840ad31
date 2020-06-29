@@ -1,0 +1,90 @@
+package com.matnagu.myHell;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.matnagu.myHell.user.dto.UserDto;
+import com.matnagu.myHell.user.service.IdPasswordNotMatchingException;
+import com.matnagu.myHell.user.service.UserServiceImpl;
+
+@Controller
+public class HomeController {
+
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+
+	/*---------- 진희 ----------*/
+	// 홈 화면
+	@RequestMapping(value = "/")
+	public String home() {
+		return "home";
+	}
+
+	// 로그인 화면
+	@RequestMapping(value = "/signIn")
+	public String signIn() {
+		return "signIn";
+	}
+
+	// 로그인 체크
+	@RequestMapping(value = "/loginCheck")
+	public String doIoginCheck(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+		String userId = (String) request.getParameter("userId");
+		String userPassword = (String) request.getParameter("userPassword");
+		try {
+			UserDto userDto = userServiceImpl.signInAuth(userId,userPassword);
+			Map<String,String> userInfo = new HashMap<String,String>();
+			userInfo.put("userId", userDto.getId());
+			userInfo.put("userNmae", userDto.getName());
+			userInfo.put("userBirth", userDto.getBirth());
+			userInfo.put("userSex", String.valueOf(userDto.getSex()));
+			userInfo.put("userExerdate", String.valueOf(userDto.getExerdate()));
+			userInfo.put("userRating", String.valueOf(userDto.getRating()));
+			session.setAttribute("userInfo", userInfo);
+		    session.setMaxInactiveInterval(60*5);
+		} catch (IdPasswordNotMatchingException e) {
+			model.addAttribute("msg", "NotMatching");
+			return "signIn";
+		}
+		return "home";
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "/logout")
+	public ModelAndView doLogout(HttpSession session) {
+		session.setMaxInactiveInterval(0);
+		ModelAndView mv = new ModelAndView("home");
+		return mv;
+	}
+	/*------------------------*/
+
+	/*---------- 동훈 ----------*/
+	// 회원가입 화면
+	@RequestMapping(value = "/signUp")
+	public String signUp() {
+		return "signUp";
+	}
+
+	// 회원가입 축하화면
+	@RequestMapping(value = "/signUpResult")
+	public ModelAndView signUpResult(@RequestParam HashMap<String, Object> paramMap, @RequestParam("id") String id,
+			Model model) {
+		userServiceImpl.insertUserinit(paramMap); // db에 넣을겁니다.
+		UserDto userinitDto = userServiceImpl.selectUserId(id);
+		model.addAttribute("userinitDto", userinitDto);
+		ModelAndView mv = new ModelAndView("signUpResult");
+		return mv;
+	}
+	/*------------------------*/
+
+}

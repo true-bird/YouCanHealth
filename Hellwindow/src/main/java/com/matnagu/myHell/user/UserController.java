@@ -1,29 +1,216 @@
 package com.matnagu.myHell.user;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.matnagu.myHell.routine.dto.RoutineDto;
+import com.matnagu.myHell.sports.dto.SportsLikeDto;
+import com.matnagu.myHell.sports.service.ISportsService;
+import com.matnagu.myHell.user.dto.UserDto;
+import com.matnagu.myHell.user.service.IUserService;
 
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-	// ����������ȭ��
+
+	@Autowired
+	private IUserService userServiceImpl;
+	
+	@Autowired
+	private ISportsService sportsService; 
+	/*---------- 구현 예정 ----------*/
+
+	// 내 정보 수정 화면
 	@RequestMapping(value = "/updateUserInfo")
-	public String updateUserInfo() {
-		return "users/updateUserInfo";
+	public ModelAndView updateUserInfo(@RequestParam HashMap<String, Object> paramMap, HttpServletRequest request,
+			Model model) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userId");
+		UserDto userDto = userServiceImpl.selectUserId(id);
+		model.addAttribute("userDto", userDto);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("users/updateUserInfo");
+		return mv;
 	}
-	// ������ȭ��
+
+	// 내 정보 수정
+	@RequestMapping(value = "/updateUserResult")
+	public ModelAndView updateUserResult(@RequestParam HashMap<String, Object> paramMap, @RequestParam("seq") int seq,
+			@RequestParam("id1") String id1, @RequestParam("password") String password, HttpServletRequest request,
+			Model model) {
+
+		ModelAndView mv = new ModelAndView();
+		if (paramMap.get("userPassword").equals(password)) {
+			// 맟으면 수정될수있게
+			userServiceImpl.updateUserInfo(paramMap);
+			mv.setViewName("redirect:/user/userInfo");
+			return mv;
+		}
+
+		String message = "비밀번호가 다릅니다";
+		model.addAttribute("message", message);
+		mv.setViewName("redirect:/user/updateUserInfo");
+		return mv;
+	}
+
+	// 비밀번호 변경 화면
+	@RequestMapping(value = "/userPasswordChange")
+	public ModelAndView changePw(HttpServletRequest request, Model model) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("users/userPasswordChange");
+		return mv;
+	}
+
+	// 비밀번호 변경 확인
+	@RequestMapping(value = "/userPasswordCheck")
+	public ModelAndView userInfoChk(@RequestParam HashMap<String, Object> paramMap, @RequestParam("id") String id,
+			@RequestParam("newpw") String newpw, @RequestParam("Repw") String Repw,
+			@RequestParam("password") String password, Model model) {
+		ModelAndView mv = new ModelAndView();
+		UserDto userDto = userServiceImpl.selectUserId(id); // 유저정보 받아오기
+
+		model.addAttribute("userDto", userDto);
+
+		if (password.equals(userDto.getPassword())) { // 유저정보 비밀번호와 입력 비밀번호가 같으면 실행
+			if (newpw.equals(Repw)) {
+				userServiceImpl.updatePassword(paramMap); // 입력한 다른 비밀번호 로 유저정보 비밀번호를 변경
+				mv.setViewName("redirect:/user/userInfo"); // 유저정보 페이지로 넘어가기
+				return mv;
+			}
+			String message = "비밀번호를 재확인 해주세요"; // 새로운 비번이랑 재확인이랑 다르면 떠요
+			model.addAttribute("message", message);
+			mv.setViewName("redirect:/user/userPasswordChange"); // 비밀번호 변경 페이지로 돌아가기
+			return mv;
+		}
+		String message = "비밀번호가 다릅니다"; // 입력 비밀번호가 다르면 메시지 출력
+		model.addAttribute("message", message);
+		mv.setViewName("redirect:/user/userPasswordChange"); // 비밀번호 변경 페이지로 돌아가기
+		return mv;
+
+	}
+
+	// 회원 탈퇴
+	@RequestMapping(value = "/userDelete")
+	public String deleteInit(@RequestParam("seq") String seq) {
+		System.out.println("seq=["+seq+"]");
+		int nSeq = Integer.parseInt(seq); //brother change
+		userServiceImpl.deleteUser(nSeq);
+		
+		return "redirect:/logout";
+	}
+	
+	
+	// 내가 좋아하는 운동 화면
 	@RequestMapping(value = "/userFavoriteSports")
-	public String userFavoriteSports() {
-		return "users/userFavoriteSports";
+	public ModelAndView userFavoriteSports(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		List<SportsLikeDto> selectSportsLikeDtoList = new ArrayList<SportsLikeDto>();
+		selectSportsLikeDtoList = sportsService.selectUserLikeSports((String) session.getAttribute("userId"));
+		model.addAttribute("userLikeSports",selectSportsLikeDtoList);
+		ModelAndView mv = new ModelAndView("users/userFavoriteSports");
+		return mv;
 	}
-	// ����ƾ���ȭ��
+	
+	// 내 루틴 목록 화면
 	@RequestMapping(value = "/userRoutineList")
-	public String userRoutineList() {
+	public String userRoutineList(HttpSession session, Model model) {
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		List<RoutineDto> routineList = userServiceImpl.selectUserRoutine(userSeq);
+		System.out.println(routineList.size());
+		model.addAttribute("routineList", routineList);
+		model.addAttribute("category", 0);
 		return "users/userRoutineList";
 	}
-	// ��ƾ��ȭ��
-	@RequestMapping(value = "/userRoutineDetails")
-	public String userRoutineDetails() {
-		return "users/userRoutineDetails";
+	
+	// 고른 루틴 리스트
+	@RequestMapping(value = "/userRoutineListContent")
+	public String userRoutineListContent(Model model, HttpSession session,
+			@RequestParam("category") String category) {
+		System.out.println(category);
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		List<RoutineDto> routineList = new ArrayList<RoutineDto>();
+		if(category.equals("0")) routineList = userServiceImpl.selectUserRoutine(userSeq);
+		else routineList = userServiceImpl.selectUserCustomRoutine(userSeq);
+		model.addAttribute("routineList", routineList);
+		model.addAttribute("category", category);
+		return "users/userRoutineListContent";
+	}
+
+
+	// 고른 루틴 넣기
+	@RequestMapping(value = "/insertUserRoutine")
+	public String insertUserRoutine(@RequestParam(value = "routineId", required = false) int routineId,
+			HttpSession session, Model model) {
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		Map<String, Integer> userRoutine = new HashMap<String, Integer>();
+		userRoutine.put("routineId", routineId);
+		userRoutine.put("userSeq", userSeq);
+		int cnt = userServiceImpl.selectUserRoutine(userRoutine);
+		if(cnt>0) {
+			model.addAttribute("msg","1");
+			return "redirect:/routine";
+		}
+		
+		userServiceImpl.insertUserRoutine(userRoutine);
+		return "redirect:/user/userRoutineList";
+	}
+
+	
+	// 내 루틴 삭제
+	@RequestMapping(value = "/deleteUserRoutine")
+	public String deleteUserRoutine(@RequestParam("routineId") int routineId,
+			HttpSession session, Model model) {
+		Map<String,Integer> param = new HashMap<String, Integer>();
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		param.put("routineId", routineId);
+		param.put("userSeq", userSeq);
+		userServiceImpl.deleteUserRoutine(param);
+		return "redirect:/user/userRoutineList";
+	}
+	
+	@RequestMapping(value = "/deleteUserCustomRoutine")
+	public String deleteUserCustomRoutine(@RequestParam("routineId") int routineId,
+			HttpSession session, Model model) {
+		Map<String,Integer> param = new HashMap<String, Integer>();
+		int userSeq = Integer.parseInt(((Map<String, String>) session.getAttribute("userInfo")).get("userSeq"));
+		param.put("routineId", routineId);
+		param.put("userSeq", userSeq);
+		userServiceImpl.deleteUserCustomRoutine(param);
+		return "redirect:/user/userRoutineList";
+	}
+	
+	/*---------- 동훈 ----------*/
+	// 내 정보 화면
+	@RequestMapping(value = "/userInfo")
+	public ModelAndView selectUserInfo(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String id = ((Map<String, String>) session.getAttribute("userInfo")).get("userId");
+		UserDto userDto = userServiceImpl.selectUserId(id);
+		model.addAttribute("userDto", userDto);
+		ModelAndView mv = new ModelAndView("users/userInfo");
+		return mv;
+	}
+	/*------------------------*/
+	@RequestMapping(value = "/deleteUserLike")
+	public ModelAndView deleteUserLike(HttpServletRequest request, Model model ,@RequestParam("seq") int seq) {
+		sportsService.deleteSportsLike(seq);
+		HttpSession session = request.getSession();
+		List<SportsLikeDto> selectSportsLikeDtoList = new ArrayList<SportsLikeDto>();
+		selectSportsLikeDtoList = sportsService.selectUserLikeSports((String) session.getAttribute("userId"));
+		model.addAttribute("userLikeSports",selectSportsLikeDtoList);
+		ModelAndView mv = new ModelAndView("users/userFavoriteSports");
+		return mv;
 	}
 }

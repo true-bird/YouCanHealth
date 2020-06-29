@@ -1,0 +1,127 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/createCustomRoutine.css?after'/>" />
+<script type="text/javascript"
+	src="<c:url value='/js/createCustomRoutine.js'/>"></script>
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<div class="container">
+		<ul class="tabs">
+			<li class="tab-link current" data-tab="tab-1">월</li>
+			<li class="tab-link" data-tab="tab-2">화</li>
+			<li class="tab-link" data-tab="tab-3">수</li>
+			<li class="tab-link" data-tab="tab-4">목</li>
+			<li class="tab-link" data-tab="tab-5">금</li>
+			<li class="tab-link" data-tab="tab-6">토</li>
+			<li class="tab-link" data-tab="tab-7">일</li>
+		</ul>
+		<hr>
+		<div id="tab-${status.index}" class="tab-content current">
+			<div class="checkBoxList">
+				<table>
+					<thead>
+						<tr>
+							<th>가슴</th>
+							<th>등</th>
+							<th>어깨</th>
+							<th>복부</th>
+							<th>가슴</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><c:forEach var="chest" items="${chest}"
+									varStatus="status">
+									<p>
+										<input type="checkbox" value="${chest.seq}">${chest.exName}</p>
+								</c:forEach></td>
+							<td><c:forEach var="back" items="${back}" varStatus="status">
+									<p>
+										<input type="checkbox" value="${back.seq}">${back.exName}</p>
+								</c:forEach></td>
+							<td><c:forEach var="shoulder" items="${shoulder}"
+									varStatus="status">
+									<p>
+										<input type="checkbox" value="${shoulder.seq}">${shoulder.exName}</p>
+								</c:forEach></td>
+							<td><c:forEach var="abs" items="${abs}" varStatus="status">
+									<p>
+										<input type="checkbox" value="${abs.seq}">${abs.exName}</p>
+								</c:forEach></td>
+							<td><c:forEach var="lower" items="${lower}"
+									varStatus="status">
+									<p>
+										<input type="checkbox" value="${lower.seq}">${lower.exName}</p>
+								</c:forEach></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<c:forEach begin="2" end="7" varStatus="status">
+			<div id="tab-${status.index}" class="tab-content">
+				<div class="checkBoxList">
+					<table>
+						<thead>
+							<tr>
+								<th>가슴</th>
+								<th>등</th>
+								<th>어깨</th>
+								<th>복부</th>
+								<th>가슴</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><c:forEach var="chest" items="${chest}"
+										varStatus="status">
+										<p>
+											<input type="checkbox" value="${chest.seq}">${chest.exName}</p>
+									</c:forEach></td>
+								<td><c:forEach var="back" items="${back}"
+										varStatus="status">
+										<p>
+											<input type="checkbox" value="${back.seq}">${back.exName}</p>
+									</c:forEach></td>
+								<td><c:forEach var="shoulder" items="${shoulder}"
+										varStatus="status">
+										<p>
+											<input type="checkbox" value="${shoulder.seq}">${shoulder.exName}</p>
+									</c:forEach></td>
+								<td><c:forEach var="abs" items="${abs}" varStatus="status">
+										<p>
+											<input type="checkbox" value="${abs.seq}">${abs.exName}</p>
+									</c:forEach></td>
+								<td><c:forEach var="lower" items="${lower}"
+										varStatus="status">
+										<p>
+											<input type="checkbox" value="${lower.seq}">${lower.exName}</p>
+									</c:forEach></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</c:forEach>
+
+	</div>
+
+	<a class="redtext" href="<c:url value='/routine/checkCustomRoutine' />">최종확인</a>
+	<hr>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

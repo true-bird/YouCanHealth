@@ -1,0 +1,31 @@
+
+
+$(document).ready(function(){
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	});
+	$("input[type='checkbox']").click(function () {
+		var val = $(this).val();
+		alert(val);
+		if($(this).is(":checked")) {
+			alert($(this).parents(".tab-content").attr('id')+"-result");
+			var id = "#"+$(this).parents(".tab-content").attr('id')+"-result";
+			var ul = $(".selectResult").find(id);
+			var inner = $(this).closest("p").text();
+			ul.append($('<li>',{
+				id: $(this).value,
+				text: inner
+			}));
+		} else {
+			alert("해제!!");
+			//ul.children()
+		}
+	});
+
+
+});

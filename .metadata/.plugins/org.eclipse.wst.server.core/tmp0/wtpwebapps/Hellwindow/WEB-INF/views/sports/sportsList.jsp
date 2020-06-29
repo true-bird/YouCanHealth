@@ -1,88 +1,175 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Body Parts</title>
+<meta charset="UTF-8">
+<title>Body Parts</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/sports.css?after'/>" />
 </head>
 <body>
-	<h1>부위별 운동목록화면</h1>
-	<table id="mid" border="1">
+	<br>
+	<!-- 가슴 -->
+
+	<h1 id="h1_left">가슴</h1>
+	<hr id="hrhr">
+	<table id="listTable_left">
 		<tr>
-			<th colspan="2">가슴</th>
+			<td>
+				<table id="table">
+					<tr>
+						<td><img
+							src="<c:url value='/images/sports/sports_prats/chest_parts.jpg'/>">
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<h3>운동 리스트</h3>
+					<h2>
+						<hr color="#990003">
+					</h2>
+					<c:forEach var="chest" items="${chest}" varStatus="status">
+						<input type="hidden" name="seq" value="${chest.seq}">
+						<input type="hidden" name="imageParts" value="${chest.imageParts}">
+						<tr>
+							<td><a
+								href="<%=contextPath%>/sports/sportsDetails?seq=${chest.seq}">${chest.exName}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			<td>
 		</tr>
+	</table>
+	<br>
+	<!-- 등 -->
+	<h1 id="h1_right">&nbsp;등</h1>
+	<hr id="hrhr">
+	<table id="listTable_right">
 		<tr>
-			<td><img src="<c:url value='/images/home/img2.png'/>" /></td>
-			<td>가슴 운동종류
-				<ul>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">푸쉬업</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">딥</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">벤치프레스</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨플라이</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">케이블 크로스오버 플라이</a></li>
-				</ul>
+			<td>
+				<table>
+					<h3>운동 리스트</h3>
+					<h2>
+						<hr color="#990003">
+					</h2>
+					<c:forEach var="back" items="${back}" varStatus="status">
+						<input type="hidden" name="seq" value="${back.seq}">
+						<tr>
+							<td><a
+								href="<%=contextPath%>/sports/sportsDetails?seq=${back.seq}">${back.exName}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</td>
+			<td>
+				<table id="table">
+					<tr>
+						<td><img
+							src="<c:url value='/images/sports/sports_prats/back_parts.jpg'/>">
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
+	</table>
+	<!-- 어깨 -->
+	<h1 id="h1_left">어깨</h1>
+	<hr id="hrhr">
+	<table id="listTable_left">
 		<tr>
-			<th colspan="2">등</th>
-		</tr>
-		<tr>
-			<td><img src="<c:url value='/images/home/img2.png'/>" /></td>
-			<td>등 운동종류
-				<ul>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">랫 풀다운</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨 베트 오버로우</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">시티드 로윙</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">데드리프트</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">벤트 오버로윙</a></li>
-				</ul>
+			<td>
+				<table id="table">
+					<tr>
+						<td><img
+							src="<c:url value='/images/sports/sports_prats/shoulder_parts.jpg'/>"></td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<h3>운동 리스트</h3>
+					<h2>
+						<hr color="#990003">
+					</h2>
+					<c:forEach var="shoulder" items="${shoulder}" varStatus="status">
+						<input type="hidden" name="seq" value="${shoulder.seq}">
+						<tr>
+							<td><a
+								href="<%=contextPath%>/sports/sportsDetails?seq=${shoulder.seq}">${shoulder.exName}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</td>
 		</tr>
+	</table>
+	<!-- 복부 -->
+	<h1 id= "h1_right">복부</h1>
+	<hr id="hrhr">
+	<table id="listTable_right">
 		<tr>
-			<th colspan="2">어께</th>
-		</tr>
-		<tr>
-			<td><img src="<c:url value='/images/home/img2.png'/>" /></td>
-			<td>어께 운동종류
-				<ul>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">레터럴 레이즈</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">밀리터리 프레스</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨숄더 프레스</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">펙덱 레어델트 래터럴</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">시티드 프런트 프레스</a></li>
-				</ul>
+			<td>
+				<table>
+				<h3>운동 리스트</h3>
+				<h2>
+					<hr color="#990003">
+				</h2>
+					<c:forEach var="abs" items="${abs}" varStatus="status">
+						<input type="hidden" name="seq" value="${abs.seq}">
+						<tr>
+							<td><a
+								href="<%=contextPath%>/sports/sportsDetails?seq=${abs.seq}">${abs.exName}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</td>
+			<td>
+				
+				<table id="table">
+					<tr>
+						<td><img
+							src="<c:url value='/images/sports/sports_prats/abs_parts.jpg'/>"></td>
+					</tr>
+				</table>
 			</td>
 		</tr>
+	</table>
+	<!-- 하체 -->
+	
+	<h1 id="h1_left">하체</h1>
+	<hr id="hrhr">
+	<table id="listTable_left">
 		<tr>
-			<th colspan="2">복근</th>
-		</tr>
-		<tr>
-			<td><img src="<c:url value='/images/home/img2.png'/>" /></td>
-			<td>복근 운동종류
-				<ul>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">행잉 레그 레이즈</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">시티드 잭나이프</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨 사이드 벤치</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">푸쉬업</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">러시아 트위스트</a></li>
-				</ul>
+			<td>
+				<table id="table">
+					<tr>
+						<td><img
+							src="<c:url value='/images/sports/sports_prats/lower_parts.jpg'/>"></td>
+					</tr>
+				</table>
 			</td>
-		</tr>
-			<tr>
-			<th colspan="2">하체</th>
-		</tr>
-		<tr>
-			<td><img src="<c:url value='/images/home/img2.png'/>" /></td>
-			<td>하체 운동종류
-				<ul>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">스쿼트</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨런지</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">앵글 레그프레스</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">시티드 레그 컬</a></li>
-					<li><a href="<c:url value ='/sports/sportsDetails'/>">덤벨 사이드 런지</a></li>
-				</ul>
+			<td>
+				<h3>운동 리스트</h3>
+				<h2>
+					<hr color="#990003">
+				</h2>
+				<table>
+					<c:forEach var="lower" items="${lower}" varStatus="status">
+						<input type="hidden" name="seq" value="${lower.seq}">
+						<tr>
+							<td><a
+								href="<%=contextPath%>/sports/sportsDetails?seq=${lower.seq}">${lower.exName}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</td>
 		</tr>
 	</table>

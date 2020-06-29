@@ -13,6 +13,7 @@ a {
 	text-align: right;
 }
 
+
 a:link {
 	color: black;
 	text-decoration: none;
@@ -29,18 +30,19 @@ a:active {
 	color: black;
 	text-decoration: none;
 } /*마우스클릭  */
-p {
-	background-color: skyblue;
-}
+
 
 body {
+	
 	text-align:center;
-	background-image: url("/myHell/images/home/home.png");
-	background-color: #ffffff;
-	font-family: "나눔명조";
-	font-size: 25px; /* 폰트 크기 */
+	/*background-image: url("/myHell/images/home/home.png"); */
+	/*background-color: #ffffff;*/
+	/*font-family: 'Noto Sans KR', sans-serif;*/
+	/* font-family: "나눔명조"; */
+	/*font-size: 25px;  폰트 크기 */
 	font-weight: bold;
 }
+
 
 input[type=text], [type=password] {
 	width: 270px;
@@ -63,8 +65,7 @@ input[type=button], [type=reset], [type=submit] {
 	border: 2px solod #ccc;
 	padding: 10px 20px;
 	background-color: orange;
-	color: white;
-	font-family: "나눔명조"; /* 폰트모양 */
+	color: white
 	font-size: 15px; /* 폰트 크기 */
 	font-weight: bold;
 }

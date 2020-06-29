@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+body {
+	background-color:white;	
+}
+
+.rightAlign {
+	text-align: right;
+	padding-right: 3%;
+}
+
+#routineDetail .rightAlign {
+	padding-left: 3%;
+}
+
+.rightAlign hr {
+	margin-right: 0px;
+	margin-left: auto;
+}
+	
+.leftAlign {
+	text-align: left;
+	padding-left: 3%;
+}
+
+#routineDetail .leftAlign {
+	padding-right: 3%;
+}
+
+.leftAlign hr {
+	margin-left: 0px;
+	margin-right: auto;
+}
+	
+.routineImg {
+   	height: 200px;
+   	width: 400px;
+}
+
+.verticalTop {
+	vertical-align: top;	
+}
+
+
+#dropbox {
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+#dropbox>select {
+	padding: 5px;
+	font-size: large;
+}
+
+#title {
+	margin-bottom:20px;
+}
+
+#title>p {
+	color: rgb(76, 76, 76);
+	text-align:center;
+	font-size: 40px;
+}
+
+
+.sectionWrapper {
+	position: relative;
+	box-sizing: content-box;
+}
+
+.section-background {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50%;
+}
+
+.section-background.background-image {
+	background-attachment: fixed;
+	background-color: transparent;
+}
+
+.section-background.background-cover {
+	background-color: #000000;
+	opacity: 0.5;
+}
+
+.section-text {
+	/*margin-top: 10px;*/
+	/*margin-bottom: 10px;*/
+	
+}
+
+.section {
+	padding-right:20px;
+	position: relative;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size:large;
+    min-height: 1px;
+    width: 100%;
+    height: auto;
+    z-index:3;
+    min-height: 1px;
+    width: 100%;
+    height: auto;
+}
+
+.section-text {
+	padding: 15px;
+}
+
+.section-text.title {
+	font-size: xx-large;
+	font-weight: bold;
+}
+
+.section-text.difficulty {
+	font-size: x-large;
+}
+
+
+#routineDetail {
+    font-size: x-large;
+    color: #1F2324;
+}
+
+.day {
+    padding-top: 30px;
+    font-weight: bold;
+}
+
+.dayHr {
+	margin-bottom:25px;
+	
+}
+
+.daySports {
+	background-color:#1F2324;
+	position: relative;
+	margin: 10px 30px 10px auto;
+    min-width: 700px;
+    color:white;
+    cursor:pointer;
+}
+.sportsList {
+	text-align:right;
+}
+.sportsList .rest {
+    color: #1F2324;
+    text-align: center;
+    background: #a5a5a538
+}
+.sportsList .sportsPart {
+	position:relative;
+	right:630px;	
+}
+.sportsPart span {
+	text-align: center;
+	display: inline-block;
+    width: 100px;
+    background: #1F2324;
+    border-radius: 5px;
+    vertical-align: middle;
+    color: white;
+}
+
+.daySports td {
+	width: 200px;
+}
+
+.daySports .routineSet {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+
+#floatingButton {
+	max-height: none;
+	bottom: 50px;
+	right: 50px;
+	height: auto;
+	position: fixed;
+	z-index: 9999;
+	width: 250px;
+	padding: 15px 15px;
+	border-style: none;
+	border-radius: 15px;
+	background-color: #222222;
+	color: white;
+	font-size: 15px; /* 폰트 크기 */
+	font-weight: bold;
+}
+
+#floatingButton:hover {
+	background-color: #ffffff;
+	color: black;
+	cursor:pointer;
+} 
+
+
+
+
+
+
+
+	
+	

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="commentMapper">
+	
+	<select id="selectCommentAllList"
+	
+		resultType="com.matnagu.myHell.community.comment.dto.CommentDto">
+		SELECT
+		SEQ,
+		ID,
+		CONTENT,
+		COMMUNITYSEQ,
+		COMMENTDATE
+		FROM COMMENT1
+		WHERE
+		COMMUNITYSEQ = #{communityseq}
+		ORDER BY COMMENTDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
+
+	<insert id="insertComment" parameterType="java.util.HashMap">
+		INSERT INTO COMMENT1
+		(SEQ,ID,CONTENT,COMMENTDATE,COMMUNITYSEQ) VALUES
+		(SEQ_COMMENT.NEXTVAL,#{id},#{content},SYSDATE,#{communitySeq})
+	</insert>
+
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM COMMENT1
+		WHERE SEQ = #{seq}
+	</delete>
+</mapper>
+ 

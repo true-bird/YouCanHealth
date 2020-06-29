@@ -6,22 +6,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/routine.css?after'/>"/>
+	<script type="text/javascript" src="<c:url value='/js/routine.js'/>"></script>
+	<script>
+		if(${msg}) {
+			alert("이미 내 루틴에 있습니다");
+		}
+	</script>
 </head>
 <body>
-	<h1>루틴목록화면</h1>
-	<div class="rightAlign">
-		<input type="button" value="나만의 루틴 만들기" onClick="location.href='<%=contextPath%>/routine/createCustomRoutine'">
+	<div id="dropbox" class="rightAlign">
+		<select name="category">
+			<option value="인기">인기 루틴</option>
+			<option value="등 중심">등 중심 루틴</option>
+			<option value="가슴 중심">가슴 중심 루틴</option>
+			<option value="삼분할">삼분할 루틴</option>
+		</select>
 	</div>
-	<div class="leftAlign">
-		<img class="routineImg" src="<c:url value='/images/routine/routine1.png'/>" >
-		<a class="verticalTop" class="redtext" href="<c:url value='/routine/routineDetails' />">가슴 위주 루틴</a>		
+	<div>
 	</div>
-	<div class="rightAlign">
-		<img class="routineImg" src="<c:url value='/images/routine/routine2.jpg'/>">
+	<div id="list">
+		<%@ include file="/WEB-INF/views/routines/routineListContent.jsp" %>
 	</div>
-	<div class="leftAlign">
-		<img class="routineImg" src="<c:url value='/images/routine/routine3.png'/>">
-	</div>
+	<br><br><br>
+	<div id="userId" style="display:none;"><%=id%></div>
+	<form id="makeRoutine" method="post" action="<c:url value='/'/>routine/createCustomRoutine">
+		<input id = "floatingButton" type="submit" value="나만의 루틴 만들기">
+	</form>
 </body>
 </html>

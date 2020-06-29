@@ -1,0 +1,36 @@
+package com.matnagu.myHell.user.dao;
+
+import java.util.HashMap;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.matnagu.myHell.user.dto.UserDto;
+
+
+@Repository //�����
+public class UserInitDaoImpl implements IUserDao{
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession; // ����.
+	
+	@Override
+	public void insertUserinit(HashMap<String, Object> paramMap) {
+		sqlSession.insert("userMapper.insertUserInit", paramMap);
+	}
+	
+	@Override
+	public UserDto selectUserInit(String id) {
+		UserDto UserInitDto=
+				sqlSession.selectOne("userMapper.selectUserInit",id);
+		return UserInitDto;
+	}
+	
+	@Override
+	public UserDto selectUserInfo(String id) {
+		UserDto UserInitDto=
+				sqlSession.selectOne("userMapper.selectUserInfo",id);
+		return UserInitDto;
+	}
+}

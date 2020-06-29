@@ -1,36 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/css/routine.css?after">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/routine.css?after'/>" />
+<script type="text/javascript"
+	src="<c:url value='/'/>js/routineDetails.js"></script>
 </head>
 <body>
-	<h1>루틴상세화면</h1>
-	<div class="leftAlign">
-		<h4>월</h4>
-		<hr width="50%">
-		<img class="routineImg" src="<c:url value='/images/routine/routine1.png'/>" >
-		<span class="verticalTop">가슴땡겨</span>
-		<span class="verticalTop">12세트/3회</span>
-		
+	<div style="height: 70px"></div>
+	<div id="title">
+		<p>
+			<span style="font-weight: bold">${routine.name}</span>
+		</p>
 	</div>
-	<div class="rightAlign">
-		<h4>화</h4>
-		<hr width="50%">
-		<h4>쉬어</h4>
-		<p>격렬히/3회</p>
+	<div id="userId" style="display: none">${userId}</div>
+	<div id="url" style="display: none">${url}</div>
+	<div class="sectionWrapper leftAlign">
+		<div
+			class="section-background background-image
+			<c:if test="${empty url}"> myroutine-image</c:if>">
+
+		</div>
+		<div class="section-background background-cover"></div>
+		<div class="section">
+			<p class="section-text title rightAlign">
+				${routine.category}
+				<c:if test="${routine.category == ''}">그냥</c:if>
+				<span> 루틴</span>
+			</p>
+			<p class="section-text difficulty">
+				난이도
+				<c:forEach begin="1" end="${routine.difficulty}">★</c:forEach><c:forEach begin="${routine.difficulty}" end="4">☆</c:forEach>
+			</p>
+		</div>
 	</div>
-	<div class="rightAlign">
-		<h4>수</h4>
-		<hr width="50%">
-		<img class="routineImg" src="<c:url value='/images/routine/routine1.png'/>" >
-		<h4>가슴또땡겨</h4>
-		<p>12세트/3회</p>
+	<div id="routineDetail">
+		<c:forEach var="array" items="${routineInfo}" varStatus="status">
+			<div
+				class="sectionWrapper 
+			<c:choose>
+				<c:when test="${status.index%2==0}">leftAlign</c:when>
+				<c:otherwise>rightAlign</c:otherwise>
+			</c:choose>">
+				<h3 class="day">
+					<c:choose>
+						<c:when test="${status.index eq 0}">월</c:when>
+						<c:when test="${status.index eq 1}">화</c:when>
+						<c:when test="${status.index eq 2}">수</c:when>
+						<c:when test="${status.index eq 3}">목</c:when>
+						<c:when test="${status.index eq 4}">금</c:when>
+						<c:when test="${status.index eq 5}">토</c:when>
+						<c:when test="${status.index eq 6}">일</c:when>
+					</c:choose>
+				</h3>
+				<hr class="dayHr" width="50%">
+				<div class="sportsList">
+					<c:choose>
+						<c:when test="${fn:length(array) == 0}">
+							<p class="rest">휴식</p>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="sports" items="${array}" varStatus="status">
+								<p class="sportsPart">
+									<span>${sports.sportsPart}</span>
+								</p>
+								<table class="daySports">
+									<tr>
+										<td>
+											<div class="seq" style="display: none;">${sports.seq}</div> <img
+											class="routineImg" src="<c:url value='${sports.image}'/>">
+										</td>
+										<td>
+											<div>
+												<p>${sports.sportsName}</p>
+												<p class="routineSet">
+													<span>${sports.sportsSet}세트</span>/ <span>${sports.sportsCount}회</span>
+												</p>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+			<br>
+		</c:forEach>
 	</div>
-	<a class="redtext" href="<c:url value='/user/userRoutineList' />">등록</a>
+	<br>
+	<br>
+	<br>
+	<form id="sportsInfo" method="post"
+		action="<c:url value='/'/>sports/sportsDetails">
+		<input type="hidden" id="sportsSeq" name="seq">
+	</form>
+	<c:choose>
+		<c:when test="${not empty msg}">
+			<form id="routineEnroll" method="post"
+				action="<c:url value='/'/>user/insertUserRoutine">
+				<input type="hidden" name="routineId" value="${routine.id}">
+				<input id="floatingButton" type="submit" value="루틴 확정">
+			</form>
+		</c:when>
+		<c:otherwise>
+			<form id="routineDelete" method="post"
+				action="<c:url value='/'/>user/deleteUserRoutine">
+				<input type="hidden" name="routineId" value="${routine.id}">
+				<input id="floatingButton" type="submit" value="루틴 제거">
+			</form>
+		</c:otherwise>
+	</c:choose>
+	
 </body>
 </html>

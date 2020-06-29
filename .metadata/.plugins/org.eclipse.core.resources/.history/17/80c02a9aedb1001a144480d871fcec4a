@@ -1,0 +1,13 @@
+package com.matnagu.myHell.user.dao;
+
+import java.util.HashMap;
+
+import com.matnagu.myHell.user.dto.UserDto;
+
+public interface IUserDao {
+	public void insertUserinit(HashMap<String,Object> paramMap);
+	
+	public UserDto selectUserInit(String id);
+	
+	public UserDto selectUserInfo(String id);
+}

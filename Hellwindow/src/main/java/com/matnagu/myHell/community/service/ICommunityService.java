@@ -1,26 +1,29 @@
 package com.matnagu.myHell.community.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.matnagu.myHell.community.dto.CommunityDto;
 
 public interface ICommunityService {
 
-	// °Ô½Ã±Û ¸ñ·Ï Á¶È¸ (³» °Ô½Ã±Û ¸ñ·Ï Á¶È¸ Æ÷ÇÔ)
-	public List<CommunityDto> selectPostList();
-	// °Ô½Ã±Û Á¶È¸
-	public CommunityDto selectPost();
-	// °Ô½Ã±Û »ı¼º
-	public void createPost();
-	// °Ô½Ã±Û ¼öÁ¤
-	public void updatePost();
-	// °Ô½Ã±Û »èÁ¦
-	public void deletePost();
-	// ´ñ±Û »ı¼º
-	public void createComment();
-	// ´ñ±Û ¼öÁ¤
-	public void updateComment();
-	// ´ñ±Û »èÁ¦
-	public void deleteComment();
-		
+	//ì „ì²´ ì¡°íšŒ
+	public List<CommunityDto> selectCommunityAllList();
+	//ê¸€ ì½ê¸°
+	public CommunityDto selectCommunity(int seq);
+	//ì¹´í…Œê³ ë¦¬ ë¶„ë¥˜í•˜ê¸°
+	public List<CommunityDto> selectCommunityCategory(String category);
+	//ì‘ì„±ì ì´ë¦„ìœ¼ë¡œ ë¶„ë¥˜í•˜ê¸°
+	public List<CommunityDto> selectCommunityList(String list);
+	//ì¹´ìš´íŠ¸ ì˜¬ë¦¬ê¸° 
+	public void updateHit(int seq);
+	//ê¸€ì“°ê¸°
+	public void insertWritingContent(HashMap<String,String> paramMap);
+	//ê¸€ ìˆ˜ì •
+	public void updateCommunity(HashMap<String,String> paramMap);
+	//ê¸€ ì‚­ì œ
+	public void deleteMyCommunity(int seq);
+	//ì¡°ê±´ ê²€ìƒ‰	 (ì¶”ê°€)
+	public List<CommunityDto>  selectSearch(HashMap<String,String> paramMap);
+
 }

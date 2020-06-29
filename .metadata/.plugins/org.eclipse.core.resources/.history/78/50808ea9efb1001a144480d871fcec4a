@@ -1,0 +1,31 @@
+package com.matnagu.myHell.comment.dao;
+
+public class CommentDaoImpl implements ICommentDao {
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession; // 주입. SqlSessionTemplate 객체
+
+
+	@Override
+	public List<CommentDto> selectCommentAllList(int communityseq) {
+		List<CommentDto> CommentDtoList=
+				new ArrayList<CommentDto>();
+		CommentDtoList =
+				sqlSession.selectList("comment1Mapper.selectCommentAllList",communityseq);
+		return CommentDtoList;
+	}
+
+
+	@Override
+	public void insertComment(HashMap<String, String> paramMap) {
+		sqlSession.insert("comment1Mapper.insertComment", paramMap);
+		
+	}
+
+
+	@Override
+	public void deleteComment(int seq) {
+		sqlSession.delete("comment1Mapper.deleteComment", seq);
+		
+	}
+}

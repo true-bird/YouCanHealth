@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css?after'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/home.css?after'/>"/>
+	<link rel="stylesheet" type="text/css" href="css/common.css?after">
+	<link rel="stylesheet" type="text/css" href="css/home.css?after">
+	<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+</head>
+<body>
+	<%= id %>
+	<%= name %>
+	<div id="box2">
+		<h1>너 도 헬 수 있 어!!</h1>
+	</div>
+	
+	<br>
+	<video poster="<c:url value='/images/home/img2.png'/>" width="640"
+		height="360" controls="controls">
+		<source src="<c:url value='/images/home/hs.mp4'/>" type="video/mp4" />
+	</video>
+	<br>
+	<div id="box">
+		<h2>
+			운동을 할줄 모른다구요?<br>PT가격이 부담스러우신가요?
+		</h2>
+	</div>
+	<br>
+	<br>
+	<div id="box">
+		<h2>전문가의 운동을 보고 따라 하세요.</h2>
+	</div>
+	<a class="redtext" href="<c:url value='/login/Login'/>"><img
+		src="<c:url value='/images/home/img2.png'/>"></a>
+	<div id="box">
+		<h2>당신의 루틴 저희가 짜주겠습니다.</h2>
+	</div>
+	<a class="redtext" href="<c:url value='/login/Login'/>"><img
+		src="<c:url value='/images/home/img4.png'/>"></a>
+</body>
+</html>

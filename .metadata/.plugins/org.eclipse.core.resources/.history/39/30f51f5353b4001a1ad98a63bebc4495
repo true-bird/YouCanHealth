@@ -1,0 +1,9 @@
+
+$(document).ready(function(){
+	$(".daySports").click(function() {
+		alert($(this).find('.seq').text());
+		$("#sportsSeq").val($(this).find('.seq').text());
+		$("form").submit();
+	});
+	
+});

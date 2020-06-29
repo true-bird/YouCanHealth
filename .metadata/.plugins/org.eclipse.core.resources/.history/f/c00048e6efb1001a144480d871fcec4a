@@ -1,0 +1,29 @@
+package com.matnagu.myHell.comment.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class CommentServiceImpl implements ICommentService {
+	
+	@Autowired // 자동 주입
+	private CommentDaoImpl commentDaoImpl;
+
+	@Override
+	public List<CommentDto> selectCommentAllList(int communityseq) {
+		// TODO Auto-generated method stub
+		return CommentDaoImpl.selectCommentAllList(communityseq);
+	}
+
+	@Override
+	public void insertComment(HashMap<String, String> paramMap) {
+		CommentDaoImpl.insertComment(paramMap);
+
+	}
+
+	@Override
+	public void deleteComment(int seq) {
+		CommentDaoImpl.deleteComment(seq);
+		
+	}
+}

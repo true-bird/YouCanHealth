@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="CommunityMapper">
+
+	<!--  커뮤니티 정보 전체 출력 -->
+	<select id="selectCommunityAllList"
+		resultType="com.matnagu.myHell.community.dto.CommunityDto">
+
+		SELECT
+		SEQ,
+		ID,
+		CATEGORY,
+		TITLE,
+		CONTENT,
+		creationDATE,
+		HIT
+		FROM COMMUNITY
+		ORDER BY creationDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
+	
+	<!--  시퀀스를 이용한 조건 출력 -->
+	<select id="selectCommunity" parameterType="int"
+		resultType="com.matnagu.myHell.community.dto.CommunityDto">
+
+		SELECT
+		SEQ,
+		ID,
+		CATEGORY,
+		TITLE,
+		CONTENT,
+		creationDATE,
+		HIT
+		FROM COMMUNITY
+		WHERE SEQ = #{seq}
+		ORDER BY creationDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
+	
+	<!-- 카테고리를 이용한 전체 출력 -->
+	<select id="selectCommunityCategory" parameterType="String"
+		resultType="com.matnagu.myHell.community.dto.CommunityDto">
+
+		SELECT
+		SEQ,
+		ID,
+		CATEGORY,
+		TITLE,
+		CONTENT,
+		creationDATE,
+		HIT
+		FROM COMMUNITY
+		WHERE CATEGORY = #{category}
+		ORDER BY creationDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
+	
+	<!-- 작성자 이름을 이용한-->
+	<select id="selectCommunityList" parameterType="String"
+		resultType="com.matnagu.myHell.community.dto.CommunityDto">
+
+		SELECT
+		SEQ,
+		ID,
+		CATEGORY,
+		TITLE,
+		CONTENT,
+		creationDATE,
+		HIT
+		FROM COMMUNITY
+		WHERE ID = #{id}
+				ORDER BY creationDATE desc
+		<!-- ORDER BY NAME ASC -->
+	</select>
+	
+	<update id="updateHit" parameterType="java.util.HashMap">
+		UPDATE	 COMMUNITY
+		SET
+		HIT = HIT + 1
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<insert id="insertWritingContent" parameterType="java.util.HashMap">
+		INSERT INTO COMMUNITY (SEQ, ID, CATEGORY, TITLE, CONTENT, creationDATE, HIT) VALUES 
+		(SEQ_COMMUNITY.NEXTVAL, #{id}, #{category},#{title},#{content},SYSDATE,0)
+	</insert>
+	
+	<update id="updateCommunity" parameterType="java.util.HashMap">
+	UPDATE	 COMMUNITY
+	SET
+		TITLE = #{title},
+		CONTENT = #{content},
+		CATEGORY = #{category}
+	WHERE SEQ=#{seq}
+	</update>
+	
+		<delete id="deleteMyCommunity" parameterType="int">
+	DELETE FROM COMMUNITY
+	WHERE SEQ = #{seq}
+	</delete>
+</mapper>

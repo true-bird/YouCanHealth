@@ -1,0 +1,10 @@
+package com.matnagu.myHell.routine.dto;
+
+public class UserRoutineDto {
+	
+	private String userId;
+	private String rountineName;
+	private int rountineId;
+	
+
+}

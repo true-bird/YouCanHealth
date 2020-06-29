@@ -1,5 +1,0 @@
-package com.matnagu.myHell.routine.service;
-
-public interface IRoutineService {
-
-}
