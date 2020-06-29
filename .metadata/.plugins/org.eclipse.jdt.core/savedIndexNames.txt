@@ -1,5 +1,4 @@
 INDEX VERSION 1.131+D:\repository\Hell\.metadata\.plugins\org.eclipse.jdt.core
-2677572777.index
 3617425506.index
 3406407675.index
 600256383.index
@@ -9,7 +8,6 @@ INDEX VERSION 1.131+D:\repository\Hell\.metadata\.plugins\org.eclipse.jdt.core
 3234489726.index
 4117680997.index
 1474378786.index
-1447609177.index
 3690680080.index
 1386109387.index
 3534282990.index

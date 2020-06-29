@@ -9921,3 +9921,63 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:38:42.939
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:40:46.640
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:40:46.652
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:23.243
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:23.257
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:23.276
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.318
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.340
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.355
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.369
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.383
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.397
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-06-29 16:48:23.414
+!MESSAGE C:\Users\isc96\.m2\repository\log4j\log4j\1.2.15\log4j-1.2.15.jar is not on its project's build path
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:27.769
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:27.899
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:39.044
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:48:39.094
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:50:25.427
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:50:25.439
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:50:28.975
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-06-29 16:50:28.997
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
