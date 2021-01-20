@@ -16,9 +16,6 @@
 - Rename `myHell-1.0.0-BUILD-SNAPSHOT.war` to `myHell.war`
 - Run Tomcat server
 
-## Tests
-- Aceess [the Test page][homepage]
-
 ## Development environment
 - STS 3.9.9
 - Spring 4.2.5
@@ -30,4 +27,3 @@
 
 <!-- Markdown link & img dfn's -->
 [dev-image]: https://img.shields.io/badge/Dev-Web-orange
-[homepage]: http://truebird.tk/myHell
